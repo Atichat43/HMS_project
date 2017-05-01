@@ -14,6 +14,9 @@ class Appointment:
     def __init__(self):
         self.date = Date(0, 0, 0)
         self.time = Time
+        self.Nroom = 0
+        self.Dname = ""
+        self.Pname = ""
 
     def setDate(self, day, month, year):
         self.date = Date(day, month, year)
