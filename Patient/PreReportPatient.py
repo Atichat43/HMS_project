@@ -1,4 +1,4 @@
-import AppointmentClass
+from Appointment import AppointmentClass
 
 
 class PreReportByDoctor:

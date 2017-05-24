@@ -1,10 +1,10 @@
-from Employee.Roommanager import setting
+import Setting
 
 
 class Room:
     def __init__(self, num, status):
         self.number = num
-        self.color = setting.STATUS[status]
+        self.color = Setting.STATUS[status]
         self.allPatient = []
 
     def changeStatus(self, status):
