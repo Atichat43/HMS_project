@@ -11,7 +11,6 @@ class LoginWindow(QMainWindow):
         self.parent = parent
         self.system = Login_System.LoginSystem()
         self.initUI()
-        self.initButton()
         self.show()
 
     def initUI(self):
@@ -22,6 +21,7 @@ class LoginWindow(QMainWindow):
         palette.setBrush(QPalette.Background, QBrush(QPixmap(s.PATH_IMG_BG_LOGIN)))
         self.setPalette(palette)
         self.initButton()
+        self.forDev()
 
     def initButton(self):
         loader = QUiLoader()
@@ -30,6 +30,15 @@ class LoginWindow(QMainWindow):
         self.password = form.findChild(QLineEdit, "lineEdit_password")
         self.login_button = form.findChild(QPushButton, "button_login")
         self.login_button.clicked.connect(self.logIn)
+        palette = QPalette()
+        palette.setBrush(QPalette.Background, QBrush(QPixmap(s.PATH_IMG_BG_LOGIN)))
+        self.setPalette(palette)
+
+    def forDev(self):
+        id = "doc1"
+        psw = "1234"
+        self.user_id.setText(id)
+        self.password.setText(psw)
 
     def initLayout(self):
         layout = QGridLayout()

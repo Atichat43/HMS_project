@@ -1,8 +1,9 @@
 from PySide.QtCore import *
 from PySide.QtGui import *
 from PySide.QtUiTools import *
-from Base import comboBoxClass
-from Employee.Admin import Dialog_editOrNewEmployeeClass
+
+from Base.Widget_ComboBox import comboBoxClass
+
 
 class TabManagePerson(QWidget):
     def __init__(self, Person):

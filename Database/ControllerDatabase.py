@@ -1,7 +1,7 @@
-from Employee.Admin import AdminClass
-from Employee.Doctor import DoctorClass
-from Employee.Nurse import NurseClass
-from Employee.Roommanager import RoommanagerClass
+from Employee.Admin.AdminClass import *
+from Employee.Doctor.DoctorClass import *
+from Employee.Nurse.NurseClass import *
+from Employee.Roommanager.RoommanagerClass import *
 '''
 import pickle, pprint
 
@@ -36,11 +36,10 @@ pprint.pprint(data2)
 pkl_file.close()
 '''
 import pickle
-from Employee.Admin.AdminClass import *
+
 class ControllerDatabase(object):
     def __init__(self, filename):
         self.file_name = filename
-        self.path = []
 
     def loadObj(self):
         object_list = []
@@ -60,13 +59,32 @@ class ControllerDatabase(object):
             pickle.dump(lst[i], pkl_file)
         pkl_file.close()
 
-#
-# def main():
-#     db = ControllerDatabase('userObject.pkl')
-#     s1 = Admin('A001', 'tiger', '4141', 'tiger', 'TG', '123456798')
-#     s2 = Admin('A002', 'boss', '1234', 'boss', 'AL', '123456798')
-#     s3 = Admin('A003', 'gift', '1234', 'gift', 'NU', '123456798')
-#     s = [s1, s2, s3]
-#     db.updateObject(s)
+    def newObject(self, ob):
+        pkl_file = open(self.file_name, 'wb')
+        pickle.dump(ob, pkl_file)
+        pkl_file.close()
 
+
+def demo():
+    db = ControllerDatabase('userObject.pkl')
+    s1 = Admin('A001', 'tiger', '4141', 'tiger', 'TG', '123456798')
+    s2 = Admin('A002', 'boss', '1234', 'boss', 'AL', '123456798')
+    s3 = Admin('A003', 'gift', '1234', 'gift', 'NU', '123456798')
+    s4 = Doctor('D001', 'doc1', '1234', 'Dr.A', 'Charnchyyy', '00000', 'Sri tanya')
+    s5 = Doctor('D002', 'doc2', '1234', 'Dr.B', 'MekboltZ', '00000', 'Sri tanya')
+    s6 = Doctor('D003', 'doc3', '1234', 'Dr.C', 'Shadder4k', '00000', 'Overwatch')
+    s7 = Nurse('N001', 'nur1', '1234', 'Nr.1', 'Aasdasdsad', '00000')
+    s8 = Nurse('N002', 'nur2', '1234', 'Nr.1', 'rsmund', '58090043')
+    s9 = Nurse('N003', 'nur3', '1234', 'Nr.1', 'Aatbat', '4114')
+    s10 = RoomManager('R001', 'room1', '1234', 'Rr.1', 'Rommo', '65405')
+    s11 = RoomManager('R002', 'room2', '1234', 'Rr.1', 'Roommmmm', '08999155314')
+    s12 = RoomManager('R003', 'room3', '1234', 'Rr.1', 'ALALAAL', '68543120')
+    s = [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12]
+    db.updateObject(s)
+    t = []
+    lst = db.loadObj()
+    for i in lst:
+        print(i.getType())
+        t.append(i)
+    print(t)
 

@@ -1,8 +1,9 @@
 from PySide.QtCore import *
 from PySide.QtGui import *
 from PySide.QtUiTools import *
-from Base import comboBoxClass
-from Employee.Admin import Dialog_editOrNewEmployeeClass
+
+from Base.Widget_ComboBox import comboBoxClass
+
 
 class WidgetManagePerson(QWidget):
     def __init__(self, Person):
@@ -15,7 +16,7 @@ class WidgetManagePerson(QWidget):
         self.setProxyModel()
 
     def initUI(self):
-        form = QUiLoader().load('Base/ManagePerson/View/Widget_ManagePersonUI.ui', self)
+        form = QUiLoader().load('Base/Widget_ManagePerson/View/Widget_ManagePersonUI.ui', self)
         self.proxyView = form.findChild(QTreeView, 'treeView')
         self.layoutSearch = form.findChild(QHBoxLayout, 'layout_search')
         self.b_edit = form.findChild(QPushButton, 'b_edit')
@@ -52,11 +53,11 @@ class WidgetManagePerson(QWidget):
         self.filterColumnComboBox.setModel(model)
         self.filterColumnComboBox.setModelColumn(0)
 
-    def setSourceModel(self, lstHead, Allrow):
+    def setSourceModel(self, lstHead, lst_person):
         self.sizeOFHead = len(lstHead)
         self.setComboBox(lstHead)
         self.createBarSort(lstHead)
-        self.addAllRow(Allrow)
+        self.addAllPerson(lst_person)
         self.proxyModel.setSourceModel(self.model)
 
     def createBarSort(self, lstHead):
@@ -64,12 +65,13 @@ class WidgetManagePerson(QWidget):
         for i in range(self.sizeOFHead):
             self.model.setHeaderData(i, Qt.Horizontal, lstHead[i])
 
-    def addAllRow(self, allRow):
+    def addAllPerson(self, lst_person):
         count = 0
-        for row in allRow:
+        for person in lst_person:
+            text = person.getData()
             self.model.insertRow(count)
             for i in range(self.sizeOFHead):
-                self.model.setData(self.model.index(count, i), row[i])
+                self.model.setData(self.model.index(count, i), text[i])
             count += 1
 
     def filterRegExpChanged(self):

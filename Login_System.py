@@ -1,7 +1,6 @@
 from Database import ControllerDatabase
 import Setting as s
 
-
 class LoginSystem(object):
     def __init__(self):
         self.ctrlDatabase = ControllerDatabase.ControllerDatabase(s.DB_USER)

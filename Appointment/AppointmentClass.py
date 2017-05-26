@@ -1,32 +1,48 @@
 class Date:
-    def __init__(self, day, month, year):
-        self.day = day
-        self.month = month
-        self.year = year
-
-
-class Time:
     def __init__(self):
-        pass
+        self.day = 0
+        self.month = 0
+        self.year = 0
 
-class Appointment:
-    def __init__(self):
-        self.date = Date(0, 0, 0)
-        self.time = Time
-        self.Nroom = 0
-        self.Dname = ""
-        self.Pname = ""
-
-    def setDate(self, day, month, year):
-        self.date = Date(day, month, year)
+    def setDate(self, date):
+        self.day = date[0]
+        self.month = date[1]
+        self.year = date[2]
 
     def getDate(self):
-        return self.date
+        return str(self.day) + "/" + str(self.month) + "/" + str(self.year)
 
-    def setTime(self, time):
+
+class Appointment:
+    #self.part_appointment, self.user, newPatient
+    def __init__(self, case_id, appointment, doctor, patient):
+        self.case_id = case_id
+        self.type = ""
+        self.date = Date()
+        self.time = ""
+        self.doctor = doctor
+        self.patient = patient
+        self.number_room = 0
+        # "Type", "Date", "Time"
+        self.setInfo(appointment[0], appointment[1], appointment[2])
+
+    def getData(self):
+        text = []
+        text.append(self.date.getDate())
+        text.append(self.time)
+        text.append(self.number_room)
+        text.append(self.patient.Name)
+        # "Pre_OD", "Plan", "Underlying", "Treatment", "Note"
+        text.append(self.patient.ExtraNote[0]) #Pre_OD
+        text.append(self.patient.ExtraNote[1]) #Plan
+        return text
+
+    def setInfo(self, type, date, time):
+        self.type = type
+        self.date.setDate(date.split('/'))
         self.time = time
 
-    def getTime(self):
-        return self.time
+    def setRoom(self, number):
+        self.number_room = number
 
 

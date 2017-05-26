@@ -1,11 +1,13 @@
-import Setting
 from PySide.QtGui import *
-from Base.ManagePerson import Widget_ManagePersonClass
+from Base.Widget_ManagePerson import Widget_ManagePersonClass
 from Employee.Doctor.GuiClass import Dialog_3ReportPatientClass, Dialog_NewPatientClass
+import Setting as s
 
 class Tab2Patient(QWidget):
-    def __init__(self):
-        QWidget.__init__(self)
+    def __init__(self, user, parent=None):
+        QWidget.__init__(self, None)
+        self.user = user
+        self.parent = parent
         self.initUI()
         self.initLayout()
         self.initButton()
@@ -13,8 +15,12 @@ class Tab2Patient(QWidget):
 
     def initUI(self):
         self.tab2 = Widget_ManagePersonClass.WidgetManagePerson("Patient")
-        allRow = [("Atichat", "001", "Brain", "0971249197"), ("Tiger", "002", "Chest", "0971249194")]
-        self.tab2.setSourceModel(Setting.HEAD_BAR_PATIENT, allRow)
+        patients = self.parent.crtlDatabase.getPatientFromDatabase()
+        self.tab2.setSourceModel(s.HEAD_BAR_PATIENT, patients)
+
+    def updateTable(self):
+        patients = self.parent.crtlDatabase.getPatientFromDatabase()
+        self.tab2.setSourceModel(s.HEAD_BAR_PATIENT, patients)
 
     def initLayout(self):
         layout = QGridLayout()
@@ -35,10 +41,11 @@ class Tab2Patient(QWidget):
         dialog.exec_()
 
     def newPatient(self):
-        dialog = Dialog_NewPatientClass.NewPatientDialog()
+        case_id = self.parent.getCurrentCaseID()
+        dialog = Dialog_NewPatientClass.NewPatientDialog(self.user, case_id, self.parent)
         dialog.show()
         dialog.exec_()
-
+        self.updateTable()
 
 
 if __name__ == '__main__':

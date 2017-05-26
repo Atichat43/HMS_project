@@ -1,19 +1,21 @@
 from PySide.QtGui import QMainWindow, QGridLayout, QWidget, QTabWidget
-from Employee.Roommanager import Tab1_AllRoomClass, Tab2_ManagePatientClass
+from Employee.Doctor import Doctor, Tab1_CalendarClass, Tab2_PatientClass
 import Setting
 
 
-class MainWindowRoomManager(QMainWindow):
-    def __init__(self, user):
-        super(MainWindowRoomManager, self).__init__()
+class MainWindowDoctor(QMainWindow):
+    def __init__(self, user, parent=None):
+        QMainWindow.__init__(self, None)
+        self.parent = parent
+        self.user = user
+        self.crtlDatabase = Doctor.DoctorApplication()
         self.initUI()
         self.initLayout()
-        self.user = user
 
     def initUI(self):
         posX, posY, sizeW, sizeH = Setting.GEOMETRY_MAINWIDOW
         self.setGeometry(posX, posY, sizeW, sizeH)
-        self.setWindowTitle("RoomManager Main Window")
+        self.setWindowTitle("Doctor window")
         self.setTab()
         self.show()
 
@@ -26,15 +28,19 @@ class MainWindowRoomManager(QMainWindow):
 
     def setTab(self):
         self.tabWidget = QTabWidget()
-        self.tabWidget.setStyleSheet("QTabBar::tab { height: 35px; width: 100px; }")
-        self.tab1 = Tab1_AllRoomClass.Tab1AllRoom()
-        self.tab2 = Tab2_ManagePatientClass.Tab2ManagePatient()
-        self.tabWidget.addTab(self.tab1, "Manage Room")
+        self.tabWidget.setStyleSheet(Setting.SS_TabWidget)
+        self.tab1 = Tab1_CalendarClass.Tab1Calendar(self.user, self)
+        self.tab2 = Tab2_PatientClass.Tab2Patient(self.user, self)
+        self.tabWidget.addTab(self.tab1, "Dashboard")
         self.tabWidget.addTab(self.tab2, "Patient")
+
+    def addNewPatient(self, newPatient):
+        self.crtlDatabase.addNewPatient(newPatient)
 
 if __name__ == "__main__":
     import sys
     from PySide.QtGui import QApplication
     app = QApplication(sys.argv)
-    win = MainWindowRoomManager(object)
+    user = object
+    win = MainWindowDoctor(user)
     exit(app.exec_())

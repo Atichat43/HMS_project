@@ -1,7 +1,7 @@
 from PySide.QtCore import Qt
 from PySide.QtGui import *
 from PySide.QtUiTools import QUiLoader
-from Base.ManagePerson import Widget_ManagePersonClass
+from Base.Widget_ManagePerson import Widget_ManagePersonClass
 import Setting
 
 class Tab2ManagePatient(QWidget):

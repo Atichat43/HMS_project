@@ -5,15 +5,16 @@ from PySide.QtCore import QDateTime, Qt
 from PySide.QtGui import *
 from PySide.QtUiTools import QUiLoader
 from Patient.view import *
-import Setting
+import Setting as s
+
 
 class ReportPatient(QDialog):
     def __init__(self, parent = None):
         super(ReportPatient, self).__init__(parent)
-        posX, posY, sizeW, sizeH = Setting.GEOMETRY_DIALOG_3REPORT
+        posX, posY, sizeW, sizeH = s.GEOMETRY_DIALOG_3REPORT
         self.setGeometry(posX, posY, sizeW, sizeH)
         self.loader = QUiLoader()
-        ui = self.loader.load('./View/Widget_3ReportPatientUI.ui', self)
+        ui = self.loader.load(s.PATH_DOCTOR_DIALOG_3REPORT, self)
         self.layout = QVBoxLayout(self)
         self.layout.addWidget(ui)
         self.initPostButtons(ui)
@@ -60,7 +61,6 @@ class ReportPatient(QDialog):
             box = ui.findChild(QComboBox, name)
             comboBoxPost1list.append(box)
         self.post1List.append(comboBoxPost1list)
-
         line1 = ui.findChild(QLineEdit, "post1_lineEdit_1")
         line2 = ui.findChild(QLineEdit, "post1_lineEdit_2")
         self.post1List.append(line1)

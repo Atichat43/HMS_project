@@ -1,5 +1,5 @@
 import time
-class IntraReportPatient(object):
+class IntraReportPatient():
     def __init__(self, num_case_year, num_case_month, room, building, evaluation, Pre_evaluateNurse, AN, patientName, age_hour, age_day, age_month, age_year,
                  arrivePlace, departPlace, typeofOperation, department, service, ASA, Dormicum, Ephedrine, Ketamine, Anesthesia_technique, Combined_technique, airwayManagement,
                  Anesthesia_start_time, Anesthesia_finish_time, Anesthesia_time, Anesthesiologist, Anesthetistnurse, reason, Deliveryman_name):

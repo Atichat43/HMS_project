@@ -1,0 +1,4 @@
+#NewPatient
+UI_NEWPATIENT = [
+    ""
+]

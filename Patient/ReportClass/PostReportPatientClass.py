@@ -2,7 +2,7 @@ class PostReportPatient(object):
     def __init__(self, num, result):
         self.num = num
         self.Attempt = []
-        self.result = result ## string
+        self.result = result
         self.Anesthetic_complications_operationroom = []
         self.Anesthetic_complications_admitroom = []
         self.Anesthetic_complications_admitroom_2hrs = []

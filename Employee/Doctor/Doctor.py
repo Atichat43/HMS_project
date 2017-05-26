@@ -1,40 +1,60 @@
-from PySide.QtGui import QMainWindow, QGridLayout, QWidget, QTabWidget
-from Employee.Doctor import Tab1_CalendarClass, Tab2_PatientClass
-import Setting
+from Database import ControllerDatabase
+import Setting as s
 
 
-class MainWindowDoctor(QMainWindow):
-    def __init__(self, user):
-        super(MainWindowDoctor, self).__init__()
-        self.initUI()
-        self.initLayout()
-        self.user = user
+class DoctorApplication(object):
+    def __init__(self):
+        self.current_case_id = ""
+        self.ctrlDatabase_patient = ControllerDatabase.ControllerDatabase(s.DB_PATIENT)
+        self.ctrlDatabase_appointment = ControllerDatabase.ControllerDatabase(s.DB_APPOINTMENT)
 
-    def initUI(self):
-        posX, posY, sizeW, sizeH = Setting.GEOMETRY_MAINWIDOW
-        self.setGeometry(posX, posY, sizeW, sizeH)
-        self.setWindowTitle("Doctor window")
-        self.setTab()
-        self.show()
+    def getCurrentCaseID(self):
+        return self.current_case_id
 
-    def initLayout(self):
-        layout = QGridLayout()
-        layout.addWidget(self.tabWidget)
-        centralWidget = QWidget()
-        centralWidget.setLayout(layout)
-        self.setCentralWidget(centralWidget)
+    """-------------------------Patient Database---------------------------------------------"""
+    def getPatientFromDatabase(self):
+        obj_patients = self.ctrlDatabase_patient.loadObj()
+        #update case id
+        return obj_patients
 
-    def setTab(self):
-        self.tabWidget = QTabWidget()
-        self.tabWidget.setStyleSheet(Setting.SS_TabWidget)
-        self.tab1 = Tab1_CalendarClass.Tab1Calendar()
-        self.tab2 = Tab2_PatientClass.Tab2Patient()
-        self.tabWidget.addTab(self.tab1, "Dashboard")
-        self.tabWidget.addTab(self.tab2, "Patient")
+    def addNewPatient(self, newPatient):
+        patients = self.getPatientFromDatabase()
+        patients.append(newPatient)
+        self.ctrlDatabase_patient.updateObject(patients)
+        #update case_id
+
+    def editPatient(self, newPatient):
+        patients = self.getPatientFromDatabase()
+        for i in range(len(patients)):
+            #edit check by case_id instead
+            if patients[i].AN == newPatient.AN:
+                patients[i] = newPatient
+                break
+        self.ctrlDatabase_patient.updateObject(patients)
+
+    """-------------------------Appointment Database---------------------------------------------"""
+    def getAppointmentFromDatabase(self):
+        obj_appointments = self.ctrlDatabase_appointment.loadObj()
+        return obj_appointments
+
+    def addNewAppointment(self, newAppointment):
+        appointments = self.getAppointmentFromDatabase()
+        appointments.append(newAppointment)
+        self.ctrlDatabase_appointment.updateObject(appointments)
+        #update case_id
+
+    def editAppointment(self, newAppointment):
+        appointments = self.getAppointmentFromDatabase()
+        for i in range(len(appointments)):
+            if appointments[i].AN == newAppointment.case_id:
+                appointments[i] = newAppointment
+                break
+        self.ctrlDatabase_patient.updateObject(appointments)
+
 
 if __name__ == "__main__":
     import sys
     from PySide.QtGui import QApplication
     app = QApplication(sys.argv)
-    win = MainWindowDoctor()
+    win = DoctorApplication()
     exit(app.exec_())

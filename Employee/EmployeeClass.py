@@ -9,6 +9,17 @@ class Employee(object):
         self.lastname = lastname
         self.phone_number = phone_number
 
+    def getData(self):
+        text = []
+        text.append(self.id)
+        text.append(self.username)
+        text.append(self.password)
+        text.append(self.type)
+        text.append(self.firstname)
+        text.append(self.lastname)
+        text.append(self.phone_number)
+        return text
+
     def setUsername(self, u):
         self.username = u
 
