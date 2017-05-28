@@ -52,18 +52,24 @@ class NewPatientDialog(QDialog):
         return False
 
     def forDev(self):
-        count = "3"
+        self.getNumberCase()
         ui = self.ui
-        ui.AN.setText("000 " + count)
+        ui.AN.setText(self.case_id)
+        count = self.case_id[-1]
         ui.PIC.setText("PIC " + count)
-        ui.Name.setText("Atichat " + count)
-        ui.Age.setText("20 " + count)
-        ui.Phone.setText("0971249197 " + count)
+        ui.Name.setText("test Eii" + count)
+        ui.Age.setText("20" + count)
+        ui.Phone.setText("097124919" + count)
         ui.Pre_OD.document().setPlainText("Pre_OD " + count)
         ui.Plan.document().setPlainText("Plan " + count)
         ui.Underlying.document().setPlainText("Underlying " + count)
         ui.Treatment.document().setPlainText("Treatment " + count)
         ui.Note.document().setPlainText("Note " + count)
+
+    def getNumberCase(self):
+        self.case_id = str(int(self.parent.getCurrentCaseID()) + 1)
+        print(self.case_id)
+
 
     def getData(self):
         ui = self.ui
@@ -72,9 +78,11 @@ class NewPatientDialog(QDialog):
         self.part_basic_info.append(ui.AN.text())
         self.part_basic_info.append(ui.PIC.text())
         self.part_basic_info.append(ui.Name.text())
-        self.part_basic_info.append(ui.Age.text())
+        self.part_basic_info.append(int(ui.Age.text()))
         self.part_basic_info.append(ui.Phone.text())
+        self.case_id = int(self.parent.getCurrentCaseID()) + 1
         self.part_basic_info.append(self.case_id)
+
         #"Type", "Date", "Time"
         self.part_appointment.append(ui.Type.currentText())
         self.part_appointment.append(ui.Date.text())
@@ -86,12 +94,14 @@ class NewPatientDialog(QDialog):
         self.part_extra_info.append(ui.Treatment.toPlainText())
         self.part_extra_info.append(ui.Note.toPlainText())
 
+
     def save(self):
         self.getData()
         pre_pre_report = [self.part_basic_info, self.part_extra_info]
         newPatient = PatientClass.Patient(pre_pre_report)
-        newAppointment = AppointmentClass.Appointment(0000,self.part_appointment, self.user, newPatient)
+        newAppointment = AppointmentClass.Appointment(self.case_id, self.part_appointment, self.user, newPatient)
         self.parent.addNewPatient(newPatient)
+        self.parent.addNewAppointment(newAppointment)
         self.close()
 
     def cancel(self):
@@ -101,7 +111,6 @@ class NewPatientDialog(QDialog):
             self.close()
         else:
             print("Cancel")
-
 
 
 if __name__ == "__main__":

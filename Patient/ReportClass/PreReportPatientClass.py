@@ -1,35 +1,33 @@
 from Appointment import AppointmentClass
 
-
-class PreReportByDoctor:
-    def __init__(self, type):
-        self.opd = 0
-        self.type = type
-        self.appointment = AppointmentClass
-        self.preDiagonsis = ""
-        self.operationPlan = ""
-        self.underlying = ""
-        self.specialTreament = ""
-        self.note = ""
-
-    def setOpd(self, boo):
-        self.opd = boo
-
-    def setDoc(self, preDiagonsis, operationPlan, underlying, specialTreament, note):
-        self.preDiagonsis = preDiagonsis
-        self.operationPlan = operationPlan
-        self.underlying = underlying
-        self.specialTreament = specialTreament
-        self.note = note
-
-    def getDoc(self):
-        return [self.preDiagonsis, self.operationPlan, self.underlying, self.specialTreament, self.note]
-
+# class PreReportByDoctor:
+#     def __init__(self):
+#         self.opd = 0
+#         self.type = type
+#         self.appointment = AppointmentClass
+#         self.preDiagonsis = ""
+#         self.operationPlan = ""
+#         self.underlying = ""
+#         self.specialTreament = ""
+#         self.note = ""
+#
+#     def setOpd(self, boo):
+#         self.opd = boo
+#
+#     def setDoc(self, preDiagonsis, operationPlan, underlying, specialTreament, note):
+#         self.preDiagonsis = preDiagonsis
+#         self.operationPlan = operationPlan
+#         self.underlying = underlying
+#         self.specialTreament = specialTreament
+#         self.note = note
+#
+#     def getDoc(self):
+#         return [self.preDiagonsis, self.operationPlan, self.underlying, self.specialTreament, self.note]
+#
 
 class PreReportByNurse(object):
-    def __init__(self, AN, premed, PRC, FFP, Plt, PC, plannedICU, fullBed, service, ASA, BW, HT, BP, P, RR, T, GCS1,
+    def __init__(self, premed, PRC, FFP, Plt, PC, plannedICU, fullBed, service, ASA, BW, HT, BP, P, RR, T, GCS1,
                  GCS2, smoking, alcoholic, allergy):
-        self.AN = AN  ## Patient'ID
         self.premed = premed
         self.BLprepared = [PRC, FFP, Plt, PC]  ## PRC, FFP, PLT, PC int
         self.plannedICU = plannedICU  ## boolean

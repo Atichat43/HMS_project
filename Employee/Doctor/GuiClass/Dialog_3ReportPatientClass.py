@@ -21,7 +21,6 @@ class ReportPatient(QDialog):
         self.initIntraButtons(ui)
         self.initPreButtons(ui)
 
-
     def initPreButtons(self,ui):
         #Line edits
         self.lineEditPrelist = []

@@ -14,6 +14,7 @@ class Date:
 
 
 class Appointment:
+    #newAppointment = [0000, ["Type", "Date", "Time"], self.user, newPatient]
     #self.part_appointment, self.user, newPatient
     def __init__(self, case_id, appointment, doctor, patient):
         self.case_id = case_id
@@ -28,6 +29,9 @@ class Appointment:
 
     def getData(self):
         text = []
+        #BAR MANAGE PERSON DOCTOR
+        #Date Time Room PName Pre Plan
+        text.append(self.case_id)
         text.append(self.date.getDate())
         text.append(self.time)
         text.append(self.number_room)
@@ -35,6 +39,14 @@ class Appointment:
         # "Pre_OD", "Plan", "Underlying", "Treatment", "Note"
         text.append(self.patient.ExtraNote[0]) #Pre_OD
         text.append(self.patient.ExtraNote[1]) #Plan
+        return text
+
+    def getDataForCalendarDcotor(self):
+        text = []
+        text.append(self.time)
+        text.append(str(self.number_room))
+        text.append(self.patient.ExtraNote[1])
+        text.append(self.patient.Name)
         return text
 
     def setInfo(self, type, date, time):

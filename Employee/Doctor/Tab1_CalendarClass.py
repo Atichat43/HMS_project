@@ -1,5 +1,8 @@
 from PySide.QtGui import *
 from PySide.QtUiTools import QUiLoader
+from collections import defaultdict
+import Setting as s
+
 
 class Tab1Calendar(QWidget):
     def __init__(self, user, parent=None):
@@ -8,8 +11,9 @@ class Tab1Calendar(QWidget):
         self.parent = parent
         self.initUI()
         self.initLayout()
-        self.initButton()
         self.initConnect()
+        self.createdModelForCalendar()
+        self.fordevCheckAppointment()
 
     def initUI(self):
         self.tab1 = QUiLoader().load('./Employee/Doctor/View/Tab1_CalendarUI.ui', self)
@@ -17,14 +21,10 @@ class Tab1Calendar(QWidget):
         self.labelDate = self.tab1.findChild(QLabel, 'label_date')
         self.taskView = self.tab1.findChild(QListView, 'listView')
 
-
     def initLayout(self):
         layout = QGridLayout()
         layout.addWidget(self.tab1)
         self.setLayout(layout)
-
-    def initButton(self):
-        pass
 
     def initConnect(self):
         self.calendar.selectionChanged.connect(self.selectedDate)
@@ -33,15 +33,25 @@ class Tab1Calendar(QWidget):
         date = self.calendar.selectedDate().toString()
         self.labelDate.setText(date)
         date = date.split()
-        self.taskView.setModel(self.createdModel(date[1], date[2]))
+        model = self.createdModel(s.Month[date[1]].value, date[2])
+        self.taskView.setModel(model)
 
     def createdModel(self, month, day):
+        #list HEAD []
         model = QStringListModel()
-        print(month + day)
-        text = ["Atichat", "Fern"]
-        model.setStringList(text)
+        lst_task = []
+        for appointment in self.appointment[month]:
+            if appointment.date.day == day:
+                text = appointment.getDataForCalendarDcotor()
+                lst_task.append('\n'.join(text))
+        model.setStringList(lst_task)
         return model
 
+    def createdModelForCalendar(self):
+        all_appointment = self.parent.getAppointment()
+        self.appointment = defaultdict(list)
+        for appointment in all_appointment:
+            self.appointment[int(appointment.date.month)].append(appointment)
 
 if __name__ == '__main__':
     import sys
