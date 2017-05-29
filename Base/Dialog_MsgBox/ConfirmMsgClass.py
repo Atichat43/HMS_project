@@ -1,13 +1,13 @@
 import sys
 from PySide.QtGui import *
 
-
 class ConfirmYesNo(QDialog):
-    def __init__(self, parent=None):
-        super(ConfirmYesNo, self).__init__(parent)
+    def __init__(self, title="Confirm", textInfo="", question="Do you want to discard your information?"):
+        super(ConfirmYesNo, self).__init__(None)
         msgBox = QMessageBox()
-        msgBox.setText("The document has been modified.")
-        msgBox.setInformativeText("Do you want to discard your changes?")
+        msgBox.setWindowTitle(title)
+        msgBox.setText(textInfo)
+        msgBox.setInformativeText(question)
         msgBox.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
         msgBox.setDefaultButton(QMessageBox.No)
         layout = QGridLayout()
@@ -20,6 +20,7 @@ class ConfirmYesNo(QDialog):
             self.ans = True
         else:
             self.ans = False
+        self.close()
 
 
 def main():

@@ -1,43 +1,57 @@
 import time
 class IntraReportPatient():
-    def __init__(self, num_case_year, num_case_month, room, building, evaluation, Pre_evaluateNurse, AN, patientName, age_hour, age_day, age_month, age_year,
-                 arrivePlace, departPlace, typeofOperation, department, service, ASA, Dormicum, Ephedrine, Ketamine, Anesthesia_technique, Combined_technique, airwayManagement,
-                 Anesthesia_start_time, Anesthesia_finish_time, Anesthesia_time, Anesthesiologist, Anesthetistnurse, reason, Deliveryman_name):
+    def __init__(self, number, date, num_case, room, building, arrivePlace, departPlace, Pre_evaluateNurse,
+                 Post_Diagnose, Operation, typeofOperation, department, surgeon, note,
+                 Pre_anesthesia_evaluation, service, ASAD, Dormicum, Ephedrine, Ketamine, Anesthesia_technique,Combined_technique, airwayManagement,
+                 Anesthesia_start_time, Anesthesia_finish_time, Anesthesia_time, reason, Anesthetistnurse):
+        self.date = date  ## string
+        self.num_case = num_case  ## int
+        self.room = room  ## Admin access this variable string
+        self.building = building  ## string
+        self.Pre_evaluateNurse = Pre_evaluateNurse  ## list string 1-2 nurse
 
-        self.num_case_year = num_case_year ## int
-        self.date = time.strftime('%d/%m/%Y') ## format current date as string
-        self.num_case_month = num_case_month ##int
-        self.room = room ## Admin access this variable
-        self.building = building ## string
-        self.evaluation = evaluation ## string
-        self.Pre_evaluateNurse = Pre_evaluateNurse ## list string 1-2 nurse
+        self.arrivePlace = arrivePlace  ## string
+        self.departPlace = departPlace  ## string
 
-        self.AN = AN ## patient's ID
-        self.patientName = patientName ## string
-        self.age = [age_hour, age_day, age_month, age_year] ## list = ['hours', 'day', 'month', 'year'] as string
-        self.arrivePlace = arrivePlace ## string
-        self.departPlace = departPlace ## string
-        self.typeofOperation = typeofOperation ## string
-        self.department = department ## string
-        self.service = service ##string
-        self.ASA = ASA ## string
-        self.agent = ['Dormicum', 'Ephedrine', 'Ketamine'] ## list of agent
-        self.agent_dose = [Dormicum, Ephedrine, Ketamine] ## list dose of each agents
-        self.Anesthesia_technique = Anesthesia_technique ## list
-        self.Combined_technique = Combined_technique ## list
-        self.airwayManagement = airwayManagement ## string
-        self.Anesthesia_time = [Anesthesia_start_time, Anesthesia_finish_time, Anesthesia_time, Anesthesiologist] ## ['Anesthesia start time', 'Anesthesia finish time', 'Anesthesia time', 'Anesthesiologist']
-        self.Anesthetistnurse = Anesthetistnurse ## list 1-5 nurse
-        self.reason = reason ## string The reason that the patient cannot suit for operation
-        self.Deliveryman = Deliveryman_name ## string name
+        self.post_diagnose = Post_Diagnose  ##string
+        self.operation = Operation
+        self.typeofOperation = typeofOperation  ## string
+        self.department = department  ## string
+        self.surgeon = surgeon  ## string
+        self.note = note  ## string
 
-        def setnum_case_year(self, new_num_case_year, new_num_case_month, new_room):
-            self.num_case_year = new_num_case_year
-            self.num_case_month = new_num_case_month
-            self.room = new_room
+        self.pre_anesthesia_evaluation = Pre_anesthesia_evaluation  ##string
+        self.service = service  ##string
+        self.ASAD = ASAD  ## string
+        self.agent = ['Dormicum', 'Ephedrine', 'Ketamine']  ## list of agent
+        self.agent_dose = [Dormicum, Ephedrine, Ketamine]  ## list dose of each agents
+        self.Anesthesia_technique = Anesthesia_technique  ## list
+        self.Combined_technique = Combined_technique  ## list
+        self.airwayManagement = airwayManagement  ## string
+        self.Anesthesia_time = [Anesthesia_start_time, Anesthesia_finish_time, Anesthesia_time]  ## ['Anesthesia start time', 'Anesthesia finish time', 'Anesthesia time']
+        self.reason = reason  ## string The reason that the patient cannot suit for operation
+        self.Anesthetistnurse = Anesthetistnurse  ## list 1-5 nurse
 
-        def getnum_case_year(self):
-            return [self.num_case_year, self.num_case_month, self.room]
+        def getNum_case(self):
+            return self.num_case
+
+        def setDate(self, d):
+            self.date = d
+
+        def getDate(self):
+            return self.date
+
+        def setRoom(self, r):
+            self.room = r
+
+        def getRoom(self):
+            return self.room
+
+        def setBuilding(self, b):
+            self.building = b
+
+        def getBuillding(self):
+            return self.building
 
         def setPlace(self, new_building, new_evaluation, new_arrivePlace, new_departPlace):
             self.building = new_building
@@ -54,30 +68,22 @@ class IntraReportPatient():
         def getPre_evaluateNurse(self):
             return self.Pre_evaluateNurse
 
-        def setPatientInfo(self, new_AN, new_patientName, new_age):
-            self.AN = AN  ## patient's ID
-            self.patientName = new_patientName  ## string
-            self.age = new_age  ## list = ['hours', 'day', 'month', 'year'] as string
-
-        def getPatientInfo(self):
-            return [self.AN, self.patientName, self.age]
-
-        def settypeofOperation(self, new_typeofOperation):
+        def setTypeofOperation(self, new_typeofOperation):
             self.typeofOperation = new_typeofOperation  ## string
 
-        def gettypeofOperation(self):
+        def getTypeofOperation(self):
             return self.typeofOperation
 
-        def setdepartment(self, new_department):
+        def setDepartment(self, new_department):
             self.department = new_department  ## string
 
-        def getdepartment(self):
+        def getDepartment(self):
             return department
 
-        def setservice(self, new_service):
+        def setService(self, new_service):
             self.service = new_service  ##string
 
-        def getservice(self):
+        def getService(self):
             return self.service
 
         def setASA(self, new_ASA):
@@ -122,17 +128,12 @@ class IntraReportPatient():
         def getAnesthetistnurse(self):
             return self.Anesthetistnurse
 
-        def setreason(self, new_reason):
+        def setReason(self, new_reason):
             self.reason = new_reason  ## string The reason that the patient cannot suit for operation
 
-        def getreason(self):
+        def getReason(self):
             return self.reason
 
-        def setDeliveryman(self, new_Deliveryman):
-            self.Deliveryman = Deliveryman_name  ## string name
-
-        def getDeliveryman(self):
-            return self.Deliveryman
 
 
 

@@ -2,20 +2,28 @@ from PySide.QtCore import Qt
 from PySide.QtGui import *
 from PySide.QtUiTools import QUiLoader
 from Base.Widget_ManagePerson import Widget_ManagePersonClass
-import Setting
+from Employee.Roommanager import Widget_ManageAppointmentClass
+import Setting as s
 
 class Tab2ManagePatient(QWidget):
-    def __init__(self):
-        QWidget.__init__(self)
+    def __init__(self, parent=None):
+        QWidget.__init__(self,None)
+        self.parent = parent
         self.initUI()
         self.initLayout()
         self.initButton()
         self.initConnect()
 
+    # def initUI(self):
+    #     self.tab2 = Widget_ManagePersonClass.WidgetManagePerson("Patient", self)
+    #     appointments = self.parent.crtlDatabase.getAppointmentByDoctor(self.user.id)
+    #     self.tab2.setSourceModel(s.HEAD_BAR_PATIENT, appointments)
+
     def initUI(self):
-        self.tab2 = Widget_ManagePersonClass.WidgetManagePerson("Patient")
-        allRow = [("Atichat", "001", "Brain", "0971249197"), ("Tiger", "002", "Chest", "0971249194")]
-        self.tab2.setSourceModel(Setting.HEAD_BAR_PATIENT, allRow)
+        self.tab2 = Widget_ManageAppointmentClass.WidgetManageAppointment("Patient")
+        appointments = self.parent.crtlDa
+        self.tab2.setSourceModel(s.HEAD_BAR_PATIENT, allRow)
+
 
     def initLayout(self):
         layout = QGridLayout()

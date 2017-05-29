@@ -27,9 +27,9 @@ class Appointment:
         # "Type", "Date", "Time"
         self.setInfo(appointment[0], appointment[1], appointment[2])
 
+    # BAR MANAGE PERSON DOCTOR
     def getData(self):
         text = []
-        #BAR MANAGE PERSON DOCTOR
         #Date Time Room PName Pre Plan
         text.append(self.case_id)
         text.append(self.date.getDate())
@@ -42,10 +42,21 @@ class Appointment:
         return text
 
     def getDataForCalendarDcotor(self):
+        import Setting as s
         text = []
         text.append(self.time)
         text.append(str(self.number_room))
         text.append(self.patient.ExtraNote[1])
+        text.append(self.patient.Name)
+        text.append(str(s.Status.waiting.name))
+        return text
+
+    def getDataForRoomManager(self):
+        text = []
+        text.append(self.case_id)
+        text.append(self.date.getDate())
+        text.append(self.time)
+        text.append(self.doctor.firstName)
         text.append(self.patient.Name)
         return text
 

@@ -13,7 +13,7 @@ class Tab1Calendar(QWidget):
         self.initLayout()
         self.initConnect()
         self.createdModelForCalendar()
-        self.fordevCheckAppointment()
+        #self.fordevCheckAppointment()
 
     def initUI(self):
         self.tab1 = QUiLoader().load('./Employee/Doctor/View/Tab1_CalendarUI.ui', self)

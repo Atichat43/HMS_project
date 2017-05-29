@@ -5,7 +5,7 @@ from PySide.QtUiTools import *
 from Base.Widget_ComboBox import comboBoxClass
 
 
-class WidgetManagePerson(QWidget):
+class WidgetManageAppointment(QWidget):
     def __init__(self, Person, parent=None):
         QWidget.__init__(self, None)
         self.Person = Person
@@ -17,7 +17,7 @@ class WidgetManagePerson(QWidget):
         self.setProxyModel()
 
     def initUI(self):
-        path = 'Base/Widget_ManagePerson/View/Widget_ManagePersonUI.ui'
+        path = 'Roommanager/View/Widget_ManagePersonUI.ui'
         pathForDev = './View/Widget_ManagePersonUI.ui'
         form = QUiLoader().load(path, self)
         self.proxyView = form.findChild(QTreeView, 'treeView')
@@ -40,8 +40,8 @@ class WidgetManagePerson(QWidget):
     def editPerson(self):
         selection = self.proxyView.selectionModel().selectedRows()
         if selection is not None:
-            first_key = selection[0].data()
-            self.parent.editButtonPressed(first_key)
+            case_id = selection[0].data()
+            self.parent.editButtonPressed(case_id)
 
     "init Table"
     def setProxyView(self):
@@ -62,11 +62,11 @@ class WidgetManagePerson(QWidget):
         self.filterColumnComboBox.setModel(model)
         self.filterColumnComboBox.setModelColumn(0)
 
-    def setSourceModel(self, lstHead, lst_person):
+    def setSourceModel(self, lstHead, lst_appointment):
         self.sizeOFHead = len(lstHead)
         self.setComboBox(lstHead)
         self.createBarSort(lstHead)
-        self.addAllPerson(lst_person)
+        self.addAllPerson(lst_appointment)
         self.proxyModel.setSourceModel(self.model)
 
     def createBarSort(self, lstHead):
@@ -74,10 +74,10 @@ class WidgetManagePerson(QWidget):
         for i in range(self.sizeOFHead):
             self.model.setHeaderData(i, Qt.Horizontal, lstHead[i])
 
-    def addAllPerson(self, lst_person):
+    def addAllPerson(self, lst_appointment):
         count = 0
-        for person in lst_person:
-            text = person.getData()
+        for appointment in lst_appointment:
+            text = appointment.getDataForRoomManager()
             self.model.insertRow(count)
             for i in range(self.sizeOFHead):
                 self.model.setData(self.model.index(count, i), text[i])
@@ -94,7 +94,7 @@ class WidgetManagePerson(QWidget):
 if __name__ == '__main__':
     import sys
     app = QApplication(sys.argv)
-    tab1_widget = WidgetManagePerson("Doctor")
+    tab1_widget = WidgetManageAppointment("Doctor")
     lstHead = ["NAME", "ID", "Position", "Phone"]
     allRow = [("Atichat", "001", "Brain", "0971249197"), ("Tiger", "002", "Chest", "0971249194")]
     tab1_widget.setSourceModel(lstHead, allRow)

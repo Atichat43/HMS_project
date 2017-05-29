@@ -3,7 +3,7 @@ from Base.Widget_ManagePerson import Widget_ManagePersonClass
 from Employee.Doctor.GuiClass import Dialog_3ReportPatientClass, Dialog_NewPatientClass
 import Setting as s
 
-class Tab2Patient(QWidget):
+class Tab3Appointment(QWidget):
     def __init__(self, user, parent=None):
         QWidget.__init__(self, None)
         self.user = user
@@ -14,35 +14,35 @@ class Tab2Patient(QWidget):
         self.initConnect()
 
     def initUI(self):
-        self.tab2 = Widget_ManagePersonClass.WidgetManagePerson("Patient", self)
-        patients = self.parent.crtlDatabase.getPatientFromDatabase()
-        self.tab2.setSourceModel(s.HB_DOCTOR_PATIENT, patients)
+        self.tab3 = Widget_ManagePersonClass.WidgetManagePerson("Appointment", self)
+        appointments = self.parent.crtlDatabase.getAppointmentByDoctor(self.user.id)
+        self.tab3.setSourceModel(s.HEAD_BAR_PATIENT, appointments)
 
     def updateTable(self):
-        patients = self.parent.crtlDatabase.getPatientFromDatabase()
-        self.tab2.setSourceModel(s.HB_DOCTOR_PATIENT, patients)
+        appointments = self.parent.crtlDatabase.getAppointmentFromDatabase()
+        self.tab2.setSourceModel(s.HEAD_BAR_PATIENT, appointments)
 
     def initLayout(self):
         layout = QGridLayout()
-        layout.addWidget(self.tab2)
+        layout.addWidget(self.tab3)
         self.setLayout(layout)
 
     def initButton(self):
-        self.b_view = self.tab2.b_edit
-        self.b_newPatient = self.tab2.b_newPerson
+        self.b_view = self.tab3.b_edit
+        self.b_newPatient = self.tab3.b_newPerson
 
     def initConnect(self):
-        #self.b_view.clicked.connect(self.viewPatient)
         self.b_newPatient.clicked.connect(self.newPatient)
 
-    """This func called By Widget_ManagePersonClass"""
-    def editButtonPressed(self, AN):
-        if AN is not None:
-            self.viewPatient(AN)
+    def editButtonPressed(self, case_id):
+        if case_id is not None:
+            print(case_id)
+            self.viewPatient(case_id)
         else:
             print("is None")
 
-    def viewPatient(self, AN):
+    def viewPatient(self, case_id):
+        print(case_id)
         dialog = Dialog_3ReportPatientClass.ReportPatient()
         dialog.show()
         dialog.exec_()
@@ -52,13 +52,12 @@ class Tab2Patient(QWidget):
         dialog = Dialog_NewPatientClass.NewPatientDialog(self.user, case_id, self.parent)
         dialog.show()
         dialog.exec_()
-        if dialog.returnVal:
-            self.updateTable()
+        self.updateTable()
 
 
 if __name__ == '__main__':
     import sys
     from PySide.QtGui import QApplication
     app = QApplication(sys.argv)
-    tab2_widget = Tab2Patient()
+    tab2_widget = Tab3Appointment()
     sys.exit(app.exec_())

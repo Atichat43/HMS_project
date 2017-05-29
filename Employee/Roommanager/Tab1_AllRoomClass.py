@@ -4,16 +4,17 @@ from Employee.Roommanager import RoomSystemClass
 import Setting
 
 class Tab1AllRoom(QWidget):
-    def __init__(self):
-        QWidget.__init__(self)
+    def __init__(self, parent=None):
+        QWidget.__init__(self, None)
+        self.parent = parent
         self.initUI()
         self.initLayout()
         self.initButton()
         self.initConnect()
 
     def initUI(self):
-        #path = 'Employee/Roommanager/View/Tab1_AllRoomUI.ui'
-        path = './View/Tab1_AllRoomUI.ui'
+        path = 'Employee/Roommanager/View/Tab1_AllRoomUI.ui'
+        #path = './View/Tab1_AllRoomUI.ui'
         self.tab1 = QUiLoader().load(path, self)
 
     def initLayout(self):

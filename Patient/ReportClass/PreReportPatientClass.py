@@ -1,41 +1,42 @@
 from Appointment import AppointmentClass
 
-# class PreReportByDoctor:
-#     def __init__(self):
-#         self.opd = 0
-#         self.type = type
-#         self.appointment = AppointmentClass
-#         self.preDiagonsis = ""
-#         self.operationPlan = ""
-#         self.underlying = ""
-#         self.specialTreament = ""
-#         self.note = ""
-#
-#     def setOpd(self, boo):
-#         self.opd = boo
-#
-#     def setDoc(self, preDiagonsis, operationPlan, underlying, specialTreament, note):
-#         self.preDiagonsis = preDiagonsis
-#         self.operationPlan = operationPlan
-#         self.underlying = underlying
-#         self.specialTreament = specialTreament
-#         self.note = note
-#
-#     def getDoc(self):
-#         return [self.preDiagonsis, self.operationPlan, self.underlying, self.specialTreament, self.note]
-#
+
+class PreReportByDoctor:
+    def __init__(self, type):
+        self.opd = 0
+        self.type = type
+        self.appointment = AppointmentClass
+        self.preDiagonsis = ""
+        self.operationPlan = ""
+        self.underlying = ""
+        self.specialTreament = ""
+        self.note = ""
+
+    def setOpd(self, boo):
+        self.opd = boo
+
+    def setDoc(self, preDiagonsis, operationPlan, underlying, specialTreament, note):
+        self.preDiagonsis = preDiagonsis
+        self.operationPlan = operationPlan
+        self.underlying = underlying
+        self.specialTreament = specialTreament
+        self.note = note
+
+    def getDoc(self):
+        return [self.preDiagonsis, self.operationPlan, self.underlying, self.specialTreament, self.note]
+
 
 class PreReportByNurse(object):
     def __init__(self, premed, PRC, FFP, Plt, PC, plannedICU, fullBed, service, ASA, BW, HT, BP, P, RR, T, GCS1,
-                 GCS2, smoking, alcoholic, allergy):
+                 GCS2, smoking, alcoholic, allergy,lt=[]):
         self.premed = premed
         self.BLprepared = [PRC, FFP, Plt, PC]  ## PRC, FFP, PLT, PC int
         self.plannedICU = plannedICU  ## boolean
         self.fullBed = fullBed  ## boolean
         self.service = service  ## string ('in', 'out')
         self.ASA = ASA  ## string
-        self.BW = BW  ## int
-        self.HT = HT  ## int
+        self.BW = int(BW)  ## int
+        self.HT = int(HT)  ## int
         self.BMI = self.BW / (self.HT ** 2)
         self.BP = BP  ## int
         self.P = P  ## int
@@ -45,6 +46,11 @@ class PreReportByNurse(object):
         self.smoking = smoking  ## boolean
         self.alcoholic = alcoholic  ## boolean
         self.allergy = allergy  ## string
+        self.allergy_list = [] ##list
+        if self.allergy == "Yes":
+            for i in lt:
+                if i[0] != "":
+                    self.allergy_list.append(i)
 
     def setpremed(self, new_premed):
         self.premed = new_premed

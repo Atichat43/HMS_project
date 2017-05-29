@@ -35,6 +35,13 @@ class DoctorApplication(object):
                 break
         self.ctrlDatabase_patient.updateObject(patients)
 
+    def patientValid(self, AN):
+        patients = self.getPatientFromDatabase()
+        for patient in patients:
+            if patient.AN == AN:
+                return False #exist
+        return True
+
     """-------------------------Appointment Database---------------------------------------------"""
     def getAppointmentFromDatabase(self):
         obj_appointments = self.ctrlDatabase_appointment.loadObj()
@@ -46,8 +53,6 @@ class DoctorApplication(object):
         for appointment in all_appointments:
             if appointment.doctor.id == doctor_id:
                 appointments.append(appointment)
-        print("called getAppByDoctor")
-        print(len(appointments))
         return appointments
 
     def addNewAppointment(self, newAppointment):
@@ -63,6 +68,18 @@ class DoctorApplication(object):
                 appointments[i] = newAppointment
                 break
         self.ctrlDatabase_patient.updateObject(appointments)
+
+    def appointmentValid(self, date, time, doctor):
+        appointments = self.getAppointmentByDoctor(doctor.id)
+        for am in appointments:
+            if am.date.getDate() == date and am.time == time and am.doctor.firstname == doctor.firstname:
+                print("Already exist Appointment at this time")
+                print("   Date:" + am.date.getDate() + " " + str(date))
+                print("   Time:" + str(am.time) + " " + str(time))
+                print("   Doctor:" + str(am.doctor.firstname) + " " + str(doctor.firstname))
+                print()
+                return False
+        return True
 
 
 if __name__ == "__main__":
