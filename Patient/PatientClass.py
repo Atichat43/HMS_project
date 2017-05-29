@@ -17,6 +17,16 @@ class Patient:
         self.intraReport = object
         self.postReport = []
 
+
+    def getPreInfo(self):
+        return self.preReportNurse.getData()
+
+    def getIntraInfo(self):
+        return self.intraReport.getInfo()
+
+    def getPostInfo(self):
+        return self.postReport.getData()
+
     def getData(self):
         text = []
         text.append(self.AN)
@@ -48,4 +58,4 @@ class Patient:
         self.intraReport = report
 
     def addPostReport(self, report):
-        self.postReport.append(report)
+        self.postReport = report

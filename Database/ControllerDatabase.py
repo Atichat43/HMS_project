@@ -1,7 +1,12 @@
+from PySide.QtGui import QApplication
+
 from Employee.Admin.AdminClass import *
 from Employee.Doctor.DoctorClass import *
 from Employee.Nurse.NurseClass import *
 from Employee.Roommanager.RoommanagerClass import *
+from Patient.ReportClass import PreReportPatientClass
+from Patient.ReportClass import IntraReportPatientClass
+from Patient.ReportClass import PostReportPatientClass
 '''
 import pickle, pprint
 
@@ -93,5 +98,54 @@ def demo():
     s3 = AppointmentClass.Appointment('10003', ["Ergency case", "28/5/2017", "None"], doctor, p3)
     db_appointment.updateObject([s1, s2, s3])
 
+    preReport1 = PreReportPatientClass.PreReportByNurse('atenolol 5 mg tab O at 6.00', '-', '-', '-', '-', 'Yes', '001', 'In', 'I', '2', '5',
+                   '130/80', '86', '20','36','E','Yes','Yes','Yes',['Med1', 'sym1', 'Med2', 'sym2', 'Med3', 'sym3'])
 
 
+    preReport2 = PreReportPatientClass.PreReportByNurse('atenolol 5 mg tab O at 6.00', '-', '-', '-', '-', 'Yes', '001', 'In', 'I', '2', '5',
+                   '130/80', '86', '20', '36', 'E', 'Yes', 'Yes', 'No',[ '-', '-', '-', '-', '-', '-'])
+
+    intraReport = IntraReportPatientClass.IntraReportPatient('1234', '01/06/2017', '0001', '101','A', 'ICUS', 'ICUS', ['Janet van Dyne', 'Wanda Maximoff'],
+                                                             'post diagnose', 'operation','Major', 'Anes', 'Clinton Francis Barton', 'note',
+                                                             'Pre anesthesia visit at ward','Official','I', '1', '1', '1','-','-','Oral  Endotrachel Tracheal',
+                                                             '8:30', '9:00', '30', '-', ['Janet van Dyne', 'Wanda Maximoff', 'Natasha Alianovna Romanoff', 'Carol Danvers', 'Jennifer Walters'])
+
+    intraReport2 = IntraReportPatientClass.IntraReportPatient('1111', '02/06/2017', '0002', '102', 'A', 'ICUS', 'ICUS',['Janet van Dyne', 'Wanda Maximoff'],
+                                                              'post diagnose', 'operation', 'Major', 'Anes', 'Clinton Francis Barton', 'note',
+                                                              'Pre anesthesia visit at ward', 'Official', 'I', '1', '1', '1', '-', '-', 'Oral  Endotrachel Tracheal',
+                                                              '8:30', '9:00', '30', '-', ['Janet van Dyne', 'Wanda Maximoff', 'Natasha Alianovna Romanoff', 'Carol Danvers', 'Jennifer Walters'])
+
+    post_report1 = ['Anes. Personal hazard','Awareness','Cardiac arrest','Note','Jacques Duquesne','Procedure','6/5/2017']
+    post_report2 = ['CVA', 'Awareness', 'Diffcult intubation', 'Note', 'Jacques Duquesne','Procedure', '7/5/2017']
+
+    post_report = PostReportPatientClass.PostReportPatient()
+    post_report.setAnesthetic_complications_operationroom(post_report1)
+    post_report.setAnesthetic_complications_admitroom(post_report1)
+    post_report.setAnesthetic_complications_admitroom_2hrs(post_report1)
+    post_report.setAnesthetic_complications_admitroom_24hrs(post_report2)
+    post_report.setAnesthetic_complications_procedure(post_report2)
+    post_report.setAnesthetic_complications_admitroom_48hrs(post_report2)
+    post_report.setAnesthetic_complications_admitroom_7day(post_report2)
+
+    p1.addPreReportNurse(preReport1)
+    p1.addIntraReport(intraReport)
+    p1.addPostReport(post_report)
+    print(type(preReport1))
+    print(type(intraReport))
+    print(type(post_report))
+
+    from Employee.Doctor.GuiClass import Dialog_3ReportPatientClass as R
+    import sys
+    app = QApplication(sys.argv)
+    win = R.ReportPatient()
+    pre_data, pre_databox = p1.getPreInfo()
+    intra_data, intra_databox = p1.getIntraInfo()
+    post_data = p1.getPostInfo()
+    win.setDataFromDataBasePre(pre_data, pre_databox)
+    win.setDataFromDataBaseIntra(intra_data, intra_databox)
+    win.setDataFromDataBasePost(post_data)
+    win.show()
+    win.exec_()
+    sys.exit(app.exec_())
+
+demo()

@@ -1,10 +1,12 @@
 from PySide.QtGui import *
 from PySide.QtUiTools import QUiLoader
+from PySide import QtCore
 
 from Base.Dialog_MsgBox import ConfirmMsgClass
 from Patient.ReportClass import PreReportPatientClass
 from Patient.ReportClass import IntraReportPatientClass
 from Patient.ReportClass import PostReportPatientClass
+
 
 import Setting as s
 
@@ -18,13 +20,11 @@ class ReportPatient(QDialog):
         self.ui = self.loader.load(s.PATH_DOCTOR_DIALOG_3REPORT, self)
         self.layout = QVBoxLayout(self)
         self.layout.addWidget(self.ui)
-        self.initContainer()
         self.initPostButtons(self.ui)
         self.initIntraButtons(self.ui)
         self.initPreButtons(self.ui)
-        self.forDev()
 
-    def initContainer(self):
+
         self.pre_info_line = []
         self.pre_info_box = []
         self.intra_info_line = []
@@ -37,7 +37,6 @@ class ReportPatient(QDialog):
         self.post6_info = []
         self.post7_info = []
 
-    """PRE REPORT"""
     def initPreButtons(self,ui):
         #Line edits
         self.lineEditPrelist = []
@@ -45,6 +44,7 @@ class ReportPatient(QDialog):
             name = "PreLineEdit_" + str(i)
             line = ui.findChild(QLineEdit, name)
             self.lineEditPrelist.append(line)
+
 
         #Combo box
         self.comboBoxPrelist = []
@@ -59,22 +59,24 @@ class ReportPatient(QDialog):
 
     def getPreData(self,ui):
         for item in self.lineEditPrelist:
-            self.pre_info_line.append(item.text())
+            s = item.text()
+            self.pre_info_line.append(s)
 
         for box in self.comboBoxPrelist:
-            self.pre_info_box.append(box.currentText())
+            s = box.currentText()
+            self.pre_info_box.append(box.currentText(s))
 
     def save_pre_info(self):
         self.getPreData(self.ui)
-        #[premed, PRC, FFP, Plt, PC, plannedICU, fullBed, service, ASA, BW, HT, BP, P, RR, T, GCS1, GCS2, smoking, alcoholic, allergy]
+
         lt = [(self.pre_info_line[13],self.pre_info_line[14]),(self.pre_info_line[15],self.pre_info_line[16]),(self.pre_info_line[17],self.pre_info_line[18])]
+                                                                # [premed, PRC, FFP, Plt, PC, plannedICU, fullBed, service, ASA, BW, HT, BP, P, RR, T, GCS, smoking, alcoholic, allergy]
         preReport = PreReportPatientClass.PreReportByNurse(self.pre_info_line[0],self.pre_info_line[1],self.pre_info_line[2],self.pre_info_line[3],self.pre_info_line[4],self.pre_info_box[0],self.pre_info_line[5],
-                                                           self.pre_info_box[1],self.pre_info_box[2],self.pre_info_line[6],self.pre_info_line[7],self.pre_info_line[8],self.pre_info_line[9],self.pre_info_line[10],
+                                                           self.pre_info_box[1],self.pre_info_box[2],self.pre_info_line[6],self.pre_info_line[7],self.pre_info_line[9],self.pre_info_line[10],
                                                            self.pre_info_line[11],self.pre_info_line[12],self.pre_info_box[3],self.pre_info_box[4],self.pre_info_box[5],self.pre_info_box[6])
 
         self.close()
 
-    """INTRA REPORT"""
     def initIntraButtons(self, ui):
         #Line edit
         self.lineEditIntralist = []
@@ -97,19 +99,21 @@ class ReportPatient(QDialog):
 
     def getIntraData(self):
         for item in self.lineEditIntralist:
-            self.intra_info_line.append(item.text())
+            s = item.text()
+            self.intra_info_line.append(s)
 
         for box in self.comboBoxIntralist:
-            self.intra_info_box.append(box.currentText())
+            s = box.currentText()
+            self.intra_info_box.append(s)
 
     def save_intra_info (self):
         self.getIntraData()
         intraReport = IntraReportPatientClass.IntraReportPatient(self.intra_info_line[0], self.intra_info_line[1], self.intra_info_line[2], self.intra_info_line[3], self.intra_info_box[0], self.intra_info_box[1], self.intra_info_box[2], self.intra_info_line[4], [self.intra_info_line[5], self.intra_info_line[6]], self.intra_info_line[7], self.intra_info_box[3], self.intra_info_box[4],
                                         self.intra_info_line[8], self.intra_info_line[9], self.intra_info_box[5], self.intra_info_box[6], self.intra_info_box[7], self.intra_info_line[10], self.intra_info_line[11], self.intra_info_line[12], self.intra_info_box[8], self.intra_info_box[9], self.intra_info_box[10],
                                         self.intra_info_line[13], self.intra_info_line[14], self.intra_info_line[15], self.intra_info_box[11], [self.intra_info_line[16], self.intra_info_line[17], self.intra_info_line[18], self.intra_info_line[19],self.intra_info_line[20]])
+        print("in")
         self.close()
 
-    """POST REPORT"""
     def initPostButtons(self, ui):
         #post1
         self.post1List = []
@@ -329,6 +333,7 @@ class ReportPatient(QDialog):
         post_report.setAnesthetic_complications_procedure(self.post5_info)
         post_report.setAnesthetic_complications_admitroom_48hrs(self.post6_info)
         post_report.setAnesthetic_complications_admitroom_7day(self.post7_info)
+        print("in post")
         self.close()
 
     def cancel(self):
@@ -338,12 +343,6 @@ class ReportPatient(QDialog):
             self.close()
         else:
             print("Cancel")
-
-    """ FOR DEVELOP"""
-    def forDev(self):
-        self.forDevPre()
-        self.forDevIntra()
-        self.forDevPost()
 
     def forDevPre(self):
         pre = ['atenolol 5 mg tab O at 6.00', '-', '-', '-', '-', '001', '2', '5', '20.11', '130/80', '86', '20',
@@ -362,10 +361,12 @@ class ReportPatient(QDialog):
                  '8:30', '9:00', '30', 'Janet van Dyne', 'Wanda Maximoff', 'Natasha Alianovna Romanoff',
                  'Carol Danvers', 'Jennifer Walters']
         count = 0
+        print(len(self.lineEditIntralist), len(intra))
         for i in self.lineEditIntralist:
             s = intra[count]
-            i.setText(s)
+            i.setText(str(s))
             count+=1
+        print("done FORDEV")
 
     def forDevPost(self):
         post = ['Note', 'Monica Rambeau']
@@ -389,6 +390,134 @@ class ReportPatient(QDialog):
 
         self.post7List[1].setText(post[0])
         self.post7List[2].setText(post[1])
+
+    def setDataFromDataBaseIntra(self , data, databox):
+        count = 0
+        print(len(self.lineEditIntralist))
+        for i in self.lineEditIntralist:
+            s = data[count]
+            i.setText(str(s))
+            count += 1
+
+        count = 0
+        for i in self.comboBoxIntralist:
+            s = i.findText(databox[count])
+            i.setCurrentIndex(s)
+            count += 1
+
+    def setDataFromDataBasePre(self , data, databox):
+        count = 0
+        for i in self.lineEditPrelist:
+            s = data[count]
+            i.setText(str(s))
+            count+=1
+
+        count = 0
+        for i in self.comboBoxPrelist:
+            s = i.findText(databox[count])
+            i.setCurrentIndex(s)
+            count += 1
+
+    def setDataFromDataBasePost(self, postlist):
+        post = postlist[0]
+        print(len(self.post1List), len(post))
+        print(post)
+        count = 0
+        for i in self.post1List[0]:
+            s = i.findText(str(post[count]))
+            i.setCurrentIndex(s)
+            count+=1
+        self.post1List[1].setText(str(post[3]))
+        self.post1List[2].setText(str(post[4]))
+        s = self.post1List[3].findText(str(post[5]))
+        self.post1List[3].setCurrentIndex(s)
+        date = QtCore.QDate.fromString(str(post[6]), 'M/d/yyyy')
+        self.post1List[4].setDate(date)
+
+        post = postlist[1]
+        count = 0
+        for i in self.post2List[0]:
+            s = i.findText(str(post[count]))
+            i.setCurrentIndex(s)
+            count += 1
+        self.post2List[1].setText(str(post[3]))
+        self.post2List[2].setText(str(post[4]))
+        s = self.post2List[3].findText(str(post[5]))
+        self.post2List[3].setCurrentIndex(s)
+        date = QtCore.QDate.fromString(str(post[6]), 'M/d/yyyy')
+        self.post2List[4].setDate(date)
+
+        post = postlist[2]
+        count = 0
+        for i in self.post3List[0]:
+            s = i.findText(str(post[count]))
+            i.setCurrentIndex(s)
+            count += 1
+        self.post3List[1].setText(str(post[3]))
+        self.post3List[2].setText(str(post[4]))
+        s = self.post3List[3].findText(str(post[5]))
+        self.post3List[3].setCurrentIndex(s)
+        date = QtCore.QDate.fromString(str(post[6]), 'M/d/yyyy')
+        self.post3List[4].setDate(date)
+
+        post = postlist[3]
+        count = 0
+        for i in self.post4List[0]:
+            s = i.findText(str(post[count]))
+            i.setCurrentIndex(s)
+            count += 1
+        self.post4List[1].setText(str(post[3]))
+        self.post4List[2].setText(str(post[4]))
+        s = self.post4List[3].findText(str(post[5]))
+        self.post4List[3].setCurrentIndex(s)
+        print("in this", end='')
+        print(str(post[6]))
+        date = QtCore.QDate.fromString(str(post[6]), 'M/d/yyyy')
+        self.post4List[4].setDate(date)
+
+        post = postlist[4]
+        count = 0
+        for i in self.post5List[0]:
+            s = i.findText(str(post[count]))
+            i.setCurrentIndex(s)
+            count += 1
+        self.post5List[1].setText(str(post[3]))
+        self.post5List[2].setText(str(post[4]))
+        s = self.post5List[3].findText(str(post[5]))
+        self.post5List[3].setCurrentIndex(s)
+        date = QtCore.QDate.fromString(str(post[6]), 'M/d/yyyy')
+        self.post5List[4].setDate(date)
+
+        post = postlist[5]
+        count = 0
+        for i in self.post6List[0]:
+            s = i.findText(str(post[count]))
+            i.setCurrentIndex(s)
+            count += 1
+        self.post6List[1].setText(str(post[3]))
+        self.post6List[2].setText(str(post[4]))
+        s = self.post6List[3].findText(str(post[5]))
+        self.post6List[3].setCurrentIndex(s)
+        date = QtCore.QDate.fromString(str(post[6]), 'M/d/yyyy')
+        self.post6List[4].setDate(date)
+
+        post = postlist[6]
+        count = 0
+        for i in self.post7List[0]:
+            s = i.findText(str(post[count]))
+            i.setCurrentIndex(s)
+            count += 1
+        self.post7List[1].setText(str(post[3]))
+        self.post7List[2].setText(str(post[4]))
+        s = self.post7List[3].findText(str(post[5]))
+        self.post7List[3].setCurrentIndex(s)
+        date = QtCore.QDate.fromString(str(post[6]), 'M/d/yyyy')
+        self.post7List[4].setDate(date)
+
+
+
+
+
 
 
 

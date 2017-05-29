@@ -1,8 +1,14 @@
 from PySide.QtGui import *
 from Base.Widget_ManagePerson import Widget_ManagePersonClass
 from Employee.Admin import Admin
+import Employee.Admin.Dialog_editOrNewEmployeeClass as d
 import Setting as s
 
+from enum import Enum
+class UserPosition(Enum):
+    doctor = 0
+    nurse = 1
+    admin = 2
 
 class MainWindowAdmin(QMainWindow):
     def __init__(self, user):
@@ -11,9 +17,10 @@ class MainWindowAdmin(QMainWindow):
         self.initUI()
         self.initLayout()
         self.user = user
-        self.allRowDatabaseDoctor = []
-        self.allRowDatabaseNurse = []
-        self.allRowDatabaseRoom = []
+        self.all_user = []
+        # self.allRowDatabaseDoctor = []
+        # self.allRowDatabaseNurse = []
+        # self.allRowDatabaseAdmin = []
 
     def initUI(self):
         posX, posY, sizeW, sizeH = s.GEOMETRY_MAINWIDOW
@@ -33,20 +40,39 @@ class MainWindowAdmin(QMainWindow):
         self.updateDatabase()
         self.tabWidget = QTabWidget()
         self.tabWidget.setStyleSheet(s.SS_TabWidget)
-        self.tab1 = Widget_ManagePersonClass.WidgetManagePerson("Doctor")
-        self.tab1.setSourceModel(s.HEAD_BAR_DOCTOR, self.allRowDatabaseDoctor)
-        self.tab2 = Widget_ManagePersonClass.WidgetManagePerson("Nurse")
-        self.tab2.setSourceModel(s.HEAD_BAR_NURSE, self.allRowDatabaseNurse)
-        self.tab3 = Widget_ManagePersonClass.WidgetManagePerson("Room manager")
-        self.tab3.setSourceModel(s.HEAD_BAR_ROOMMANAGER, self.allRowDatabaseRoom)
+        self.tab1 = Widget_ManagePersonClass.WidgetManagePerson("Doctor", self)
+        self.tab1.setSourceModel(s.HEAD_BAR_ADMIN, self.all_user[UserPosition.doctor.value])
+        self.tab2 = Widget_ManagePersonClass.WidgetManagePerson("Nurse", self)
+        self.tab2.setSourceModel(s.HEAD_BAR_ADMIN, self.all_user[UserPosition.nurse.value])
+        self.tab3 = Widget_ManagePersonClass.WidgetManagePerson("Admin", self)
+        self.tab3.setSourceModel(s.HEAD_BAR_ADMIN, self.all_user[UserPosition.admin.value])
         self.tabWidget.addTab(self.tab1, "Doctor")
         self.tabWidget.addTab(self.tab2, "Nurse")
-        self.tabWidget.addTab(self.tab3, "RoomManager")
+        self.tabWidget.addTab(self.tab3, "Admin")
 
     def updateDatabase(self):
         self.ctrlDatabase.getListByPosition()
-        self.allRowDatabaseDoctor = self.ctrlDatabase.getListDoctor()
-        self.allRowDatabaseNurse = self.ctrlDatabase.getListNurse()
-        self.allRowDatabaseRoom = self.ctrlDatabase.getListRoomManager()
+        self.all_user.append(self.ctrlDatabase.getListDoctor())
+        self.all_user.append(self.ctrlDatabase.getListNurse())
+        self.all_user.append(self.ctrlDatabase.getListAdmin())
+
+    def getListUserByType(self, type):
+        if type == "D":
+            return UserPosition.doctor.value
+        elif type == "N":
+            return UserPosition.nurse.value
+        elif type == "A":
+            return UserPosition.admin.value
+        else:
+            raise ValueError
+
+    def editButtonPressed(self, id):
+        self.updateDatabase()
+        position = self.getListUserByType(id[:1])
+        print(position)
+        for i in range(len(self.all_user[position])):
+            pass
+
+
 
 

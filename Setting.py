@@ -15,6 +15,8 @@ HEAD_BAR_DOCTOR = ["ID", "Username", "Password", "Firstname", "Lastname", "Phone
 HEAD_BAR_ROOMMANAGER = ["ID", "Username", "Password", "Firstname", "Lastname", "Phone"]
 HEAD_BAR_NURSE = ["ID", "Username", "Password", "Firstname", "Lastname", "Phone"]
 
+HEAD_BAR_ADMIN = ["ID", "Username", "Password", "Firstname", "Lastname", "Phone"]
+
 # Manage Person For Doctor
 HEAD_BAR_PATIENT = ["Case_id", "Date", "Time", "Room", "Name", "Pre_Diagnosis", "Plan"]
 HB_DOCTOR_PATIENT = ["AN", "Name", "Age", "Phone"]
@@ -27,7 +29,9 @@ PATH_IMG_BG_LOGIN = ".RSC/img/bg_login.png"
 
 # path Doctor
 PATH_DOCTOR_DIALOG_NEWPATIENT = 'Employee/Doctor/View/Widget_NewPatientUI.ui'
-PATH_DOCTOR_DIALOG_3REPORT = 'Employee/Doctor/View/Widget_3ReportPatientUI.ui'
+"""เปลี่ยนอีกที"""
+#Employee/Doctor/View/Widget_3ReportPatientUI.ui
+PATH_DOCTOR_DIALOG_3REPORT = '../Employee/Doctor/View/Widget_3ReportPatientUI.ui'
 
 # path database
 DB_USER = "./Database/userObject.pkl"

@@ -8,7 +8,7 @@ from Appointment import AppointmentClass
 import Setting as s
 
 
-class NewPatientDialog(QDialog):
+class NewAppointmentDialog(QDialog):
     def __init__(self, user, case_id, parent=None):
         QDialog.__init__(self, None)
         posX, posY, sizeW, sizeH = s.GEOMETRY_DIALOG_NEW_PATIENT
@@ -102,20 +102,24 @@ class NewPatientDialog(QDialog):
 
     def save(self):
         self.getData()
-        #check valid same time date docID
+        # check valid same time date docID
+        print("save")
         if self.parent.appointmentValid(self.part_appointment[1], self.part_appointment[2], self.user):
-            #check AN is avaliable
-            if self.parent.patientValid(self.part_basic_info[1]):
+            #check AN and Name is the same [AN, patient_name]
+            print(self.part_basic_info[1], end='')
+            print(self.part_basic_info[3], end='')
+            if self.parent.oldPatientValid(self.part_basic_info[1], self.part_basic_info[3]):
                 self.returnVal = True
                 pre_pre_report = [self.part_basic_info, self.part_extra_info]
-                newPatient = PatientClass.Patient(pre_pre_report)
-                newAppointment = AppointmentClass.Appointment(self.case_id, self.part_appointment, self.user, newPatient)
-                self.parent.addNewPatient(newPatient)
+                oldPatient = PatientClass.Patient(pre_pre_report)
+                newAppointment = AppointmentClass.Appointment(self.case_id, self.part_appointment, self.user, oldPatient)
+                self.parent.editPatient(oldPatient)
                 self.parent.addNewAppointment(newAppointment)
                 self.close()
             else:
+                print("in")
                 error = QErrorMessage()
-                error.showMessage("This patient already exist")
+                error.showMessage("Wrong information")
                 error.setWindowTitle("Error!!!")
                 error.exec_()
 
@@ -137,6 +141,6 @@ class NewPatientDialog(QDialog):
 if __name__ == "__main__":
     import sys
     app = QApplication(sys.argv)
-    win = NewPatientDialog()
+    win = NewAppointmentDialog()
     win.show()
     win.exec_()

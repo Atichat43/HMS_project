@@ -29,18 +29,25 @@ class DoctorApplication(object):
     def editPatient(self, newPatient):
         patients = self.getPatientFromDatabase()
         for i in range(len(patients)):
-            #edit check by case_id instead
             if patients[i].AN == newPatient.AN:
                 patients[i] = newPatient
                 break
         self.ctrlDatabase_patient.updateObject(patients)
 
-    def patientValid(self, AN):
+    def patientValid(self, AN): #iSAvailableAN: True if not exist False is exist
         patients = self.getPatientFromDatabase()
         for patient in patients:
             if patient.AN == AN:
                 return False #exist
         return True
+
+    def oldPatientValid(self, AN, patient_name):
+        patients = self.getPatientFromDatabase()
+        for patient in patients:
+            if patient.AN == AN:
+                if patient.Name == patient_name:
+                    return True
+        return False
 
     """-------------------------Appointment Database---------------------------------------------"""
     def getAppointmentFromDatabase(self):

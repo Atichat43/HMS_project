@@ -15,6 +15,8 @@ class Tab2Patient(QWidget):
 
     def initUI(self):
         self.tab2 = Widget_ManagePersonClass.WidgetManagePerson("Patient", self)
+        self.b_view = self.tab2.b_edit
+        self.b_view.setText("View History")
         patients = self.parent.crtlDatabase.getPatientFromDatabase()
         self.tab2.setSourceModel(s.HB_DOCTOR_PATIENT, patients)
 
@@ -38,14 +40,9 @@ class Tab2Patient(QWidget):
     """This func called By Widget_ManagePersonClass"""
     def editButtonPressed(self, AN):
         if AN is not None:
-            self.viewPatient(AN)
+            self.viewHistoryReport(AN)
         else:
             print("is None")
-
-    def viewPatient(self, AN):
-        dialog = Dialog_3ReportPatientClass.ReportPatient()
-        dialog.show()
-        dialog.exec_()
 
     def newPatient(self):
         case_id = self.parent.getCurrentCaseID()
@@ -54,6 +51,15 @@ class Tab2Patient(QWidget):
         dialog.exec_()
         if dialog.returnVal:
             self.updateTable()
+
+    """ ยัง ไม่ เสร็จ โว้ยยยยยย"""
+    def viewHistoryReport(self, AN):
+        #POP up Dialog_HistoryReport
+        dialog = Dialog_3ReportPatientClass.ReportPatient()
+        dialog.show()
+        dialog.exec_()
+
+
 
 
 if __name__ == '__main__':

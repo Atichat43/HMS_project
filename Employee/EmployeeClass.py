@@ -14,7 +14,7 @@ class Employee(object):
         text.append(self.id)
         text.append(self.username)
         text.append(self.password)
-        text.append(self.type)
+        #text.append(self.type)
         text.append(self.firstname)
         text.append(self.lastname)
         text.append(self.phone_number)

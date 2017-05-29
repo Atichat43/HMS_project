@@ -1,6 +1,6 @@
 from PySide.QtGui import *
 from Base.Widget_ManagePerson import Widget_ManagePersonClass
-from Employee.Doctor.GuiClass import Dialog_3ReportPatientClass, Dialog_NewPatientClass
+from Employee.Doctor.GuiClass import Dialog_3ReportPatientClass, Dialog_NewAppointmentClass
 import Setting as s
 
 class Tab3Appointment(QWidget):
@@ -15,12 +15,14 @@ class Tab3Appointment(QWidget):
 
     def initUI(self):
         self.tab3 = Widget_ManagePersonClass.WidgetManagePerson("Appointment", self)
+        self.b_edit = self.tab3.b_edit
+        self.b_edit.setText("Edit 3Report")
         appointments = self.parent.crtlDatabase.getAppointmentByDoctor(self.user.id)
         self.tab3.setSourceModel(s.HEAD_BAR_PATIENT, appointments)
 
     def updateTable(self):
         appointments = self.parent.crtlDatabase.getAppointmentFromDatabase()
-        self.tab2.setSourceModel(s.HEAD_BAR_PATIENT, appointments)
+        self.tab3.setSourceModel(s.HEAD_BAR_PATIENT, appointments)
 
     def initLayout(self):
         layout = QGridLayout()
@@ -32,27 +34,28 @@ class Tab3Appointment(QWidget):
         self.b_newPatient = self.tab3.b_newPerson
 
     def initConnect(self):
-        self.b_newPatient.clicked.connect(self.newPatient)
+        self.b_newPatient.clicked.connect(self.newAppointment)
 
     def editButtonPressed(self, case_id):
         if case_id is not None:
             print(case_id)
-            self.viewPatient(case_id)
+            self.edit3Report(case_id)
         else:
             print("is None")
 
-    def viewPatient(self, case_id):
+    def edit3Report(self, case_id):
         print(case_id)
         dialog = Dialog_3ReportPatientClass.ReportPatient()
         dialog.show()
         dialog.exec_()
 
-    def newPatient(self):
+    def newAppointment(self):
         case_id = self.parent.getCurrentCaseID()
-        dialog = Dialog_NewPatientClass.NewPatientDialog(self.user, case_id, self.parent)
+        dialog = Dialog_NewAppointmentClass.NewAppointmentDialog(self.user, case_id, self.parent)
         dialog.show()
         dialog.exec_()
-        self.updateTable()
+        if dialog.returnVal:
+            self.updateTable()
 
 
 if __name__ == '__main__':

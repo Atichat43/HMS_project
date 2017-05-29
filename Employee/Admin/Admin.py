@@ -41,6 +41,7 @@ class AdminApplication(object):
     def getListRoomManager(self):
         return self.lst_roommanager
 
+
 if __name__ == "__main__":
     import sys
     from PySide.QtGui import QApplication

@@ -3,7 +3,9 @@ import psycopg2
 from PySide.QtCore import QRegExp, QPoint
 from PySide.QtGui import *
 from PySide.QtUiTools import QUiLoader
-
+from Employee.Admin.AdminClass import *
+from Employee.Doctor.DoctorUI import *
+from Employee.Nurse.NurseClass import *
 from Base.Dialog_MsgBox import ConfirmMsgClass
 from Patient import PatientClass
 
@@ -14,7 +16,7 @@ class EditOrNewEmployeeDialog(QDialog):
         self.idEmployee = id
         self.setGeometry(300, 200, 400, 400)
         self.loader = QUiLoader()
-        self.ui = self.loader.load('./View/Dialog_EditOrNewEmployeeUI.ui', self)
+        self.ui = self.loader.load('./View/create_new_employee.ui', self)
         self.layout = QVBoxLayout(self)
         self.layout.addWidget(self.ui)
         self.initUI()
@@ -24,20 +26,20 @@ class EditOrNewEmployeeDialog(QDialog):
 
     def initUI(self):
         self.setInput = []
+        self.label_id = self.ui.findChild(QLabel, "label_id")
+        self.combobox = self.ui.findChild(QComboBox, "comboBox")
         self.setInput.append(self.ui.findChild(QLineEdit, "lineEdit_1"))
         self.setInput.append(self.ui.findChild(QLineEdit, "lineEdit_2"))
         self.setInput.append(self.ui.findChild(QLineEdit, "lineEdit_3"))
         self.setInput.append(self.ui.findChild(QLineEdit, "lineEdit_4"))
         self.setInput.append(self.ui.findChild(QLineEdit, "lineEdit_5"))
-        self.setInput.append(self.ui.findChild(QLineEdit, "lineEdit_6"))
-        self.setInput.append(self.ui.findChild(QLineEdit, "lineEdit_7"))
         self.b_save = self.ui.findChild(QPushButton, "b_save")
         self.b_cancel = self.ui.findChild(QPushButton, "b_cancel")
         self.b_save.clicked.connect(self.save)
         self.b_cancel.clicked.connect(self.cancel)
         self.setValidation()
         self.setLineEdit()
-
+    '''
     def setLineEdit(self):
         if self.idEmployee != 0:
             text = []
@@ -85,42 +87,11 @@ class EditOrNewEmployeeDialog(QDialog):
             point = QPoint(self.l.geometry().left(), self.l.geometry().bottom())
             self.l.setText(m_correctText)
             QToolTip.showText(point, "Cannot enter number..")
+    '''
 
     def save(self):
-        text = []
-        for lineEdit in self.setInput:
-            text.append(lineEdit.text())
-        try:
-            sql_insert = """INSERT INTO users VALUES(%s, %s, %s)"""
-            sql_insert1 ="""INSERT INTO doctor VALUES(%s, %s, %s, %s, %s)"""
-            conn_string = "host='localhost' dbname='postgres' user='postgres' password='4141'"
-            conn = psycopg2.connect(conn_string)
-            cursor = conn.cursor()
-            cursor.execute(sql_insert,(text[0], text[1], text[2],))
-            cursor.close()
-
-            cursor = conn.cursor()
-            cursor.execute(sql_insert1, (text[3], text[4], text[5], text[6], text[7],))
-            cursor.close()
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-        finally:
-            conn.close()
-        self.close()
+        pass
 
     def cancel(self):
-        dialog = ConfirmMsgClass.ConfirmYesNo()
-        if dialog.ans == True:
-            print("Discard")
-            self.close()
-        else:
-            print("Cancel")
+        pass
 
-def main():
-    app = QApplication(sys.argv)
-    win = EditOrNewEmployeeDialog('new')
-    print(win.ans)
-    win.exec_()
-
-if __name__ == "__main__":
-    main()

@@ -65,3 +65,14 @@ class PostReportPatient(object):
     def getAnesthetic_complications_admitroom_7day(self):
         return self.Anesthetic_complications_admitroom_7day
 
+    def getData(self):
+        data = []
+        data.append(self.Anesthetic_complications_operationroom)
+        data.append(self.Anesthetic_complications_admitroom)
+        data.append(self.Anesthetic_complications_admitroom_2hrs)
+        data.append(self.Anesthetic_complications_admitroom_24hrs)
+        data.append(self.Anesthetic_complications_procedure)
+        data.append(self.Anesthetic_complications_admitroom_48hrs)
+        data.append(self.Anesthetic_complications_admitroom_7day)
+        return data
+

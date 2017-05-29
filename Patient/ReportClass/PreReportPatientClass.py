@@ -26,13 +26,15 @@ class PreReportByDoctor:
         return [self.preDiagonsis, self.operationPlan, self.underlying, self.specialTreament, self.note]
 
 
+"""----------------------------BY NURSE---------------------"""
+
 class PreReportByNurse(object):
-    def __init__(self, premed, PRC, FFP, Plt, PC, plannedICU, fullBed, service, ASA, BW, HT, BP, P, RR, T, GCS1,
-                 GCS2, smoking, alcoholic, allergy,lt=[]):
+    def __init__(self, premed, PRC, FFP, Plt, PC, plannedICU, BedNO, service, ASA, BW, HT, BP, P, RR, T, GCS,
+                 smoking, alcoholic, allergy,lt=[]):
         self.premed = premed
         self.BLprepared = [PRC, FFP, Plt, PC]  ## PRC, FFP, PLT, PC int
         self.plannedICU = plannedICU  ## boolean
-        self.fullBed = fullBed  ## boolean
+        self.BedNO = BedNO  ## int
         self.service = service  ## string ('in', 'out')
         self.ASA = ASA  ## string
         self.BW = int(BW)  ## int
@@ -42,7 +44,7 @@ class PreReportByNurse(object):
         self.P = P  ## int
         self.RR = RR  ## int
         self.T = T  ## int
-        self.GCS = [GCS1, GCS2]  ## string and int[('E','M','V'), ('1-4', '1-6', '1-5')]
+        self.GCS = GCS  ## string and int[('E','M','V')
         self.smoking = smoking  ## boolean
         self.alcoholic = alcoholic  ## boolean
         self.allergy = allergy  ## string
@@ -51,6 +53,7 @@ class PreReportByNurse(object):
             for i in lt:
                 if i[0] != "":
                     self.allergy_list.append(i)
+
 
     def setpremed(self, new_premed):
         self.premed = new_premed
@@ -123,3 +126,32 @@ class PreReportByNurse(object):
 
     def getAllergy(self):
         return self.allergy
+
+    def getData(self):
+        data = []
+        dataBox = []
+        data.append(self.premed)
+        for i in self.BLprepared:
+            data.append(i)
+        dataBox.append(self.plannedICU)
+        data.append(self.BedNO)
+        dataBox.append(self.service)
+        dataBox.append(self.ASA)
+        data.append(str(self.BW))
+        data.append(str(self.HT))
+        data.append(str(self.BMI))
+        data.append(str(self.BP))
+        data.append(str(self.P))
+        data.append(str(self.RR))
+        data.append(str(self.T))
+        dataBox.append(str(self.GCS))
+        dataBox.append(self.smoking)
+        dataBox.append(self.alcoholic)
+        dataBox.append(self.allergy)
+        if self.allergy == "Yes":
+            for i in self.allergy_list:
+                data.append(i)
+        else:
+            for i in range(6):
+                data.append('-')
+        return data, dataBox

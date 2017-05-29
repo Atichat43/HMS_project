@@ -36,8 +36,6 @@ class MainWindowDoctor(QMainWindow):
         self.tabWidget.addTab(self.tab2, "Patient")
         self.tabWidget.addTab(self.tab3, "Appointment")
 
-    def addNewPatient(self, newPatient):
-        self.crtlDatabase.addNewPatient(newPatient)
 
     def addNewAppointment(self, newAppointment):
         self.crtlDatabase.addNewAppointment(newAppointment)
@@ -53,8 +51,18 @@ class MainWindowDoctor(QMainWindow):
     def appointmentValid(self, date, time, doctor):
         return self.crtlDatabase.appointmentValid(date, time, doctor)
 
+    def addNewPatient(self, newPatient):
+        self.crtlDatabase.addNewPatient(newPatient)
+
+    def editPatient(self, oldPatient):
+        self.crtlDatabase.editPatient(oldPatient)
+
     def patientValid(self, AN):
         return self.crtlDatabase.patientValid(AN)
+
+    def oldPatientValid(self, AN, patient_name):
+        return self.crtlDatabase.oldPatientValid(AN, patient_name)
+
 
 
 if __name__ == "__main__":

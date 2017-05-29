@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1063</width>
-    <height>804</height>
+    <width>853</width>
+    <height>836</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -22,6 +22,12 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
     <widget class="QScrollArea" name="scrollArea">
+     <property name="minimumSize">
+      <size>
+       <width>836</width>
+       <height>814</height>
+      </size>
+     </property>
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
@@ -30,8 +36,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>1039</width>
-        <height>780</height>
+        <width>834</width>
+        <height>812</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -55,8 +61,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>987</width>
-                <height>705</height>
+                <width>782</width>
+                <height>737</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_12">
@@ -687,20 +693,20 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>987</width>
-                <height>705</height>
+                <width>782</width>
+                <height>737</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_3">
-                 <item row="30" column="2">
+                 <item row="32" column="2">
                   <widget class="QLineEdit" name="IntraEditLine_21"/>
                  </item>
-                 <item row="29" column="2">
+                 <item row="31" column="2">
                   <widget class="QLineEdit" name="IntraEditLine_20"/>
                  </item>
-                 <item row="20" column="1" colspan="2">
+                 <item row="22" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra14">
                    <item>
                     <widget class="QLabel" name="label_10">
@@ -746,7 +752,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="18" column="1" colspan="2">
+                 <item row="20" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra13">
                    <item>
                     <widget class="QLabel" name="label_8">
@@ -890,10 +896,10 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="28" column="2">
+                 <item row="30" column="2">
                   <widget class="QLineEdit" name="IntraEditLine_19"/>
                  </item>
-                 <item row="16" column="1" colspan="2">
+                 <item row="18" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra11">
                    <item alignment="Qt::AlignRight">
                     <widget class="QLabel" name="label_26">
@@ -985,6 +991,13 @@
                     </widget>
                    </item>
                   </layout>
+                 </item>
+                 <item row="24" column="1" alignment="Qt::AlignRight">
+                  <widget class="QLabel" name="label_11">
+                   <property name="text">
+                    <string>Reason</string>
+                   </property>
+                  </widget>
                  </item>
                  <item row="2" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra3">
@@ -1634,21 +1647,14 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="22" column="1" alignment="Qt::AlignRight">
-                  <widget class="QLabel" name="label_11">
-                   <property name="text">
-                    <string>Reason</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="26" column="1" alignment="Qt::AlignRight">
+                 <item row="28" column="1" alignment="Qt::AlignRight">
                   <widget class="QLabel" name="label_14">
                    <property name="text">
                     <string>Nurse Anesthetists</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="17" column="1" colspan="2">
+                 <item row="19" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra12">
                    <item>
                     <widget class="QLabel" name="label_5">
@@ -1694,6 +1700,12 @@
                    </item>
                   </layout>
                  </item>
+                 <item row="24" column="2">
+                  <widget class="QComboBox" name="IntracomboBox_12"/>
+                 </item>
+                 <item row="29" column="2">
+                  <widget class="QLineEdit" name="IntraEditLine_18"/>
+                 </item>
                  <item row="3" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra4">
                    <item>
@@ -1725,19 +1737,27 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="22" column="2">
-                  <widget class="QComboBox" name="IntracomboBox_12"/>
-                 </item>
-                 <item row="27" column="2">
-                  <widget class="QLineEdit" name="IntraEditLine_18"/>
-                 </item>
-                 <item row="26" column="2">
+                 <item row="28" column="2">
                   <widget class="QLineEdit" name="IntraEditLine_17"/>
                  </item>
-                 <item row="31" column="2">
+                 <item row="33" column="2">
                   <layout class="QHBoxLayout" name="horizontalLayout_2">
                    <item>
                     <widget class="QLabel" name="label_119">
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_92">
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_39">
                      <property name="text">
                       <string/>
                      </property>
@@ -1758,6 +1778,19 @@
                     </widget>
                    </item>
                   </layout>
+                 </item>
+                 <item row="5" column="1" colspan="2">
+                  <widget class="Line" name="line_12">
+                   <property name="frameShadow">
+                    <enum>QFrame::Plain</enum>
+                   </property>
+                   <property name="lineWidth">
+                    <number>3</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
                  </item>
                  <item row="1" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra2">
@@ -1809,20 +1842,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="4" column="1" colspan="2">
-                  <widget class="Line" name="line_12">
-                   <property name="frameShadow">
-                    <enum>QFrame::Plain</enum>
-                   </property>
-                   <property name="lineWidth">
-                    <number>3</number>
-                   </property>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="1" colspan="2">
+                 <item row="7" column="1" colspan="2">
                   <layout class="QVBoxLayout" name="intra5">
                    <item>
                     <layout class="QHBoxLayout" name="horizontalLayout_20">
@@ -2004,7 +2024,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="13" column="1" colspan="2">
+                 <item row="15" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra10">
                    <item alignment="Qt::AlignRight">
                     <widget class="QLabel" name="label_19">
@@ -2089,6 +2109,13 @@
                    </item>
                   </layout>
                  </item>
+                 <item row="4" column="1">
+                  <widget class="QLabel" name="label_30">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
                 </layout>
                </item>
               </layout>
@@ -2112,8 +2139,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>966</width>
-                <height>1500</height>
+                <width>761</width>
+                <height>1502</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
@@ -4841,20 +4868,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="34" column="4">
-                  <widget class="QPushButton" name="save_post_Button">
-                   <property name="text">
-                    <string>save</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="34" column="5">
-                  <widget class="QPushButton" name="cancel_post_Button">
-                   <property name="text">
-                    <string>cancel</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="7" column="4">
                   <widget class="QLabel" name="label_116">
                    <property name="text">
@@ -6013,6 +6026,31 @@
                     <string>Anesthesia Incident in 2 hour</string>
                    </property>
                   </widget>
+                 </item>
+                 <item row="34" column="4" colspan="2">
+                  <layout class="QHBoxLayout" name="horizontalLayout_3">
+                   <item>
+                    <widget class="QPushButton" name="pushButton">
+                     <property name="text">
+                      <string>collect report</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="save_post_Button">
+                     <property name="text">
+                      <string>save</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="cancel_post_Button">
+                     <property name="text">
+                      <string>cancel</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </item>
                 </layout>
                </item>
