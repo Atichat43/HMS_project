@@ -37,4 +37,6 @@ class MainWindowNurse(QMainWindow):
     def getAppointmentByAN(self, AN):
         return self.crtlDatabase.getAppointmentByAN(AN)
 
+    def updatePatient(self, patient):
+        return self.crtlDatabase.editPatient(patient)
 

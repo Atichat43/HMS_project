@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>853</width>
-    <height>836</height>
+    <width>766</width>
+    <height>565</height>
    </rect>
   </property>
-  <property name="minimumSize">
+  <property name="maximumSize">
    <size>
-    <width>800</width>
-    <height>0</height>
+    <width>766</width>
+    <height>565</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -22,10 +22,10 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="0">
     <widget class="QScrollArea" name="scrollArea">
-     <property name="minimumSize">
+     <property name="maximumSize">
       <size>
-       <width>836</width>
-       <height>814</height>
+       <width>748</width>
+       <height>547</height>
       </size>
      </property>
      <property name="widgetResizable">
@@ -36,8 +36,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>834</width>
-        <height>816</height>
+        <width>746</width>
+        <height>545</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -61,8 +61,8 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>790</width>
-                <height>752</height>
+                <width>702</width>
+                <height>481</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_12">
@@ -765,20 +765,20 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>790</width>
-                <height>752</height>
+                <width>685</width>
+                <height>585</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_3">
-                 <item row="32" column="2">
+                 <item row="31" column="2">
                   <widget class="QLineEdit" name="IntraEditLine_21"/>
                  </item>
-                 <item row="31" column="2">
+                 <item row="30" column="2">
                   <widget class="QLineEdit" name="IntraEditLine_20"/>
                  </item>
-                 <item row="22" column="1" colspan="2">
+                 <item row="21" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra14">
                    <item>
                     <widget class="QLabel" name="label_10">
@@ -824,7 +824,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="20" column="1" colspan="2">
+                 <item row="19" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra13">
                    <item>
                     <widget class="QLabel" name="label_8">
@@ -934,6 +934,9 @@
                    </item>
                   </layout>
                  </item>
+                 <item row="29" column="2">
+                  <widget class="QLineEdit" name="IntraEditLine_19"/>
+                 </item>
                  <item row="0" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra1">
                    <item>
@@ -968,10 +971,14 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="30" column="2">
-                  <widget class="QLineEdit" name="IntraEditLine_19"/>
+                 <item row="23" column="1" alignment="Qt::AlignRight">
+                  <widget class="QLabel" name="label_11">
+                   <property name="text">
+                    <string>Reason</string>
+                   </property>
+                  </widget>
                  </item>
-                 <item row="18" column="1" colspan="2">
+                 <item row="17" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra11">
                    <item alignment="Qt::AlignRight">
                     <widget class="QLabel" name="label_26">
@@ -1063,13 +1070,6 @@
                     </widget>
                    </item>
                   </layout>
-                 </item>
-                 <item row="24" column="1" alignment="Qt::AlignRight">
-                  <widget class="QLabel" name="label_11">
-                   <property name="text">
-                    <string>Reason</string>
-                   </property>
-                  </widget>
                  </item>
                  <item row="2" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra3">
@@ -1719,14 +1719,14 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="28" column="1" alignment="Qt::AlignRight">
+                 <item row="27" column="1" alignment="Qt::AlignRight">
                   <widget class="QLabel" name="label_14">
                    <property name="text">
                     <string>Nurse Anesthetists</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="19" column="1" colspan="2">
+                 <item row="18" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra12">
                    <item>
                     <widget class="QLabel" name="label_5">
@@ -1772,11 +1772,14 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="24" column="2">
+                 <item row="23" column="2">
                   <widget class="QComboBox" name="IntracomboBox_12"/>
                  </item>
-                 <item row="29" column="2">
+                 <item row="28" column="2">
                   <widget class="QLineEdit" name="IntraEditLine_18"/>
+                 </item>
+                 <item row="27" column="2">
+                  <widget class="QLineEdit" name="IntraEditLine_17"/>
                  </item>
                  <item row="3" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra4">
@@ -1809,10 +1812,20 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="28" column="2">
-                  <widget class="QLineEdit" name="IntraEditLine_17"/>
+                 <item row="4" column="1" colspan="2">
+                  <widget class="Line" name="line_12">
+                   <property name="frameShadow">
+                    <enum>QFrame::Plain</enum>
+                   </property>
+                   <property name="lineWidth">
+                    <number>3</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                  </widget>
                  </item>
-                 <item row="33" column="2">
+                 <item row="32" column="2">
                   <layout class="QHBoxLayout" name="horizontalLayout_2">
                    <item>
                     <widget class="QLabel" name="label_119">
@@ -1850,19 +1863,6 @@
                     </widget>
                    </item>
                   </layout>
-                 </item>
-                 <item row="5" column="1" colspan="2">
-                  <widget class="Line" name="line_12">
-                   <property name="frameShadow">
-                    <enum>QFrame::Plain</enum>
-                   </property>
-                   <property name="lineWidth">
-                    <number>3</number>
-                   </property>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                  </widget>
                  </item>
                  <item row="1" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra2">
@@ -1914,7 +1914,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="7" column="1" colspan="2">
+                 <item row="6" column="1" colspan="2">
                   <layout class="QVBoxLayout" name="intra5">
                    <item>
                     <layout class="QHBoxLayout" name="horizontalLayout_20">
@@ -2075,13 +2075,6 @@
                     </layout>
                    </item>
                    <item>
-                    <widget class="QLabel" name="label_123">
-                     <property name="text">
-                      <string/>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
                     <widget class="Line" name="line_10">
                      <property name="frameShadow">
                       <enum>QFrame::Plain</enum>
@@ -2096,7 +2089,7 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="15" column="1" colspan="2">
+                 <item row="14" column="1" colspan="2">
                   <layout class="QHBoxLayout" name="intra10">
                    <item alignment="Qt::AlignRight">
                     <widget class="QLabel" name="label_19">
@@ -2181,13 +2174,6 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="4" column="1">
-                  <widget class="QLabel" name="label_30">
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
                 </layout>
                </item>
               </layout>
@@ -2211,14 +2197,23 @@
                <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>773</width>
+                <width>685</width>
                 <height>1370</height>
                </rect>
               </property>
               <layout class="QGridLayout" name="gridLayout_10">
                <item row="0" column="0">
                 <layout class="QGridLayout" name="gridLayout_8">
-                 <property name="margin">
+                 <property name="leftMargin">
+                  <number>10</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>10</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>10</number>
+                 </property>
+                 <property name="bottomMargin">
                   <number>10</number>
                  </property>
                  <property name="spacing">
@@ -2247,6 +2242,53 @@
                     <string>Result</string>
                    </property>
                   </widget>
+                 </item>
+                 <item row="17" column="5">
+                  <widget class="QComboBox" name="post4_comboBox">
+                   <item>
+                    <property name="text">
+                     <string>Procedure</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Stop visiting</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Stop visiting, Give advice</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Continue visiting</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Not found</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Released</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>OPD case</string>
+                    </property>
+                   </item>
+                   <item>
+                    <property name="text">
+                     <string>Death</string>
+                    </property>
+                   </item>
+                  </widget>
+                 </item>
+                 <item row="13" column="1" colspan="3">
+                  <widget class="QLineEdit" name="post3_lineEdit_2"/>
                  </item>
                  <item row="16" column="1" colspan="4">
                   <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -2699,52 +2741,19 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="17" column="5">
-                  <widget class="QComboBox" name="post4_comboBox">
-                   <item>
-                    <property name="text">
-                     <string>Procedure</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Stop visiting</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Stop visiting, Give advice</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Continue visiting</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Not found</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Released</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>OPD case</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>Death</string>
-                    </property>
-                   </item>
+                 <item row="12" column="0" alignment="Qt::AlignRight">
+                  <widget class="QLabel" name="label_86">
+                   <property name="text">
+                    <string>Note:</string>
+                   </property>
                   </widget>
                  </item>
-                 <item row="13" column="1" colspan="3">
-                  <widget class="QLineEdit" name="post3_lineEdit_2"/>
+                 <item row="13" column="4">
+                  <widget class="QLabel" name="label_89">
+                   <property name="text">
+                    <string>                Date:</string>
+                   </property>
+                  </widget>
                  </item>
                  <item row="11" column="1" colspan="4">
                   <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -3197,33 +3206,15 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="13" column="4">
-                  <widget class="QLabel" name="label_89">
-                   <property name="text">
-                    <string>                Date:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="12" column="0" alignment="Qt::AlignRight">
-                  <widget class="QLabel" name="label_86">
-                   <property name="text">
-                    <string>Note:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="14" column="0">
-                  <widget class="QLabel" name="label_110">
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="15" column="0" colspan="4" alignment="Qt::AlignBottom">
                   <widget class="QLabel" name="label_100">
                    <property name="text">
                     <string>Anesthesia Incident in 24 hour</string>
                    </property>
                   </widget>
+                 </item>
+                 <item row="13" column="5">
+                  <widget class="QDateEdit" name="post3_dateEdit"/>
                  </item>
                  <item row="17" column="0" alignment="Qt::AlignRight">
                   <widget class="QLabel" name="label_101">
@@ -3279,8 +3270,15 @@
                    </item>
                   </widget>
                  </item>
-                 <item row="13" column="5">
-                  <widget class="QDateEdit" name="post3_dateEdit"/>
+                 <item row="28" column="1" colspan="3">
+                  <widget class="QLineEdit" name="post6_lineEdit_2"/>
+                 </item>
+                 <item row="24" column="0">
+                  <widget class="QLabel" name="label_125">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
                  </item>
                  <item row="21" column="1" colspan="4">
                   <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -3733,25 +3731,8 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="24" column="0">
-                  <widget class="QLabel" name="label_125">
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="28" column="1" colspan="3">
-                  <widget class="QLineEdit" name="post6_lineEdit_2"/>
-                 </item>
                  <item row="18" column="1" colspan="3">
                   <widget class="QLineEdit" name="post4_lineEdit_2"/>
-                 </item>
-                 <item row="32" column="0" alignment="Qt::AlignRight">
-                  <widget class="QLabel" name="label_133">
-                   <property name="text">
-                    <string>Note:</string>
-                   </property>
-                  </widget>
                  </item>
                  <item row="25" column="0" colspan="4">
                   <widget class="QLabel" name="label_126">
@@ -3760,11 +3741,21 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="28" column="5">
+                  <widget class="QDateEdit" name="post6_dateEdit"/>
+                 </item>
                  <item row="32" column="1" colspan="3">
                   <widget class="QLineEdit" name="post7_lineEdit_1"/>
                  </item>
-                 <item row="28" column="5">
-                  <widget class="QDateEdit" name="post6_dateEdit"/>
+                 <item row="32" column="0" alignment="Qt::AlignRight">
+                  <widget class="QLabel" name="label_133">
+                   <property name="text">
+                    <string>Note:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="23" column="5">
+                  <widget class="QDateEdit" name="post5_dateEdit"/>
                  </item>
                  <item row="22" column="5">
                   <widget class="QComboBox" name="post5_comboBox">
@@ -3810,9 +3801,6 @@
                    </item>
                   </widget>
                  </item>
-                 <item row="23" column="5">
-                  <widget class="QDateEdit" name="post5_dateEdit"/>
-                 </item>
                  <item row="29" column="0">
                   <widget class="QLabel" name="label_136">
                    <property name="text">
@@ -3827,24 +3815,10 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="27" column="0" alignment="Qt::AlignRight">
-                  <widget class="QLabel" name="label_127">
-                   <property name="text">
-                    <string>Note:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="18" column="0" alignment="Qt::AlignRight">
                   <widget class="QLabel" name="label_103">
                    <property name="text">
                     <string> Name:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="20" column="0" colspan="4">
-                  <widget class="QLabel" name="label_105">
-                   <property name="text">
-                    <string>Anesthesia Incident After Procedure EBP,WET</string>
                    </property>
                   </widget>
                  </item>
@@ -3858,17 +3832,17 @@
                  <item row="18" column="5">
                   <widget class="QDateEdit" name="post4_dateEdit"/>
                  </item>
-                 <item row="23" column="0" alignment="Qt::AlignRight">
-                  <widget class="QLabel" name="label_107">
+                 <item row="27" column="0" alignment="Qt::AlignRight">
+                  <widget class="QLabel" name="label_127">
                    <property name="text">
-                    <string>Name:</string>
+                    <string>Note:</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="27" column="4" alignment="Qt::AlignRight">
-                  <widget class="QLabel" name="label_131">
+                 <item row="20" column="0" colspan="4">
+                  <widget class="QLabel" name="label_105">
                    <property name="text">
-                    <string>Result</string>
+                    <string>Anesthesia Incident After Procedure EBP,WET</string>
                    </property>
                   </widget>
                  </item>
@@ -3886,11 +3860,22 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="23" column="0" alignment="Qt::AlignRight">
+                  <widget class="QLabel" name="label_107">
+                   <property name="text">
+                    <string>Name:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="27" column="4" alignment="Qt::AlignRight">
+                  <widget class="QLabel" name="label_131">
+                   <property name="text">
+                    <string>Result</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="22" column="1" colspan="3">
                   <widget class="QLineEdit" name="post5_lineEdit_1"/>
-                 </item>
-                 <item row="23" column="1" colspan="3">
-                  <widget class="QLineEdit" name="post5_lineEdit_2"/>
                  </item>
                  <item row="23" column="4">
                   <widget class="QLabel" name="label_108">
@@ -3898,6 +3883,9 @@
                     <string>                Date:</string>
                    </property>
                   </widget>
+                 </item>
+                 <item row="23" column="1" colspan="3">
+                  <widget class="QLineEdit" name="post5_lineEdit_2"/>
                  </item>
                  <item row="26" column="1" colspan="4">
                   <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -4394,27 +4382,13 @@
                    </item>
                   </widget>
                  </item>
+                 <item row="27" column="1" colspan="3">
+                  <widget class="QLineEdit" name="post6_lineEdit_1"/>
+                 </item>
                  <item row="28" column="0" alignment="Qt::AlignRight">
                   <widget class="QLabel" name="label_128">
                    <property name="text">
                     <string>Name:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="19" column="0">
-                  <widget class="QLabel" name="label_111">
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="27" column="1" colspan="3">
-                  <widget class="QLineEdit" name="post6_lineEdit_1"/>
-                 </item>
-                 <item row="28" column="4">
-                  <widget class="QLabel" name="label_135">
-                   <property name="text">
-                    <string>                Date:</string>
                    </property>
                   </widget>
                  </item>
@@ -4913,8 +4887,19 @@
                    </item>
                   </widget>
                  </item>
-                 <item row="33" column="5">
-                  <widget class="QDateEdit" name="post7_dateEdit"/>
+                 <item row="28" column="4">
+                  <widget class="QLabel" name="label_135">
+                   <property name="text">
+                    <string>                Date:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="33" column="4">
+                  <widget class="QLabel" name="label_129">
+                   <property name="text">
+                    <string>                Date:</string>
+                   </property>
+                  </widget>
                  </item>
                  <item row="33" column="0" alignment="Qt::AlignRight">
                   <widget class="QLabel" name="label_134">
@@ -4922,6 +4907,9 @@
                     <string>Name:</string>
                    </property>
                   </widget>
+                 </item>
+                 <item row="33" column="5">
+                  <widget class="QDateEdit" name="post7_dateEdit"/>
                  </item>
                  <item row="32" column="4" alignment="Qt::AlignRight">
                   <widget class="QLabel" name="label_132">
@@ -4933,12 +4921,11 @@
                  <item row="33" column="1" colspan="3">
                   <widget class="QLineEdit" name="post7_lineEdit_2"/>
                  </item>
-                 <item row="33" column="4">
-                  <widget class="QLabel" name="label_129">
-                   <property name="text">
-                    <string>                Date:</string>
-                   </property>
-                  </widget>
+                 <item row="8" column="5">
+                  <widget class="QDateEdit" name="post2_dateEdit"/>
+                 </item>
+                 <item row="3" column="5">
+                  <widget class="QDateEdit" name="post1_dateEdit"/>
                  </item>
                  <item row="7" column="4">
                   <widget class="QLabel" name="label_116">
@@ -4946,12 +4933,6 @@
                     <string>Result</string>
                    </property>
                   </widget>
-                 </item>
-                 <item row="3" column="5">
-                  <widget class="QDateEdit" name="post1_dateEdit"/>
-                 </item>
-                 <item row="8" column="5">
-                  <widget class="QDateEdit" name="post2_dateEdit"/>
                  </item>
                  <item row="1" column="1" colspan="4">
                   <layout class="QVBoxLayout" name="verticalLayout">
@@ -5464,13 +5445,6 @@
                    </item>
                   </layout>
                  </item>
-                 <item row="2" column="4" alignment="Qt::AlignRight">
-                  <widget class="QLabel" name="label_83">
-                   <property name="text">
-                    <string>        Result</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="7" column="5">
                   <widget class="QComboBox" name="post2_comboBox">
                    <item>
@@ -5518,6 +5492,13 @@
                  <item row="7" column="1" colspan="3">
                   <widget class="QLineEdit" name="post2_lineEdit_1"/>
                  </item>
+                 <item row="2" column="4" alignment="Qt::AlignRight">
+                  <widget class="QLabel" name="label_83">
+                   <property name="text">
+                    <string>        Result</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="3" column="4">
                   <widget class="QLabel" name="label_85">
                    <property name="text">
@@ -5545,13 +5526,6 @@
                  <item row="3" column="1" colspan="3">
                   <widget class="QLineEdit" name="post1_lineEdit_2"/>
                  </item>
-                 <item row="2" column="0" alignment="Qt::AlignRight">
-                  <widget class="QLabel" name="label_82">
-                   <property name="text">
-                    <string>Note:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="4" column="0" colspan="4">
                   <widget class="QLabel" name="label_115">
                    <property name="text">
@@ -5559,10 +5533,24 @@
                    </property>
                   </widget>
                  </item>
+                 <item row="2" column="0" alignment="Qt::AlignRight">
+                  <widget class="QLabel" name="label_82">
+                   <property name="text">
+                    <string>Note:</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="5" column="0" colspan="4">
                   <widget class="QLabel" name="label_113">
                    <property name="text">
                     <string>Anesthesia Incident in Rehabilitation room</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="8" column="0" alignment="Qt::AlignRight">
+                  <widget class="QLabel" name="label_117">
+                   <property name="text">
+                    <string>       Name:</string>
                    </property>
                   </widget>
                  </item>
@@ -6024,13 +6012,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="8" column="0" alignment="Qt::AlignRight">
-                  <widget class="QLabel" name="label_117">
-                   <property name="text">
-                    <string>       Name:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="2" column="5">
                   <widget class="QComboBox" name="post1_comboBox">
                    <item>
@@ -6085,13 +6066,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="9" column="0" colspan="6">
-                  <widget class="QLabel" name="label_109">
-                   <property name="text">
-                    <string/>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="10" column="0" colspan="4" alignment="Qt::AlignBottom">
                   <widget class="QLabel" name="label_81">
                    <property name="text">
@@ -6123,6 +6097,27 @@
                     </widget>
                    </item>
                   </layout>
+                 </item>
+                 <item row="9" column="0" colspan="6">
+                  <widget class="QLabel" name="label_109">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="19" column="0">
+                  <widget class="QLabel" name="label_111">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="14" column="0">
+                  <widget class="QLabel" name="label_110">
+                   <property name="text">
+                    <string/>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>

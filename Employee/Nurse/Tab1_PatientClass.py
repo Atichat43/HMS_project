@@ -44,7 +44,7 @@ class Tab1Patient(QWidget):
         appointment = self.parent.getAppointmentByAN(AN)
         if patient is not None:
             if appointment is not None:
-                dialog = Dialog_3ReportPatientClass.ReportPatient(AN, patient, appointment)
+                dialog = Dialog_3ReportPatientClass.ReportPatient(AN, patient, appointment, self.parent)
                 dialog.show()
                 dialog.exec_()
             else:
@@ -57,6 +57,7 @@ class Tab1Patient(QWidget):
             error.showMessage("Invalid AN")
             error.setWindowTitle("Error!!!")
             error.exec_()
+
 
 
 

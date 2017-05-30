@@ -37,9 +37,16 @@ class PreReportByNurse(object):
         self.BedNO = BedNO  ## int
         self.service = service  ## string ('in', 'out')
         self.ASA = ASA  ## string
+        if BW == "":
+            BW = 0
         self.BW = int(BW)  ## int
+        if HT == "":
+            HT = 0
         self.HT = int(HT)  ## int
-        self.BMI = self.BW / (self.HT ** 2)
+        if HT == 0:
+            self.BMI = 0
+        else:
+            self.BMI = self.BW / (self.HT ** 2)
         self.BP = BP  ## int
         self.P = P  ## int
         self.RR = RR  ## int

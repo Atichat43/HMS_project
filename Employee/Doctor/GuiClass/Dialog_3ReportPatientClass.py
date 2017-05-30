@@ -12,12 +12,13 @@ import Setting as s
 
 
 class ReportPatient(QDialog):
-    def __init__(self, AN, patient, appointment):
+    def __init__(self, AN, patient, appointment, parent=None):
         QDialog.__init__(self, None)
         self.AN = AN
         self.patient = patient
         self.appointment = appointment
         self.status_patient = patient.status
+        self.parent = parent
         self.initUI()
         self.initPrelabel()
         self.initPostButtons(self.ui)
@@ -339,7 +340,8 @@ class ReportPatient(QDialog):
 
         for box in self.comboBoxPrelist:
             s = box.currentText()
-            self.pre_info_box.append(box.currentText(s))
+            print(s)
+            self.pre_info_box.append(s)
 
     def getIntraData(self):
         for item in self.lineEditIntralist:
@@ -422,9 +424,26 @@ class ReportPatient(QDialog):
         preReport = PreReportPatientClass.PreReportByNurse(self.pre_info_line[0],self.pre_info_line[1],self.pre_info_line[2],self.pre_info_line[3],self.pre_info_line[4],self.pre_info_box[0],self.pre_info_line[5],
                                                            self.pre_info_box[1],self.pre_info_box[2],self.pre_info_line[6],self.pre_info_line[7],self.pre_info_line[9],self.pre_info_line[10],
                                                            self.pre_info_line[11],self.pre_info_line[12],self.pre_info_box[3],self.pre_info_box[4],self.pre_info_box[5],self.pre_info_box[6])
-        if not self.b_pre_save.name == "update":
+        if self.b_pre_save.text() == "save":
             self.patient.updateStatus(s.PatientStatus.waitingIntraReport)
+
+            dialog = QMessageBox()
+            dialog.setText("Already save")
+            dialog.show()
+            dialog.exec_()
+
+        elif self.b_pre_save.text() == "update":
+            dialog = QMessageBox()
+            dialog.setText("Already save")
+            dialog.show()
+            dialog.exec_()
+
+        else:
+            raise TypeError
+
         self.patient.addPreReportNurse(preReport)
+        self.parent.updatePatient(self.patient)
+        self.initByPatientStatus()
 
     def save_intra_info (self):
         self.getIntraData()
@@ -432,9 +451,24 @@ class ReportPatient(QDialog):
                                         self.intra_info_line[8], self.intra_info_line[9], self.intra_info_box[5], self.intra_info_box[6], self.intra_info_box[7], self.intra_info_line[10], self.intra_info_line[11], self.intra_info_line[12], self.intra_info_box[8], self.intra_info_box[9], self.intra_info_box[10],
                                         self.intra_info_line[13], self.intra_info_line[14], self.intra_info_line[15], self.intra_info_box[11], [self.intra_info_line[16], self.intra_info_line[17], self.intra_info_line[18], self.intra_info_line[19],self.intra_info_line[20]])
 
-        if not self.b_intra_save.name == "update":
+        if self.b_intra_save.text() == "save":
             self.patient.updateStatus(s.PatientStatus.waitingPostReport)
+            dialog = QMessageBox()
+            dialog.setText("Already save")
+            dialog.show()
+            dialog.exec_()
+
+        elif self.b_intra_save.text() == "update":
+            dialog = QMessageBox()
+            dialog.setText("Already save")
+            dialog.show()
+            dialog.exec_()
+
+        else:
+            raise TypeError
         self.patient.addIntraReport(intraReport)
+        self.parent.updatePatient(self.patient)
+        self.initByPatientStatus()
 
     def save_post_info (self):
         self.getPostData(self.ui)
@@ -446,9 +480,24 @@ class ReportPatient(QDialog):
         post_report.setAnesthetic_complications_procedure(self.post5_info)
         post_report.setAnesthetic_complications_admitroom_48hrs(self.post6_info)
         post_report.setAnesthetic_complications_admitroom_7day(self.post7_info)
-        if not self.b_post_save.name == "update":
+        if self.b_post_save.text() == "save":
             self.patient.updateStatus(s.PatientStatus.done)
+            dialog = QMessageBox()
+            dialog.setText("Already save")
+            dialog.show()
+            dialog.exec_()
+
+        elif self.b_post_save.text() == "update":
+            dialog = QMessageBox()
+            dialog.setText("Already save")
+            dialog.show()
+            dialog.exec_()
+
+        else:
+            raise TypeError
         self.patient.addIntraReport(post_report)
+        self.parent.updatePatient(self.patient)
+        self.initByPatientStatus()
 
     def cancel(self):
         dialog = ConfirmMsgClass.ConfirmYesNo()
