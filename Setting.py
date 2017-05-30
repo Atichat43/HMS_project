@@ -6,7 +6,7 @@ GEOMETRY_MAINWIDOW = 50, 50, 800, 600
 GEOMETRY_DIALOG_NEW_PATIENT = 550, 60, 580, 600
 GEOMETRY_DIALOG_3REPORT = 350, 60, 755, 550
 GEOMETRY_DIALOG_NEW_EMPLOYEE = 300, 200, 300, 230
-GEOMETRY_DIALOG_HISTORY_REPORT = 400, 100, 800, 600
+GEOMETRY_DIALOG_HISTORY_REPORT = 400, 100, 900, 600
 GEOMETRY_MSG = []
 
 #STATUS = ["Green", "Orange", "Red", "White"]
@@ -42,6 +42,7 @@ PATH_DOCTOR_DIALOG_3REPORT = 'Employee/Doctor/View/Widget_3ReportPatientUI.ui'
 DB_USER = "./Database/userObject.pkl"
 DB_PATIENT = "./Database/patientObject.pkl"
 DB_APPOINTMENT = "./Database/appointmentObject.pkl"
+DB_REPORT = "./Database/reportObject.pkl"
 
 # Style Sheet
 SS_Button_EMCASE = "background-color: rgb(255, 0, 0); color: rgb(255, 255, 255)"

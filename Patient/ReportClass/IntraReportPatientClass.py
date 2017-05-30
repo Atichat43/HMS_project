@@ -182,8 +182,11 @@ class IntraReportPatient():
         data.append(self.building)
         data.append(self.arrivePlace)
         data.append(self.departPlace)
+        print("boss")
+
         data.append(self.Pre_evaluateNurse[0])
         data.append(self.Pre_evaluateNurse[1])
+        print(self.Pre_evaluateNurse)
 
         data.append(self.post_diagnose)
         data.append(self.operation)

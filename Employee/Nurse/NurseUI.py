@@ -40,3 +40,5 @@ class MainWindowNurse(QMainWindow):
     def updatePatient(self, patient):
         return self.crtlDatabase.editPatient(patient)
 
+    def createHistory(self, new_history_report):
+        self.crtlDatabase.createHistory(new_history_report)

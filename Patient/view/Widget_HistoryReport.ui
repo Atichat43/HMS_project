@@ -21,7 +21,7 @@
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
-       <string>Tab 1</string>
+       <string>History Report</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
@@ -33,14 +33,66 @@
           <property name="geometry">
            <rect>
             <x>0</x>
-            <y>-694</y>
-            <width>989</width>
-            <height>2101</height>
+            <y>0</y>
+            <width>955</width>
+            <height>1833</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="0">
             <layout class="QGridLayout" name="Pre">
+             <item row="7" column="1">
+              <widget class="QLabel" name="label_70">
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>1.Medicine name</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="4">
+              <layout class="QHBoxLayout" name="horizontalLayout_65">
+               <item>
+                <widget class="QLabel" name="label_66">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>GSC</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="pre_label_31">
+                 <property name="text">
+                  <string>___________</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_56">
+               <property name="text">
+                <string>BL. prepared</string>
+               </property>
+              </widget>
+             </item>
              <item row="9" column="1">
               <widget class="QLabel" name="label_74">
                <property name="font">
@@ -52,23 +104,6 @@
                </property>
                <property name="text">
                 <string>3.Medicine name</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="1">
-              <widget class="QLabel" name="label_72">
-               <property name="font">
-                <font>
-                 <pointsize>9</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>2.Medicine name</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -95,13 +130,30 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_21">
+                <widget class="QLabel" name="pre_label_26">
                  <property name="text">
                   <string>__________</string>
                  </property>
                 </widget>
                </item>
               </layout>
+             </item>
+             <item row="8" column="1">
+              <widget class="QLabel" name="label_72">
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="text">
+                <string>2.Medicine name</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
              </item>
              <item row="3" column="3">
               <layout class="QHBoxLayout" name="horizontalLayout_56">
@@ -123,7 +175,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_17">
+                <widget class="QLabel" name="pre_label_22">
                  <property name="text">
                   <string>__________</string>
                  </property>
@@ -151,7 +203,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_18">
+                <widget class="QLabel" name="pre_label_23">
                  <property name="text">
                   <string>__________</string>
                  </property>
@@ -179,7 +231,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_16">
+                <widget class="QLabel" name="pre_label_21">
                  <property name="text">
                   <string>__________</string>
                  </property>
@@ -207,35 +259,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_20">
-                 <property name="text">
-                  <string>__________</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item row="4" column="4">
-              <layout class="QHBoxLayout" name="horizontalLayout_59">
-               <item>
-                <widget class="QLabel" name="label_34">
-                 <property name="font">
-                  <font>
-                   <pointsize>9</pointsize>
-                   <weight>75</weight>
-                   <bold>true</bold>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>BP(mmhg)</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="pre_label_22">
+                <widget class="QLabel" name="pre_label_25">
                  <property name="text">
                   <string>__________</string>
                  </property>
@@ -263,7 +287,35 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_19">
+                <widget class="QLabel" name="pre_label_24">
+                 <property name="text">
+                  <string>__________</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="4" column="4">
+              <layout class="QHBoxLayout" name="horizontalLayout_59">
+               <item>
+                <widget class="QLabel" name="label_34">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>BP(mmhg)</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="pre_label_27">
                  <property name="text">
                   <string>__________</string>
                  </property>
@@ -291,7 +343,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_15">
+                <widget class="QLabel" name="pre_label_20">
                  <property name="text">
                   <string>__________</string>
                  </property>
@@ -325,30 +377,13 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_23">
+                <widget class="QLabel" name="pre_label_28">
                  <property name="text">
                   <string>__________</string>
                  </property>
                 </widget>
                </item>
               </layout>
-             </item>
-             <item row="8" column="3">
-              <widget class="QLabel" name="label_73">
-               <property name="font">
-                <font>
-                 <pointsize>9</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Symptom</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-               </property>
-              </widget>
              </item>
              <item row="9" column="3">
               <widget class="QLabel" name="label_75">
@@ -367,38 +402,20 @@
                </property>
               </widget>
              </item>
-             <item row="8" column="2">
-              <widget class="QLabel" name="pre_label_32">
-               <property name="text">
-                <string>___________</string>
+             <item row="8" column="3">
+              <widget class="QLabel" name="label_73">
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
                </property>
-              </widget>
-             </item>
-             <item row="9" column="2">
-              <widget class="QLabel" name="pre_label_33">
                <property name="text">
-                <string>___________</string>
+                <string>Symptom</string>
                </property>
-              </widget>
-             </item>
-             <item row="7" column="4">
-              <widget class="QLabel" name="pre_label_31">
-               <property name="text">
-                <string>___________</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="2">
-              <widget class="QLabel" name="pre_label_30">
-               <property name="text">
-                <string>___________</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="4">
-              <widget class="QLabel" name="v">
-               <property name="text">
-                <string>___________</string>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
               </widget>
              </item>
@@ -439,20 +456,13 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_27">
+                <widget class="QLabel" name="pre_label_32">
                  <property name="text">
-                  <string>__________</string>
+                  <string>___________</string>
                  </property>
                 </widget>
                </item>
               </layout>
-             </item>
-             <item row="9" column="4">
-              <widget class="QLabel" name="pre_label_34">
-               <property name="text">
-                <string>___________</string>
-               </property>
-              </widget>
              </item>
              <item row="2" column="3">
               <layout class="QHBoxLayout" name="horizontalLayout_13">
@@ -474,7 +484,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_13">
+                <widget class="QLabel" name="pre_label_18">
                  <property name="text">
                   <string>__________</string>
                  </property>
@@ -502,9 +512,9 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_29">
+                <widget class="QLabel" name="pre_label_34">
                  <property name="text">
-                  <string>__________</string>
+                  <string>___________</string>
                  </property>
                 </widget>
                </item>
@@ -530,35 +540,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_14">
-                 <property name="text">
-                  <string>__________</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item row="6" column="2">
-              <layout class="QHBoxLayout" name="horizontalLayout_66">
-               <item>
-                <widget class="QLabel" name="label_68">
-                 <property name="font">
-                  <font>
-                   <pointsize>9</pointsize>
-                   <weight>75</weight>
-                   <bold>true</bold>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Alcoholic</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="pre_label_28">
+                <widget class="QLabel" name="pre_label_19">
                  <property name="text">
                   <string>__________</string>
                  </property>
@@ -586,9 +568,37 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_11">
+                <widget class="QLabel" name="pre_label_16">
                  <property name="text">
                   <string>__________</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="6" column="2">
+              <layout class="QHBoxLayout" name="horizontalLayout_66">
+               <item>
+                <widget class="QLabel" name="label_68">
+                 <property name="font">
+                  <font>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Alcoholic</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="pre_label_33">
+                 <property name="text">
+                  <string>___________</string>
                  </property>
                 </widget>
                </item>
@@ -614,7 +624,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_12">
+                <widget class="QLabel" name="pre_label_17">
                  <property name="text">
                   <string>__________</string>
                  </property>
@@ -633,27 +643,6 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="2">
-                  <widget class="QLabel" name="label_43">
-                   <property name="text">
-                    <string>Type:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="0">
-                  <widget class="QLabel" name="label_45">
-                   <property name="text">
-                    <string>Date:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="2">
-                  <widget class="QLabel" name="label_41">
-                   <property name="text">
-                    <string>Phone:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="3" column="0">
                   <widget class="QLabel" name="label_40">
                    <property name="text">
@@ -665,6 +654,13 @@
                   <widget class="QLabel" name="label_32">
                    <property name="text">
                     <string>AN:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QLabel" name="label_41">
+                   <property name="text">
+                    <string>Phone:</string>
                    </property>
                   </widget>
                  </item>
@@ -682,15 +678,8 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="2">
-                  <widget class="QLabel" name="label_47">
-                   <property name="text">
-                    <string>Time:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="0" column="1">
-                  <widget class="QLabel" name="pre_label_0">
+                  <widget class="QLabel" name="pre_label_1">
                    <property name="text">
                     <string>__________</string>
                    </property>
@@ -703,77 +692,95 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="0">
-                  <widget class="QLabel" name="label_52">
-                   <property name="text">
-                    <string>Pre-Operation Diagnose:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="1" column="1">
-                  <widget class="QLabel" name="pre_label_2">
-                   <property name="text">
-                    <string>__________</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QLabel" name="pre_label_6">
-                   <property name="text">
-                    <string>__________</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="QLabel" name="pre_label_4">
-                   <property name="text">
-                    <string>__________</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="1">
-                  <widget class="QLabel" name="pre_label_8">
-                   <property name="text">
-                    <string>__________</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="3">
-                  <widget class="QLabel" name="pre_label_1">
-                   <property name="text">
-                    <string>__________</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="3">
                   <widget class="QLabel" name="pre_label_3">
                    <property name="text">
                     <string>__________</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="2" column="3">
+                 <item row="0" column="3">
+                  <widget class="QLabel" name="pre_label_2">
+                   <property name="text">
+                    <string>__________</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="3">
+                  <widget class="QLabel" name="pre_label_4">
+                   <property name="text">
+                    <string>__________</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
                   <widget class="QLabel" name="pre_label_5">
                    <property name="text">
                     <string>__________</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="3">
-                  <widget class="QLabel" name="pre_label_7">
+                 <item row="2" column="3">
+                  <widget class="QLabel" name="pre_label_6">
                    <property name="text">
                     <string>__________</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="4" column="3">
-                  <widget class="QLabel" name="pre_label_9">
+                 <item row="3" column="1" colspan="3">
+                  <layout class="QHBoxLayout" name="horizontalLayout_2">
+                   <item>
+                    <widget class="QLabel" name="label_43">
+                     <property name="text">
+                      <string>Type:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="pre_label_7">
+                     <property name="text">
+                      <string>___________</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_45">
+                     <property name="text">
+                      <string>Date:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="pre_label_8">
+                     <property name="text">
+                      <string>__________</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_47">
+                     <property name="text">
+                      <string>Time:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="pre_label_9">
+                     <property name="text">
+                      <string>__________</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="label_52">
                    <property name="text">
-                    <string>__________</string>
+                    <string>Pre-Operation Diagnose:</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="5" column="1" colspan="3">
+                 <item row="4" column="1">
                   <widget class="QLabel" name="pre_label_10">
                    <property name="text">
                     <string>__________</string>
@@ -804,9 +811,9 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_25">
+                <widget class="QLabel" name="pre_label_30">
                  <property name="text">
-                  <string>__________</string>
+                  <string>___________</string>
                  </property>
                 </widget>
                </item>
@@ -832,79 +839,133 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="pre_label_24">
+                <widget class="QLabel" name="pre_label_29">
                  <property name="text">
                   <string>__________</string>
                  </property>
                 </widget>
                </item>
               </layout>
-             </item>
-             <item row="5" column="4">
-              <layout class="QHBoxLayout" name="horizontalLayout_65">
-               <item>
-                <widget class="QLabel" name="label_66">
-                 <property name="font">
-                  <font>
-                   <pointsize>9</pointsize>
-                   <weight>75</weight>
-                   <bold>true</bold>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>GSC</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QLabel" name="pre_label_26">
-                 <property name="text">
-                  <string>__________</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="label_55">
-               <property name="text">
-                <string>Premed</string>
-               </property>
-              </widget>
              </item>
              <item row="1" column="1" colspan="4">
-              <widget class="QLabel" name="label_374">
+              <layout class="QVBoxLayout" name="verticalLayout_2">
+               <item>
+                <widget class="QLabel" name="pre_label_11">
+                 <property name="text">
+                  <string>__________</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="pre_label_12">
+                 <property name="text">
+                  <string>__________</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="pre_label_13">
+                 <property name="text">
+                  <string>__________</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="pre_label_14">
+                 <property name="text">
+                  <string>__________</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="pre_label_15">
+                 <property name="text">
+                  <string>__________</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="7" column="2">
+              <widget class="QLabel" name="pre_label_35">
                <property name="text">
-                <string/>
+                <string>___________</string>
                </property>
               </widget>
              </item>
-             <item row="2" column="0">
-              <widget class="QLabel" name="label_56">
+             <item row="7" column="4">
+              <widget class="QLabel" name="pre_label_36">
                <property name="text">
-                <string>BL. prepared</string>
+                <string>___________</string>
                </property>
               </widget>
              </item>
-             <item row="7" column="1">
-              <widget class="QLabel" name="label_70">
-               <property name="font">
-                <font>
-                 <pointsize>9</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
+             <item row="8" column="2">
+              <widget class="QLabel" name="pre_label_37">
                <property name="text">
-                <string>1.Medicine name</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                <string>___________</string>
                </property>
               </widget>
+             </item>
+             <item row="8" column="4">
+              <widget class="QLabel" name="pre_label_38">
+               <property name="text">
+                <string>___________</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="2">
+              <widget class="QLabel" name="pre_label_39">
+               <property name="text">
+                <string>___________</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="4">
+              <widget class="QLabel" name="pre_label_40">
+               <property name="text">
+                <string>___________</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <layout class="QVBoxLayout" name="verticalLayout_4">
+               <item>
+                <widget class="QLabel" name="label_30">
+                 <property name="text">
+                  <string>Pre_Operation Diagnose</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_36">
+                 <property name="text">
+                  <string>Operation Plan</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_38">
+                 <property name="text">
+                  <string>Underlying</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_39">
+                 <property name="text">
+                  <string>Treatment</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_42">
+                 <property name="text">
+                  <string>Note</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </item>
             </layout>
            </item>

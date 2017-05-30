@@ -58,6 +58,8 @@ class Tab1Patient(QWidget):
             error.setWindowTitle("Error!!!")
             error.exec_()
 
+    def createHistory(self, h):
+        self.parent.createHistory(h)
 
 
 

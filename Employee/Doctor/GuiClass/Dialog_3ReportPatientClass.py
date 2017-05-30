@@ -7,6 +7,9 @@ from Patient.ReportClass import PreReportPatientClass
 from Patient.ReportClass import IntraReportPatientClass
 from Patient.ReportClass import PostReportPatientClass
 
+from Patient import HistoryReportClass
+from Database import ControllerDatabase
+
 
 import Setting as s
 
@@ -27,6 +30,7 @@ class ReportPatient(QDialog):
         self.initContainer()
         self.initButtonDisactive()
         self.initByPatientStatus()
+        self.forDevPost()
 
 
     def initUI(self):
@@ -69,43 +73,35 @@ class ReportPatient(QDialog):
 
     def initByPatientStatus(self):
         if self.status_patient == s.PatientStatus.waitingPreReport:
+            print("IN WAITING PRE REPORT")
             self.setActivePreButton()
             basic_info = self.patient.getPrePreInfo()
-            print(basic_info)
             appointment_info = self.appointment.getDataFor3Report()
-            print(appointment_info)
             extra_info = self.patient.getExtraInfo()
-            print(extra_info)
             data_part_prepre = basic_info + appointment_info + extra_info
-            print(data_part_prepre)
             self.setDataPrePre(data_part_prepre)
 
         elif self.status_patient == s.PatientStatus.waitingIntraReport:
+            print("IN WAITING INTRA REPORT")
             self.setActivePreButton(True)
             self.setActiveIntraButton()
             basic_info = self.patient.getPrePreInfo()
-            print(basic_info)
             appointment_info = self.appointment.getDataFor3Report()
-            print(appointment_info)
             extra_info = self.patient.getExtraInfo()
-            print(extra_info)
             data_part_prepre = basic_info + appointment_info + extra_info
-            print(data_part_prepre)
             self.setDataPrePre(data_part_prepre)
             data_part_pre = self.patient.getPreInfo()
             self.setDataPre(data_part_pre[0], data_part_pre[1])
 
         elif self.status_patient == s.PatientStatus.waitingPostReport:
+            print("IN WAITING POST REPORT")
             self.setActivePreButton(True)
             self.setActiveIntraButton(True)
+            self.setActivePostButton()
             basic_info = self.patient.getPrePreInfo()
-            print(basic_info)
             appointment_info = self.appointment.getDataFor3Report()
-            print(appointment_info)
             extra_info = self.patient.getExtraInfo()
-            print(extra_info)
             data_part_prepre = basic_info + appointment_info + extra_info
-            print(data_part_prepre)
             self.setDataPrePre(data_part_prepre)
             data_part_pre = self.patient.getPreInfo()
             self.setDataPre(data_part_pre[0], data_part_pre[1])
@@ -113,17 +109,15 @@ class ReportPatient(QDialog):
             self.setDataIntra(data_part_intra[0], data_part_intra[1])
 
         elif self.status_patient == s.PatientStatus.done:
+            print("IN DONE")
             self.setActivePreButton(True)
             self.setActiveIntraButton(True)
             self.setActivePostButton(True)
+            self.setActiveDoneButton()
             basic_info = self.patient.getPrePreInfo()
-            print(basic_info)
             appointment_info = self.appointment.getDataFor3Report()
-            print(appointment_info)
             extra_info = self.patient.getExtraInfo()
-            print(extra_info)
             data_part_prepre = basic_info + appointment_info + extra_info
-            print(data_part_prepre)
             self.setDataPrePre(data_part_prepre)
             data_part_pre = self.patient.getPreInfo()
             self.setDataPre(data_part_pre[0], data_part_pre[1])
@@ -332,6 +326,8 @@ class ReportPatient(QDialog):
         self.b_post_cancel = ui.findChild(QPushButton, "cancel_post_Button")
         self.b_post_save.clicked.connect(self.save_post_info)
         self.b_post_cancel.clicked.connect(self.cancel)
+        self.b_done = ui.findChild(QPushButton, "b_done")
+        self.b_done.clicked.connect(self.collectReport)
 
     def getPreData(self,ui):
         for item in self.lineEditPrelist:
@@ -360,7 +356,7 @@ class ReportPatient(QDialog):
         self.post1_info.append(self.post1List[1].text())
         self.post1_info.append(self.post1List[2].text())
         self.post1_info.append(self.post1List[3].currentText())
-        self.post1_info.append(self.post1List[4].currentSection())
+        self.post1_info.append(str(self.post1List[4].currentSection()))
 
         # post2
         self.post2_info.append(self.post2List[0][0].currentText())
@@ -369,7 +365,7 @@ class ReportPatient(QDialog):
         self.post2_info.append(self.post2List[1].text())
         self.post2_info.append(self.post2List[2].text())
         self.post2_info.append(self.post2List[3].currentText())
-        self.post2_info.append(self.post2List[4].currentSection())
+        self.post2_info.append(str(self.post2List[4].currentSection()))
 
         # post3
         self.post3_info.append(self.post3List[0][0].currentText())
@@ -378,7 +374,7 @@ class ReportPatient(QDialog):
         self.post3_info.append(self.post3List[1].text())
         self.post3_info.append(self.post3List[2].text())
         self.post3_info.append(self.post3List[3].currentText())
-        self.post3_info.append(self.post3List[4].currentSection())
+        self.post3_info.append(str(self.post3List[4].currentSection()))
 
         # post4
         self.post4_info.append(self.post4List[0][0].currentText())
@@ -387,7 +383,7 @@ class ReportPatient(QDialog):
         self.post4_info.append(self.post4List[1].text())
         self.post4_info.append(self.post4List[2].text())
         self.post4_info.append(self.post4List[3].currentText())
-        self.post4_info.append(self.post4List[4].currentSection())
+        self.post4_info.append(str(self.post4List[4].currentSection()))
 
         # post5
         self.post5_info.append(self.post5List[0][0].currentText())
@@ -396,7 +392,7 @@ class ReportPatient(QDialog):
         self.post5_info.append(self.post5List[1].text())
         self.post5_info.append(self.post5List[2].text())
         self.post5_info.append(self.post5List[3].currentText())
-        self.post5_info.append(self.post5List[4].currentSection())
+        self.post5_info.append(str(self.post5List[4].currentSection()))
 
         # post6
         self.post6_info.append(self.post6List[0][0].currentText())
@@ -405,7 +401,7 @@ class ReportPatient(QDialog):
         self.post6_info.append(self.post6List[1].text())
         self.post6_info.append(self.post6List[2].text())
         self.post6_info.append(self.post6List[3].currentText())
-        self.post6_info.append(self.post6List[4].currentSection())
+        self.post6_info.append(str(self.post6List[4].currentSection()))
 
         # post7
         self.post7_info.append(self.post7List[0][0].currentText())
@@ -414,7 +410,7 @@ class ReportPatient(QDialog):
         self.post7_info.append(self.post7List[1].text())
         self.post7_info.append(self.post7List[2].text())
         self.post7_info.append(self.post7List[3].currentText())
-        self.post7_info.append(self.post7List[4].currentSection())
+        self.post7_info.append(str(self.post7List[4].currentSection()))
 
     def save_pre_info(self):
         self.getPreData(self.ui)
@@ -426,49 +422,81 @@ class ReportPatient(QDialog):
                                                            self.pre_info_line[11],self.pre_info_line[12],self.pre_info_box[3],self.pre_info_box[4],self.pre_info_box[5],self.pre_info_box[6])
         if self.b_pre_save.text() == "save":
             self.patient.updateStatus(s.PatientStatus.waitingIntraReport)
-
-            dialog = QMessageBox()
-            dialog.setText("Already save")
-            dialog.show()
-            dialog.exec_()
-
+            self.callDialogSave()
         elif self.b_pre_save.text() == "update":
-            dialog = QMessageBox()
-            dialog.setText("Already save")
-            dialog.show()
-            dialog.exec_()
-
+            self.callDialogUpdate()
         else:
             raise TypeError
 
         self.patient.addPreReportNurse(preReport)
         self.parent.updatePatient(self.patient)
-        self.initByPatientStatus()
+        self.close()
+
+    def createIntraReport(self):
+        self.getIntraData()
+        intraReport = IntraReportPatientClass.IntraReportPatient(self.intra_info_line[0], self.intra_info_line[1],
+                                                                 self.intra_info_line[2], self.intra_info_line[3],
+                                                                 self.intra_info_box[0], self.intra_info_box[1],
+                                                                 self.intra_info_box[2], [self.intra_info_line[4],
+                                                                 self.intra_info_line[5]], self.intra_info_line[6],
+                                                                 self.intra_info_line[7], self.intra_info_box[3],
+                                                                 self.intra_info_box[4],
+                                                                 self.intra_info_line[8], self.intra_info_line[9],
+                                                                 self.intra_info_box[5], self.intra_info_box[6],
+                                                                 self.intra_info_box[7], self.intra_info_line[10],
+                                                                 self.intra_info_line[11], self.intra_info_line[12],
+                                                                 self.intra_info_box[8], self.intra_info_box[9],
+                                                                 self.intra_info_box[10],
+                                                                 self.intra_info_line[13], self.intra_info_line[14],
+                                                                 self.intra_info_line[15], self.intra_info_box[11],
+                                                                 [self.intra_info_line[16], self.intra_info_line[17],
+                                                                  self.intra_info_line[18], self.intra_info_line[19],
+                                                                  self.intra_info_line[20]])
+        return intraReport
+
+    def createPreReport(self):
+        self.getPreData(self.ui)
+        lt = [(self.pre_info_line[13], self.pre_info_line[14]), (self.pre_info_line[15], self.pre_info_line[16]),
+              (self.pre_info_line[17], self.pre_info_line[18])]
+        preReport = PreReportPatientClass.PreReportByNurse(self.pre_info_line[0], self.pre_info_line[1],
+                                                           self.pre_info_line[2], self.pre_info_line[3],
+                                                           self.pre_info_line[4], self.pre_info_box[0],
+                                                           self.pre_info_line[5],
+                                                           self.pre_info_box[1], self.pre_info_box[2],
+                                                           self.pre_info_line[6], self.pre_info_line[7],
+                                                           self.pre_info_line[9], self.pre_info_line[10],
+                                                           self.pre_info_line[11], self.pre_info_line[12],
+                                                           self.pre_info_box[3], self.pre_info_box[4],
+                                                           self.pre_info_box[5], self.pre_info_box[6])
+        return preReport
+
+    def createPostReport(self):
+        self.getPostData(self.ui)
+        post_report = PostReportPatientClass.PostReportPatient()
+        post_report.setAnesthetic_complications_operationroom(self.post1_info)
+        post_report.setAnesthetic_complications_admitroom(self.post2_info)
+        post_report.setAnesthetic_complications_admitroom_2hrs(self.post3_info)
+        post_report.setAnesthetic_complications_admitroom_24hrs(self.post4_info)
+        post_report.setAnesthetic_complications_procedure(self.post5_info)
+        post_report.setAnesthetic_complications_admitroom_48hrs(self.post6_info)
+        post_report.setAnesthetic_complications_admitroom_7day(self.post7_info)
+
+        return post_report
 
     def save_intra_info (self):
         self.getIntraData()
-        intraReport = IntraReportPatientClass.IntraReportPatient(self.intra_info_line[0], self.intra_info_line[1], self.intra_info_line[2], self.intra_info_line[3], self.intra_info_box[0], self.intra_info_box[1], self.intra_info_box[2], self.intra_info_line[4], [self.intra_info_line[5], self.intra_info_line[6]], self.intra_info_line[7], self.intra_info_box[3], self.intra_info_box[4],
-                                        self.intra_info_line[8], self.intra_info_line[9], self.intra_info_box[5], self.intra_info_box[6], self.intra_info_box[7], self.intra_info_line[10], self.intra_info_line[11], self.intra_info_line[12], self.intra_info_box[8], self.intra_info_box[9], self.intra_info_box[10],
-                                        self.intra_info_line[13], self.intra_info_line[14], self.intra_info_line[15], self.intra_info_box[11], [self.intra_info_line[16], self.intra_info_line[17], self.intra_info_line[18], self.intra_info_line[19],self.intra_info_line[20]])
+        intraReport = self.createIntraReport()
 
         if self.b_intra_save.text() == "save":
             self.patient.updateStatus(s.PatientStatus.waitingPostReport)
-            dialog = QMessageBox()
-            dialog.setText("Already save")
-            dialog.show()
-            dialog.exec_()
-
+            self.callDialogSave()
         elif self.b_intra_save.text() == "update":
-            dialog = QMessageBox()
-            dialog.setText("Already save")
-            dialog.show()
-            dialog.exec_()
-
+            self.callDialogUpdate()
         else:
             raise TypeError
         self.patient.addIntraReport(intraReport)
         self.parent.updatePatient(self.patient)
-        self.initByPatientStatus()
+        self.close()
 
     def save_post_info (self):
         self.getPostData(self.ui)
@@ -482,22 +510,40 @@ class ReportPatient(QDialog):
         post_report.setAnesthetic_complications_admitroom_7day(self.post7_info)
         if self.b_post_save.text() == "save":
             self.patient.updateStatus(s.PatientStatus.done)
-            dialog = QMessageBox()
-            dialog.setText("Already save")
-            dialog.show()
-            dialog.exec_()
-
+            self.callDialogSave()
         elif self.b_post_save.text() == "update":
-            dialog = QMessageBox()
-            dialog.setText("Already save")
-            dialog.show()
-            dialog.exec_()
-
+            self.callDialogUpdate()
         else:
             raise TypeError
         self.patient.addIntraReport(post_report)
         self.parent.updatePatient(self.patient)
-        self.initByPatientStatus()
+        self.close()
+
+    def collectReport(self):
+        """PRE PRE"""
+        basic_info = self.patient.getPrePreInfo()
+        appointment_info = self.appointment.getDataFor3Report()
+        extra_info = self.patient.getExtraInfo()
+        data_part_prepre = basic_info + appointment_info + extra_info
+
+        """ PRE """
+        # [premed, PRC, FFP, Plt, PC, plannedICU, fullBed, service, ASA, BW, HT, BP, P, RR, T, GCS, smoking, alcoholic, allergy]
+        preReport = self.createPreReport()
+
+        """ INTRA """
+        intraReport = self.createIntraReport()
+        print("intra")
+        print(intraReport)
+        print(intraReport.getHistory())
+        """ POST """
+        post_report = self.createPostReport()
+
+        new_history_report = HistoryReportClass.HistoryReport(self.patient.AN, data_part_prepre, preReport, intraReport, post_report)
+        c = ControllerDatabase.ControllerDatabase(s.DB_REPORT)
+        c.newObject(new_history_report)
+        #self.parent.createHistory(new_history_report)
+        self.callDialogCollectReport()
+
 
     def cancel(self):
         dialog = ConfirmMsgClass.ConfirmYesNo()
@@ -693,7 +739,23 @@ class ReportPatient(QDialog):
         date = QtCore.QDate.fromString(str(post[6]), 'M/d/yyyy')
         self.post7List[4].setDate(date)
 
+    def callDialogSave(self):
+        dialog = QMessageBox()
+        dialog.setText("Already save")
+        dialog.show()
+        dialog.exec_()
 
+    def callDialogUpdate(self):
+        dialog = QMessageBox()
+        dialog.setText("Already update")
+        dialog.show()
+        dialog.exec_()
+
+    def callDialogCollectReport(self):
+        dialog = QMessageBox()
+        dialog.setText("Already create History report")
+        dialog.show()
+        dialog.exec_()
 
 
 

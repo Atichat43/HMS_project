@@ -54,8 +54,9 @@ class Tab3Appointment(QWidget):
     def edit3Report(self, case_id):
         #find case by case_id
         patient = self.parent.getPatientByCaseId(case_id)
+        appointment = self.parent.getAppointmentByAN(patient.AN)
         if patient is not None:
-            dialog = Dialog_3ReportPatientClass.ReportPatient(case_id, patient)
+            dialog = Dialog_3ReportPatientClass.ReportPatient(case_id, patient, appointment, self.parent)
             dialog.show()
             dialog.exec_()
         else:

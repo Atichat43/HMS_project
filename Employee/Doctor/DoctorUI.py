@@ -44,8 +44,6 @@ class MainWindowDoctor(QMainWindow):
         return self.crtlDatabase.getCurrentCaseID()
 
     def getAppointment(self):
-        print("in get Appointment")
-        print(self.user.id)
         return self.crtlDatabase.getAppointmentByDoctor(self.user.id)
 
     def appointmentValid(self, date, time, doctor):
@@ -65,6 +63,13 @@ class MainWindowDoctor(QMainWindow):
 
     def getPatientByCaseId(self, case_id):
         return self.crtlDatabase.getPatientByCaseId(case_id, self.user.id)
+
+    def getAppointmentByAN(self, AN):
+        return self.crtlDatabase.getAppointmentByAN(AN)
+
+    def getHistoryReportByAN(self, AN):
+        return self.crtlDatabase.getHistoryReportByAN(AN)
+
 
 
 

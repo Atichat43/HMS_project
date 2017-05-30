@@ -1,6 +1,7 @@
 from PySide.QtGui import *
 from Base.Widget_ManagePerson import Widget_ManagePersonClass
 from Employee.Doctor.GuiClass import Dialog_3ReportPatientClass, Dialog_NewPatientClass
+from Patient import Dialog_HistoryReports
 import Setting as s
 
 class Tab2Patient(QWidget):
@@ -52,12 +53,17 @@ class Tab2Patient(QWidget):
         if dialog.returnVal:
             self.updateTable()
 
-    """ ยัง ไม่ เสร็จ โว้ยยยยยย"""
+
     def viewHistoryReport(self, AN):
-        #POP up Dialog_HistoryReport
-        dialog = Dialog_3ReportPatientClass.ReportPatient(AN)
-        dialog.show()
-        dialog.exec_()
+        report = self.parent.getHistoryReportByAN(AN)
+        if report is not None:
+            dialog = Dialog_HistoryReports.HistoryReportDialog(AN, report)
+            dialog.exec_()
+        else:
+            dialog = QMessageBox()
+            dialog.setText("Not Found")
+            dialog.exec_()
+
 
 
 

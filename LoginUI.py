@@ -36,7 +36,7 @@ class LoginWindow(QMainWindow):
         self.setPalette(palette)
 
     def forDev(self):
-        id = "Nur1"
+        id = "Doc1"
         psw = "1234"
         self.user_id.setText(id)
         self.password.setText(psw)

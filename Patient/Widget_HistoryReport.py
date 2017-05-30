@@ -3,11 +3,12 @@ from PySide.QtUiTools import QUiLoader
 import Setting as s
 from Base.Dialog_MsgBox import ConfirmMsgClass
 
-class HistoryReport(QDialog):
-    def __init__(self, part_pre, part_intra, part_post, parent=None):
-        QDialog.__init__(self, None)
+class WidgetHistoryReport(QWidget):
+    def __init__(self, part_prepre, part_pre, part_intra, part_post):
+        QWidget.__init__(self, None)
         posX, posY, sizeW, sizeH = s.GEOMETRY_DIALOG_HISTORY_REPORT
         self.setGeometry(posX, posY, sizeW, sizeH)
+        self.part_prepre = part_prepre
         self.part_pre = part_pre
         self.part_intra = part_intra
         self.part_post = part_post
@@ -21,12 +22,11 @@ class HistoryReport(QDialog):
         self.setPreData()
         self.setIntraData()
         self.setPostData()
-
         self.show()
 
     def initUI(self):
         self.loader = QUiLoader()
-        self.ui = self.loader.load('../Patient/view/Widget_HistoryReport.ui', self)
+        self.ui = self.loader.load('./Patient/view/Widget_HistoryReport.ui', self)
         self.b_cancel = self.ui.findChild(QPushButton, "b_cancel")
         self.b_cancel.clicked.connect(self.cancel)
 
@@ -37,13 +37,14 @@ class HistoryReport(QDialog):
 
     def initPrelabel(self):
         self.labelPrelist = []
-        for i in range(0, 11, 1):
+        for i in range(1, 41, 1):
             name = "pre_label_" + str(i)
             label = self.ui.findChild(QLabel, name)
             self.labelPrelist.append(label)
 
     def setPreData(self):
-        textPre = self.part_pre.getHistory()
+        textPre = self.part_prepre
+        textPre += self.part_pre.getHistory()
         count = 0
         for i in self.labelPrelist:
             i.setText(textPre[count])
@@ -80,12 +81,6 @@ class HistoryReport(QDialog):
             i.setStyleSheet("QLabel { background-color : #FFCCCC }")
             count += 1
 
-
     def cancel(self):
-        dialog = ConfirmMsgClass.ConfirmYesNo()
-        if dialog.ans == True:
-            print("Discard")
-            self.close()
-        else:
-            print("Cancel")
+        self.close()
 

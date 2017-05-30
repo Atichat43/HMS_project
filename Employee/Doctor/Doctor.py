@@ -7,6 +7,7 @@ class DoctorApplication(object):
         self.current_case_id = ""
         self.ctrlDatabase_patient = ControllerDatabase.ControllerDatabase(s.DB_PATIENT)
         self.ctrlDatabase_appointment = ControllerDatabase.ControllerDatabase(s.DB_APPOINTMENT)
+        self.ctrlDatabase_history = ControllerDatabase.ControllerDatabase(s.DB_REPORT)
 
     def getCurrentCaseID(self):
         patients = self.getPatientFromDatabase()
@@ -96,7 +97,25 @@ class DoctorApplication(object):
                 return am.patient
         return None
 
+    def getAppointmentByAN(self, AN):
+        appointments = self.getAppointmentFromDatabase()
+        for appointment in appointments:
+            if appointment.patient.AN == AN:
+                return appointment
+        return None
 
+    """-------------------------History Database---------------------------------------------"""
+    def getHistoryReport(self):
+        return self.ctrlDatabase_history.loadObj()
+
+    def getHistoryReportByAN(self, AN):
+        history_reports = self.getHistoryReport()
+        print("GET -HISROTY REPORTS AN")
+        print(history_reports)
+        for report in history_reports:
+            if report.patient_AN == AN:
+                return report
+        return None
 
 if __name__ == "__main__":
     import sys

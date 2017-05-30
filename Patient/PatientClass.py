@@ -49,6 +49,9 @@ class Patient:
         text.append(self.Phone)
         return text
 
+    def getDataForHistory(self):
+        text = self.getPrePreInfo() + self.get
+
     def setBasicInfo(self, part_basic_info):
         # ["OPD", "AN", "Pic", "Name", "Age", "Phone"]
         self.OPD = part_basic_info[0]

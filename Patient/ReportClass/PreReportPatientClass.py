@@ -136,14 +136,14 @@ class PreReportByNurse(object):
 
     def getData(self):
         data = []
-        data = []
+        databox = []
         data.append(self.premed)
         for i in self.BLprepared:
             data.append(i)
-        data.append(self.plannedICU)
+        databox.append(self.plannedICU)
         data.append(self.BedNO)
-        data.append(self.service)
-        data.append(self.ASA)
+        databox.append(self.service)
+        databox.append(self.ASA)
         data.append(str(self.BW))
         data.append(str(self.HT))
         data.append(str(self.BMI))
@@ -151,17 +151,17 @@ class PreReportByNurse(object):
         data.append(str(self.P))
         data.append(str(self.RR))
         data.append(str(self.T))
-        data.append(str(self.GCS))
-        data.append(self.smoking)
-        data.append(self.alcoholic)
-        data.append(self.allergy)
+        databox.append(str(self.GCS))
+        databox.append(self.smoking)
+        databox.append(self.alcoholic)
+        databox.append(self.allergy)
         if self.allergy == "Yes":
             for i in self.allergy_list:
                 data.append(i)
         else:
             for i in range(6):
                 data.append('-')
-        return data, data
+        return data, databox
     
     def getHistory(self):
         data = []

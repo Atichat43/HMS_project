@@ -8,6 +8,8 @@ from Patient.ReportClass import PreReportPatientClass
 from Patient.ReportClass import IntraReportPatientClass
 from Patient.ReportClass import PostReportPatientClass
 from Appointment import AppointmentClass
+from Patient import HistoryReportClass
+
 '''
 import pickle, pprint
 
@@ -69,6 +71,7 @@ class ControllerDatabase(object):
     def updateObject(self, lst):
         pkl_file = open(self.file_name, 'wb')
         for i in range(len(lst)):
+            print(lst[i])
             pickle.dump(lst[i], pkl_file)
         pkl_file.close()
 
@@ -146,7 +149,7 @@ def demo_3REPORT():
     # win.setDataFromDataBaseIntra(intra_data, intra_databox)
     # win.setDataFromDataBasePost(post_data)
     """THIS HERE"""
-    from Patient import Dialog_HistoryReport as h
+    from Patient import Widget_HistoryReport as h
     win = h.HistoryReport(preReport1, intraReport, post_report)
     win.show()
     win.exec_()
@@ -307,6 +310,26 @@ def demo_appointment():
 
     con2.updateObject(lst2)
 
+def demo_History():
+    c = ControllerDatabase("reportObject.pkl")
+    lst = c.loadObj()
+    lst = []
+    n = ControllerDatabase("patientObject.pkl")
+    n_lst = n.loadObj()
+    for patient in n_lst:
+        print(patient.AN)
+        l = HistoryReportClass.HistoryReport(patient.AN,patient.preReportDoctor,patient.preReportNurse,patient.intraReport,patient.postReport)
+        l.addNewReport([patient.preReportDoctor, patient.preReportNurse, patient.intraReport, patient.postReport])
+
+        l1 = HistoryReportClass.HistoryReport(patient.AN)
+        l1.addNewReport([patient.preReportDoctor, patient.preReportNurse, patient.intraReport, patient.postReport])
+
+        lst.append(l)
+        lst.append(l1)
+    print(lst)
+    print(len(lst))
+    c.updateObject(lst)
+
 
 def main():
     demo_admin()
@@ -314,5 +337,6 @@ def main():
     demo_doctor()
     demo_patient()
     demo_appointment()
+    #demo_History()
 
 ##main()
