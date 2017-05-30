@@ -270,8 +270,11 @@ def demo_patient():
     p3.addPreReportNurse(preReport2)
     p3.updateStatus(s.PatientStatus.waitingIntraReport)
 
-    p3.addPostReport(post_report)
+    p3.addIntraReport(intraReport)
     p3.updateStatus(s.PatientStatus.waitingPostReport)
+
+    p3.addPostReport(post_report)
+    p3.updateStatus(s.PatientStatus.done)
     db_patients.updateObject([p1, p2, p3])
 
 

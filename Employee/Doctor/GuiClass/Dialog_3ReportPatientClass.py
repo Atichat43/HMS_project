@@ -114,7 +114,7 @@ class ReportPatient(QDialog):
         elif self.status_patient == s.PatientStatus.done:
             self.setActivePreButton(True)
             self.setActiveIntraButton(True)
-            self.setActivePostButton()
+            self.setActivePostButton(True)
             basic_info = self.patient.getPrePreInfo()
             print(basic_info)
             appointment_info = self.appointment.getDataFor3Report()
@@ -422,16 +422,19 @@ class ReportPatient(QDialog):
         preReport = PreReportPatientClass.PreReportByNurse(self.pre_info_line[0],self.pre_info_line[1],self.pre_info_line[2],self.pre_info_line[3],self.pre_info_line[4],self.pre_info_box[0],self.pre_info_line[5],
                                                            self.pre_info_box[1],self.pre_info_box[2],self.pre_info_line[6],self.pre_info_line[7],self.pre_info_line[9],self.pre_info_line[10],
                                                            self.pre_info_line[11],self.pre_info_line[12],self.pre_info_box[3],self.pre_info_box[4],self.pre_info_box[5],self.pre_info_box[6])
-
-        self.close()
+        if not self.b_pre_save.name == "update":
+            self.patient.updateStatus(s.PatientStatus.waitingIntraReport)
+        self.patient.addPreReportNurse(preReport)
 
     def save_intra_info (self):
         self.getIntraData()
         intraReport = IntraReportPatientClass.IntraReportPatient(self.intra_info_line[0], self.intra_info_line[1], self.intra_info_line[2], self.intra_info_line[3], self.intra_info_box[0], self.intra_info_box[1], self.intra_info_box[2], self.intra_info_line[4], [self.intra_info_line[5], self.intra_info_line[6]], self.intra_info_line[7], self.intra_info_box[3], self.intra_info_box[4],
                                         self.intra_info_line[8], self.intra_info_line[9], self.intra_info_box[5], self.intra_info_box[6], self.intra_info_box[7], self.intra_info_line[10], self.intra_info_line[11], self.intra_info_line[12], self.intra_info_box[8], self.intra_info_box[9], self.intra_info_box[10],
                                         self.intra_info_line[13], self.intra_info_line[14], self.intra_info_line[15], self.intra_info_box[11], [self.intra_info_line[16], self.intra_info_line[17], self.intra_info_line[18], self.intra_info_line[19],self.intra_info_line[20]])
-        print("in")
-        self.close()
+
+        if not self.b_intra_save.name == "update":
+            self.patient.updateStatus(s.PatientStatus.waitingPostReport)
+        self.patient.addIntraReport(intraReport)
 
     def save_post_info (self):
         self.getPostData(self.ui)
@@ -443,8 +446,9 @@ class ReportPatient(QDialog):
         post_report.setAnesthetic_complications_procedure(self.post5_info)
         post_report.setAnesthetic_complications_admitroom_48hrs(self.post6_info)
         post_report.setAnesthetic_complications_admitroom_7day(self.post7_info)
-        print("in post")
-        self.close()
+        if not self.b_post_save.name == "update":
+            self.patient.updateStatus(s.PatientStatus.done)
+        self.patient.addIntraReport(post_report)
 
     def cancel(self):
         dialog = ConfirmMsgClass.ConfirmYesNo()

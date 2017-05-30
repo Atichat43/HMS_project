@@ -138,41 +138,40 @@ class IntraReportPatient():
         return self.reason
 
     def getInfo(self):
-        print("in")
         data = []
-        data = []
+        databox = []
         data.append(self.number)
         data.append(self.date)
         data.append(str(self.num_case))
         data.append(str(self.room))
-        data.append(self.building)
-        data.append(self.arrivePlace)
-        data.append(self.departPlace)
+        databox.append(self.building)
+        databox.append(self.arrivePlace)
+        databox.append(self.departPlace)
         data.append(self.Pre_evaluateNurse[0])
         data.append(self.Pre_evaluateNurse[1])
 
         data.append(self.post_diagnose)
         data.append(self.operation)
-        data.append(self.typeofOperation)
-        data.append(self.department)
+        databox.append(self.typeofOperation)
+        databox.append(self.department)
         data.append(self.surgeon)
         data.append(self.note)
 
-        data.append(self.pre_anesthesia_evaluation)
-        data.append(self.service)
-        data.append(self.ASAD)
+        databox.append(self.pre_anesthesia_evaluation)
+        databox.append(self.service)
+        databox.append(self.ASAD)
         for i in self.agent_dose:
             data.append(str(i))
-        data.append(self.Anesthesia_technique)
-        data.append(self.Combined_technique)
-        data.append(self.airwayManagement)
+        databox.append(self.Anesthesia_technique)
+        databox.append(self.Combined_technique)
+        databox.append(self.airwayManagement)
         for i in self.Anesthesia_time:
             data.append(i)
-        data.append(self.reason)
+        databox.append(self.reason)
         for i in self.Anesthetistnurse:
             data.append(str(i))
-        return data, data
-    
+        return data,databox
+
     def getHistory(self):
         print("in")
         data = []
