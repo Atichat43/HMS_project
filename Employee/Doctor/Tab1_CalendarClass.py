@@ -52,10 +52,4 @@ class Tab1Calendar(QWidget):
         for appointment in all_appointment:
             self.appointment[int(appointment.date.month)].append(appointment)
 
-if __name__ == '__main__':
-    import sys
-    from PySide.QtGui import QApplication
-    app = QApplication(sys.argv)
-    tab1_widget = Tab1Calendar()
-    tab1_widget.show()
-    sys.exit(app.exec_())
+

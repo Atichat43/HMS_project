@@ -1,6 +1,6 @@
 from PySide.QtGui import *
 from Base.Widget_ManagePerson import Widget_ManagePersonClass
-from Employee.Doctor.GuiClass import Dialog_3ReportPatientClass, Dialog_NewPatientClass
+from Employee.Doctor.GuiClass import Dialog_NewPatientClass
 from Patient import Dialog_HistoryReports
 import Setting as s
 
@@ -64,13 +64,3 @@ class Tab2Patient(QWidget):
             dialog.setText("Not Found")
             dialog.exec_()
 
-
-
-
-
-if __name__ == '__main__':
-    import sys
-    from PySide.QtGui import QApplication
-    app = QApplication(sys.argv)
-    tab2_widget = Tab2Patient()
-    sys.exit(app.exec_())

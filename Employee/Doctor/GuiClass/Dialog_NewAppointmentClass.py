@@ -69,7 +69,6 @@ class NewAppointmentDialog(QDialog):
 
     def getNumberCase(self):
         self.case_id = str(int(self.parent.getCurrentCaseID()) + 1)
-        print(self.case_id)
 
 
     def getData(self):
@@ -103,11 +102,8 @@ class NewAppointmentDialog(QDialog):
     def save(self):
         self.getData()
         # check valid same time date docID
-        print("save")
         if self.parent.appointmentValid(self.part_appointment[1], self.part_appointment[2], self.user):
             #check AN and Name is the same [AN, patient_name]
-            print(self.part_basic_info[1], end='')
-            print(self.part_basic_info[3], end='')
             if self.parent.oldPatientValid(self.part_basic_info[1], self.part_basic_info[3]):
                 self.returnVal = True
                 pre_pre_report = [self.part_basic_info, self.part_extra_info]
@@ -117,7 +113,6 @@ class NewAppointmentDialog(QDialog):
                 self.parent.addNewAppointment(newAppointment)
                 self.close()
             else:
-                print("in")
                 error = QErrorMessage()
                 error.showMessage("Wrong information")
                 error.setWindowTitle("Error!!!")
@@ -137,10 +132,3 @@ class NewAppointmentDialog(QDialog):
             self.close()
         else:
             pass
-
-if __name__ == "__main__":
-    import sys
-    app = QApplication(sys.argv)
-    win = NewAppointmentDialog()
-    win.show()
-    win.exec_()

@@ -1,4 +1,0 @@
-#NewPatient
-UI_NEWPATIENT = [
-    ""
-]

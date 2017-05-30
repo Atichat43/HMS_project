@@ -70,13 +70,3 @@ class MainWindowDoctor(QMainWindow):
     def getHistoryReportByAN(self, AN):
         return self.crtlDatabase.getHistoryReportByAN(AN)
 
-
-
-
-if __name__ == "__main__":
-    import sys
-    from PySide.QtGui import QApplication
-    app = QApplication(sys.argv)
-    user = object
-    win = MainWindowDoctor(user)
-    exit(app.exec_())

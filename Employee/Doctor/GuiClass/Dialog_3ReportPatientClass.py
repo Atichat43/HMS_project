@@ -532,9 +532,6 @@ class ReportPatient(QDialog):
 
         """ INTRA """
         intraReport = self.createIntraReport()
-        print("intra")
-        print(intraReport)
-        print(intraReport.getHistory())
         """ POST """
         post_report = self.createPostReport()
 

@@ -1,6 +1,6 @@
 from PySide.QtGui import *
 from Base.Widget_ManagePerson import Widget_ManagePersonClass
-from Employee.Doctor.GuiClass import Dialog_3ReportPatientClass, Dialog_NewPatientClass
+from Employee.Doctor.GuiClass import Dialog_3ReportPatientClass
 import Setting as s
 
 class Tab1Patient(QWidget):
@@ -60,14 +60,3 @@ class Tab1Patient(QWidget):
 
     def createHistory(self, h):
         self.parent.createHistory(h)
-
-
-
-
-
-if __name__ == '__main__':
-    import sys
-    from PySide.QtGui import QApplication
-    app = QApplication(sys.argv)
-    tab1_widget = Tab1Patient()
-    sys.exit(app.exec_())

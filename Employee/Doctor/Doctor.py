@@ -110,18 +110,7 @@ class DoctorApplication(object):
 
     def getHistoryReportByAN(self, AN):
         history_reports = self.getHistoryReport()
-        print("GET -HISROTY REPORTS AN")
-        print(history_reports)
         for report in history_reports:
             if report.patient_AN == AN:
                 return report
         return None
-
-if __name__ == "__main__":
-    import sys
-    from PySide.QtGui import QApplication
-    app = QApplication(sys.argv)
-    win = DoctorApplication()
-    print(win.getCurrentCaseID())
-    print()
-    exit(app.exec_())

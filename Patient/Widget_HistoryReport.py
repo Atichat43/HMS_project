@@ -1,7 +1,6 @@
 from PySide.QtGui import *
 from PySide.QtUiTools import QUiLoader
 import Setting as s
-from Base.Dialog_MsgBox import ConfirmMsgClass
 
 class WidgetHistoryReport(QWidget):
     def __init__(self, part_prepre, part_pre, part_intra, part_post):
@@ -12,12 +11,14 @@ class WidgetHistoryReport(QWidget):
         self.part_pre = part_pre
         self.part_intra = part_intra
         self.part_post = part_post
+
         ## init
         self.initUI()
         self.initLayout()
         self.initPrelabel()
         self.initIntralabel()
         self.initPostlabel()
+
         ## set data
         self.setPreData()
         self.setIntraData()

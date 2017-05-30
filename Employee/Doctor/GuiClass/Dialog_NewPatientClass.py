@@ -134,9 +134,3 @@ class NewPatientDialog(QDialog):
         else:
             pass
 
-if __name__ == "__main__":
-    import sys
-    app = QApplication(sys.argv)
-    win = NewPatientDialog()
-    win.show()
-    win.exec_()

@@ -1,7 +1,6 @@
 from PySide.QtGui import QMainWindow, QGridLayout, QWidget, QPalette, QBrush, QPixmap, QLineEdit, QPushButton, \
     QErrorMessage
 from PySide.QtUiTools import QUiLoader
-from Base.Dialog_MsgBox import ConfirmMsgClass
 import Setting as s
 import Login_System
 
@@ -18,9 +17,7 @@ class LoginWindow(QMainWindow):
         posX, posY, sizeW, sizeH = s.GEOMETRY_MAINWIDOW
         self.setGeometry(posX, posY, sizeW, sizeH)
         self.setWindowTitle("Hospital Management System")
-        palette = QPalette()
-        palette.setBrush(QPalette.Background, QBrush(QPixmap(s.PATH_IMG_BG_LOGIN)))
-        self.setPalette(palette)
+        self.setStyleSheet("background-color: #CCFFE5;")
         self.initButton()
         self.forDev()
 

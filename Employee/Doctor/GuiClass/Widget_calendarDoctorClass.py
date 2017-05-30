@@ -66,12 +66,3 @@ class CalendarDoctor(QWidget):
         self.reformatHeaders()
 
 
-if __name__ == '__main__':
-    import sys
-
-    app = QApplication(sys.argv)
-
-    window = CalendarDoctor()
-    window.show()
-
-    sys.exit(app.exec_())

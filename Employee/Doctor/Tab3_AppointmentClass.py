@@ -65,10 +65,3 @@ class Tab3Appointment(QWidget):
             error.setWindowTitle("Error!!!")
             error.exec_()
 
-
-if __name__ == '__main__':
-    import sys
-    from PySide.QtGui import QApplication
-    app = QApplication(sys.argv)
-    tab2_widget = Tab3Appointment()
-    sys.exit(app.exec_())

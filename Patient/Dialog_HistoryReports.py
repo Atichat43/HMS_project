@@ -1,7 +1,5 @@
-
 from PySide.QtGui import *
 import Setting as s
-
 from Patient import Widget_HistoryReport
 
 
