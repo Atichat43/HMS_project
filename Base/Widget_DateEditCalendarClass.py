@@ -29,10 +29,3 @@ class DateEditCalendar(QWidget):
             self.dateEdit.calendarWidget().window().move(pos.x() - width, pos.y())
         return False
 
-
-if __name__ == "__main__":
-    import sys
-
-    app = QApplication(sys.argv)
-    win = DateEditCalendar()
-    exit(app.exec_())

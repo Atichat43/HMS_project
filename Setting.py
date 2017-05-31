@@ -1,5 +1,3 @@
-from enum import Enum
-
 # GEOMETRY posX posY sizeW sizeH
 GEOMETRY_MAINWIDOW = 50, 50, 800, 600
 GEOMETRY_DIALOG_NEW_PATIENT = 550, 60, 580, 600
@@ -37,7 +35,6 @@ PATH_DOCTOR_DIALOG_NEWPATIENT = 'Employee/Doctor/View/Widget_NewPatientUI.ui'
 # ../Employee/Doctor/View/Widget_3ReportPatientUI.ui
 PATH_DOCTOR_DIALOG_3REPORT = 'Employee/Doctor/View/Widget_3ReportPatientUI.ui'
 
-
 """-------PATH DATABASE FILE--------"""
 # path database
 DB_USER = "./Database/userObject.pkl"
@@ -45,20 +42,20 @@ DB_PATIENT = "./Database/patientObject.pkl"
 DB_APPOINTMENT = "./Database/appointmentObject.pkl"
 DB_REPORT = "./Database/reportObject.pkl"
 
-
 """--------STYLE SHEET------------"""
 # Style Sheet
 SS_Button_EMCASE = "background-color: rgb(255, 0, 0); color: rgb(255, 255, 255)"
 SS_TabWidget = "QTabBar::tab { height: 35px; width: 100px; }"
 
+from enum import Enum
 
-# Appointment
+
 class Status(Enum):
     waiting = 0
     doing = 1
     done = 2
 
-# Calendar
+
 class Month(Enum):
     Jan = 1
     Feb = 2
@@ -74,7 +71,6 @@ class Month(Enum):
     Dec = 12
 
 
-# Paitient
 class PatientStatus(Enum):
     waitingPreReport = 0
     waitingIntraReport = 1

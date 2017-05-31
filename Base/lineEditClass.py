@@ -1,12 +1,6 @@
-import sys
-
-from PySide.QtCore import QRegExp, QPoint
+from PySide.QtCore import QRegExp
 from PySide.QtGui import *
-from PySide.QtUiTools import QUiLoader
 
-from Base.Dialog_MsgBox import ConfirmMsgClass
-from Patient import PatientClass
-"""dsahfjdskfsjfsdkfdslfk"""
 
 class AllLineEdit(QDialog):
     def __init__(self, parent = None):
@@ -53,12 +47,3 @@ class AllLineEdit(QDialog):
         else:
             color = '#f6989d'  # red
         sender.setStyleSheet('QLineEdit { background-color: %s }' % color)
-
-
-def main():
-    app = QApplication(sys.argv)
-    win = AllLineEdit()
-    exit(app.exec_())
-
-if __name__ == "__main__":
-    main()
