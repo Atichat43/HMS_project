@@ -18,7 +18,6 @@ class WidgetManagePerson(QWidget):
 
     def initUI(self):
         path = 'Base/Widget_ManagePerson/View/Widget_ManagePersonUI.ui'
-        pathForDev = './View/Widget_ManagePersonUI.ui'
         form = QUiLoader().load(path, self)
         self.proxyView = form.findChild(QTreeView, 'treeView')
         self.layoutSearch = form.findChild(QHBoxLayout, 'layout_search')
@@ -39,7 +38,6 @@ class WidgetManagePerson(QWidget):
         self.b_delete.setText("Delete " + str(self.Person))
         self.b_delete.clicked.connect(self.deletePerson)
 
-
     def initConnect(self):
         self.filterPatternLineEdit.textChanged.connect(self.filterRegExpChanged)
         self.filterColumnComboBox.currentIndexChanged.connect(self.filterColumnChanged)
@@ -47,7 +45,7 @@ class WidgetManagePerson(QWidget):
 
     def editPerson(self):
         selection = self.proxyView.selectionModel().selectedRows()
-        if selection is not None:
+        if len(selection) != 0:
             first_key = selection[0].data()
             self.parent.editButtonPressed(first_key)
         else:
@@ -66,7 +64,6 @@ class WidgetManagePerson(QWidget):
             error.showMessage("Plese select person")
             error.setWindowTitle("Error!!!")
             error.exec_()
-
 
 
     "init Table"
@@ -115,15 +112,4 @@ class WidgetManagePerson(QWidget):
 
     def filterColumnChanged(self):
         self.proxyModel.setFilterKeyColumn(self.filterColumnComboBox.currentIndex())
-
-
-if __name__ == '__main__':
-    import sys
-    app = QApplication(sys.argv)
-    tab1_widget = WidgetManagePerson("Doctor")
-    lstHead = ["NAME", "ID", "Position", "Phone"]
-    allRow = [("Atichat", "001", "Brain", "0971249197"), ("Tiger", "002", "Chest", "0971249194")]
-    tab1_widget.setSourceModel(lstHead, allRow)
-    tab1_widget.show()
-    sys.exit(app.exec_())
 

@@ -30,6 +30,7 @@ HB_NURSE_PATIENT = ["AN", "Name", "Age", "Phone", "Status"]
 # path RSC images
 PATH_IMG_BG_LOGIN = ".RSC/img/bg_login.png"
 
+"""-------UI FILE PATH--------"""
 # path Doctor
 PATH_DOCTOR_DIALOG_NEWPATIENT = 'Employee/Doctor/View/Widget_NewPatientUI.ui'
 

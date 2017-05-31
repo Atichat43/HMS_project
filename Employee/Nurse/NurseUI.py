@@ -2,12 +2,13 @@ from PySide.QtGui import QMainWindow, QGridLayout, QWidget, QTabWidget
 from Employee.Nurse import Tab1_PatientClass, Nurse
 import Setting
 
+
 class MainWindowNurse(QMainWindow):
     def __init__(self, user, parent=None):
         QMainWindow.__init__(self, None)
+        self.nurse_app = Nurse.NurseApplication()
         self.parent = parent
         self.user = user
-        self.crtlDatabase = Nurse.NurseApplication()
         self.initUI()
         self.initLayout()
 
@@ -32,13 +33,13 @@ class MainWindowNurse(QMainWindow):
         self.tabWidget.addTab(self.tab1, "Patient")
 
     def getPatientByAN(self, AN):
-        return self.crtlDatabase.getPatientByAN(AN)
+        return self.nurse_app.getPatientByAN(AN)
 
     def getAppointmentByAN(self, AN):
-        return self.crtlDatabase.getAppointmentByAN(AN)
+        return self.nurse_app.getAppointmentByAN(AN)
 
     def updatePatient(self, patient):
-        return self.crtlDatabase.editPatient(patient)
+        return self.nurse_app.editPatient(patient)
 
     def createHistory(self, new_history_report):
-        self.crtlDatabase.createHistory(new_history_report)
+        self.nurse_app.createHistory(new_history_report)

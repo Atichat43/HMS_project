@@ -42,6 +42,7 @@ class ComboBoxWithTypingSearch(QComboBox):
             self.setCurrentIndex(index)
 
 
+"""FOR DEVELOP"""
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     model = QStandardItemModel()

@@ -1,5 +1,5 @@
-import sys
 from PySide.QtGui import *
+
 
 class ConfirmYesNo(QDialog):
     def __init__(self, title="Confirm", textInfo="", question="Do you want to discard your information?"):
@@ -22,11 +22,3 @@ class ConfirmYesNo(QDialog):
             self.ans = False
         self.close()
 
-
-def main():
-    app = QApplication(sys.argv)
-    win = ConfirmYesNo()
-    exit(app.exec_())
-
-if __name__ == "__main__":
-    main()

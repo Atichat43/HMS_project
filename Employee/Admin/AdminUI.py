@@ -9,7 +9,7 @@ import Setting as s
 class MainWindowAdmin(QMainWindow):
     def __init__(self, user):
         super(MainWindowAdmin, self).__init__()
-        self.ctrlDatabase = Admin.AdminApplication()
+        self.admin_app = Admin.AdminApplication()
         self.user = user
         self.all_user = []
         self.initUI()
@@ -60,25 +60,25 @@ class MainWindowAdmin(QMainWindow):
         self.tab3.insertDeleteButton()
 
     def updateDatabase(self):
-        self.ctrlDatabase.getListByPosition()
+        self.admin_app.getListByPosition()
         self.all_user = []
-        self.all_user.append(self.ctrlDatabase.getListDoctor())
-        self.all_user.append(self.ctrlDatabase.getListNurse())
-        self.all_user.append(self.ctrlDatabase.getListAdmin())
+        self.all_user.append(self.admin_app.getListDoctor())
+        self.all_user.append(self.admin_app.getListNurse())
+        self.all_user.append(self.admin_app.getListAdmin())
 
     def updateTable(self, type):
         self.updateDatabase()
         if type == s.UserPosition.doctor.name:
             print("Update Table: " + str(type))
-            self.all_user[s.UserPosition.doctor.value] = self.ctrlDatabase.getListDoctor()
+            self.all_user[s.UserPosition.doctor.value] = self.admin_app.getListDoctor()
             self.tab1.setSourceModel(s.HEAD_BAR_ADMIN, self.all_user[s.UserPosition.doctor.value])
         elif type == s.UserPosition.nurse.name:
             print("Update Table: " + str(type))
-            self.all_user[s.UserPosition.nurse.value] = self.ctrlDatabase.getListNurse()
+            self.all_user[s.UserPosition.nurse.value] = self.admin_app.getListNurse()
             self.tab2.setSourceModel(s.HEAD_BAR_ADMIN, self.all_user[s.UserPosition.nurse.value])
         elif type == s.UserPosition.admin.name:
             print("Update Table: " + str(type))
-            self.all_user[s.UserPosition.admin.value] = self.ctrlDatabase.getListAdmin()
+            self.all_user[s.UserPosition.admin.value] = self.admin_app.getListAdmin()
             self.tab3.setSourceModel(s.HEAD_BAR_ADMIN, self.all_user[s.UserPosition.admin.value])
         else:
             raise TypeError
@@ -117,12 +117,12 @@ class MainWindowAdmin(QMainWindow):
         question = "Do you sure to delete " + str(id)
         dialog = ConfirmMsgClass.ConfirmYesNo(title, textInfo, question)
         if dialog.ans == True:
-            users = self.ctrlDatabase.getUserFromDatabase()
+            users = self.admin_app.getUserFromDatabase()
             for user in users:
                 if user.id == id:
                     users.remove(user)
                     position = self.getPositionByPosition(id[:1])
-                    self.ctrlDatabase.updateDatabase(users)
+                    self.admin_app.updateDatabase(users)
                     self.updateTable(position)
                     return True
             raise KeyError
@@ -130,25 +130,24 @@ class MainWindowAdmin(QMainWindow):
             pass
 
     def editEmployee(self, id, data, position):
-        if self.ctrlDatabase.editEmployee(id, data, position):
+        if self.admin_app.editEmployee(id, data, position):
             self.updateTable(position)
             return True
         return False
 
     def newEmployee(self, position):
-        print("new Employee Button pressed: " + str(position))
         dialog = d.EditOrNewEmployeeDialog("new", position, self)
         dialog.show()
         dialog.exec_()
 
     def addNewEmployee(self, data, position):
-        if self.ctrlDatabase.addNewEmployee(data, position):
+        if self.admin_app.addNewEmployee(data, position):
             self.updateTable(position)
             return True
         return False
 
     def getNewIDByUserType(self, position):
-        return self.ctrlDatabase.getNewIDByUserType(position)
+        return self.admin_app.getNewIDByUserType(position)
 
 
 

@@ -6,9 +6,9 @@ import Setting
 class MainWindowDoctor(QMainWindow):
     def __init__(self, user, parent=None):
         QMainWindow.__init__(self, None)
+        self.crtlDatabase = Doctor.DoctorApplication()
         self.parent = parent
         self.user = user
-        self.crtlDatabase = Doctor.DoctorApplication()
         self.initUI()
         self.initLayout()
 
@@ -36,18 +36,18 @@ class MainWindowDoctor(QMainWindow):
         self.tabWidget.addTab(self.tab2, "Patient")
         self.tabWidget.addTab(self.tab3, "Appointment")
 
+    def updateTable(self, tab):
+        if tab == 'Appointment':
+            self.tab3.updateTable()
+        elif tab == 'Patient':
+            self.tab2.updateTable()
+        else:
+            raise TypeError
 
-    def addNewAppointment(self, newAppointment):
-        self.crtlDatabase.addNewAppointment(newAppointment)
-
+    """-----------------------------DOCTOR APP---------------------------------------"""
+    """-----PATIENT-----"""
     def getCurrentCaseID(self):
         return self.crtlDatabase.getCurrentCaseID()
-
-    def getAppointment(self):
-        return self.crtlDatabase.getAppointmentByDoctor(self.user.id)
-
-    def appointmentValid(self, date, time, doctor):
-        return self.crtlDatabase.appointmentValid(date, time, doctor)
 
     def addNewPatient(self, newPatient):
         self.crtlDatabase.addNewPatient(newPatient)
@@ -61,6 +61,20 @@ class MainWindowDoctor(QMainWindow):
     def oldPatientValid(self, AN, patient_name):
         return self.crtlDatabase.oldPatientValid(AN, patient_name)
 
+    """-----APPOINTMENT----"""
+    def getAppointment(self):
+        return self.crtlDatabase.getAppointmentByDoctor(self.user.id)
+
+    def addNewAppointment(self, newAppointment):
+        self.crtlDatabase.addNewAppointment(newAppointment)
+
+    def appointmentValid(self, date, time, doctor):
+        return self.crtlDatabase.appointmentValid(date, time, doctor)
+
+
+
+
+
     def getPatientByCaseId(self, case_id):
         return self.crtlDatabase.getPatientByCaseId(case_id, self.user.id)
 
@@ -69,4 +83,5 @@ class MainWindowDoctor(QMainWindow):
 
     def getHistoryReportByAN(self, AN):
         return self.crtlDatabase.getHistoryReportByAN(AN)
+
 

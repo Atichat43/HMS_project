@@ -1,11 +1,8 @@
-import sys
-
 from PySide.QtCore import QRegExp, QPoint
 from PySide.QtGui import *
 from PySide.QtUiTools import QUiLoader
 
 from Base.Dialog_MsgBox import ConfirmMsgClass
-from Patient import PatientClass
 
 class ExampleDialog(QDialog):
     def __init__(self, parent = None):
@@ -77,11 +74,3 @@ class ExampleDialog(QDialog):
             self.close()
         else:
             print("Cancel")
-
-def main():
-    app = QApplication(sys.argv)
-    win = ExampleDialog()
-    exit(app.exec_())
-
-if __name__ == "__main__":
-    main()

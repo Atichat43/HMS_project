@@ -1,3 +1,5 @@
+from PySide import QtCore
+
 from PySide.QtCore import QEvent, Qt
 from PySide.QtGui import *
 from PySide.QtUiTools import QUiLoader
@@ -20,7 +22,6 @@ class NewPatientDialog(QDialog):
         self.initUI()
         self.initLayout()
         self.initButton()
-        self.setDateEdit()
         self.part_basic_info = []
         self.part_appointment = []
         self.part_extra_info = []
@@ -29,6 +30,7 @@ class NewPatientDialog(QDialog):
     def initUI(self):
         self.ui = QUiLoader().load(s.PATH_DOCTOR_DIALOG_NEWPATIENT, self)
         self.dateEdit = self.ui.findChild(QDateEdit, "Date")
+        self.setDateEdit()
 
     def initLayout(self):
         layout = QGridLayout()
@@ -45,6 +47,7 @@ class NewPatientDialog(QDialog):
         self.dateEdit.setCalendarPopup(True)
         self.dateEdit.calendarWidget().installEventFilter(self)
         self.dateEdit.calendarWidget().setFirstDayOfWeek(Qt.Monday)
+        self.dateEdit.setDateTime(QtCore.QDateTime.currentDateTime())
 
     def eventFilter(self, obj, event):
         if obj == self.dateEdit.calendarWidget() and event.type() == QEvent.Show:
@@ -52,29 +55,9 @@ class NewPatientDialog(QDialog):
             self.dateEdit.calendarWidget().window().move(pos.x(), pos.y())
         return False
 
-    def forDev(self):
-        self.getNumberCase()
-        ui = self.ui
-        ui.AN.setText(self.case_id)
-        count = self.case_id[-1]
-        ui.PIC.setText("PIC " + count)
-        ui.Name.setText("test Eii" + count)
-        ui.Age.setText("20" + count)
-        ui.Phone.setText("097124919" + count)
-        ui.Pre_OD.document().setPlainText("Pre_OD " + count)
-        ui.Plan.document().setPlainText("Plan " + count)
-        ui.Underlying.document().setPlainText("Underlying " + count)
-        ui.Treatment.document().setPlainText("Treatment " + count)
-        ui.Note.document().setPlainText("Note " + count)
-
-    def getNumberCase(self):
-        self.case_id = str(int(self.parent.getCurrentCaseID()) + 1)
-        print(self.case_id)
-
-
     def getData(self):
         ui = self.ui
-        #["OPD", "AN", "Pic", "Name", "Age", "Phone"]
+        # ["OPD", "AN", "Pic", "Name", "Age", "Phone"]
         self.part_basic_info.clear()
         self.part_basic_info.append(ui.OPD.currentText())
         self.part_basic_info.append(ui.AN.text())
@@ -85,20 +68,19 @@ class NewPatientDialog(QDialog):
         self.case_id = int(self.parent.getCurrentCaseID()) + 1
         self.part_basic_info.append(self.case_id)
 
-        #"Type", "Date", "Time"
+        # "Type", "Date", "Time"
         self.part_appointment.clear()
         self.part_appointment.append(ui.Type.currentText())
         self.part_appointment.append(ui.Date.text())
         self.part_appointment.append(ui.Time.currentText())
 
-        #"Pre_OD", "Plan", "Underlying", "Treatment", "Note"
+        # "Pre_OD", "Plan", "Underlying", "Treatment", "Note"
         self.part_extra_info.clear()
         self.part_extra_info.append(ui.Pre_OD.toPlainText())
         self.part_extra_info.append(ui.Plan.toPlainText())
         self.part_extra_info.append(ui.Underlying.toPlainText())
         self.part_extra_info.append(ui.Treatment.toPlainText())
         self.part_extra_info.append(ui.Note.toPlainText())
-
 
     def save(self):
         self.getData()
@@ -133,4 +115,24 @@ class NewPatientDialog(QDialog):
             self.close()
         else:
             pass
+
+    def getNumberCase(self):
+        self.case_id = str(int(self.parent.getCurrentCaseID()) + 1)
+
+    def forDev(self):
+        self.getNumberCase()
+        ui = self.ui
+        ui.AN.setText(self.case_id)
+        count = self.case_id[-1]
+        ui.PIC.setText("PIC " + count)
+        ui.Name.setText("test Eii" + count)
+        ui.Age.setText("20" + count)
+        ui.Phone.setText("097124919" + count)
+        ui.Pre_OD.document().setPlainText("Pre_OD " + count)
+        ui.Plan.document().setPlainText("Plan " + count)
+        ui.Underlying.document().setPlainText("Underlying " + count)
+        ui.Treatment.document().setPlainText("Treatment " + count)
+        ui.Note.document().setPlainText("Note " + count)
+
+
 

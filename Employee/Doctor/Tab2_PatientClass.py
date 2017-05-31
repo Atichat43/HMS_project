@@ -52,6 +52,7 @@ class Tab2Patient(QWidget):
         dialog.exec_()
         if dialog.returnVal:
             self.updateTable()
+            self.parent.updateTable("Appointment")
 
 
     def viewHistoryReport(self, AN):

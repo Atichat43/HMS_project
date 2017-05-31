@@ -9,13 +9,13 @@ class DoctorApplication(object):
         self.ctrlDatabase_appointment = ControllerDatabase.ControllerDatabase(s.DB_APPOINTMENT)
         self.ctrlDatabase_history = ControllerDatabase.ControllerDatabase(s.DB_REPORT)
 
+    """-------------------------Patient Database---------------------------------------------"""
     def getCurrentCaseID(self):
         patients = self.getPatientFromDatabase()
         last_patients_id = patients[-1].case_id
         self.current_case_id = last_patients_id
         return self.current_case_id
 
-    """-------------------------Patient Database---------------------------------------------"""
     def getPatientFromDatabase(self):
         obj_patients = self.ctrlDatabase_patient.loadObj()
         #update case id

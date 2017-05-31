@@ -14,11 +14,7 @@ class Tab1Patient(QWidget):
 
     def initUI(self):
         self.tab1 = Widget_ManagePersonClass.WidgetManagePerson("Patient", self)
-        patients = self.parent.crtlDatabase.getPatientFromDatabase()
-        self.tab1.setSourceModel(s.HB_DOCTOR_PATIENT, patients)
-
-    def updateTable(self):
-        patients = self.parent.crtlDatabase.getPatientFromDatabase()
+        patients = self.parent.nurse_app.getPatientFromDatabase()
         self.tab1.setSourceModel(s.HB_DOCTOR_PATIENT, patients)
 
     def initLayout(self):
@@ -32,12 +28,17 @@ class Tab1Patient(QWidget):
         self.b_newPatient.setEnabled(False)
         self.b_newPatient.setVisible(True)
 
+    def updateTable(self):
+        patients = self.parent.nurse_app.getPatientFromDatabase()
+        self.tab1.setSourceModel(s.HB_DOCTOR_PATIENT, patients)
+
     """This func called By Widget_ManagePersonClass"""
     def editButtonPressed(self, AN):
         if AN is not None:
             self.edit3Report(AN)
         else:
             print("is None")
+            raise KeyError
 
     def edit3Report(self, AN):
         patient = self.parent.getPatientByAN(AN)

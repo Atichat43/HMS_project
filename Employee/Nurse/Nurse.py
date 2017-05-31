@@ -9,10 +9,17 @@ class NurseApplication(object):
         self.ctrlDatabase_appointment = ControllerDatabase.ControllerDatabase(s.DB_APPOINTMENT)
         self.ctrlDatabase_history = ControllerDatabase.ControllerDatabase(s.DB_REPORT)
 
-    """PATIENT DATABASE"""
+    """----------------------PATIENT DATABASE---------------------------------------"""
     def getPatientFromDatabase(self):
         obj_patients = self.ctrlDatabase_patient.loadObj()
         return obj_patients
+
+    def getPatientByAN(self, AN):
+        patients = self.getPatientFromDatabase()
+        for patient in patients:
+            if patient.AN == AN:
+                return patient
+        return None
 
     def editPatient(self, newPatient):
         patients = self.getPatientFromDatabase()
@@ -22,14 +29,7 @@ class NurseApplication(object):
                 break
         self.ctrlDatabase_patient.updateObject(patients)
 
-    def getPatientByAN(self, AN):
-        patients = self.getPatientFromDatabase()
-        for patient in patients:
-            if patient.AN == AN:
-                return patient
-        return None
-
-    """APPOINTMENT DATABASE"""
+    """-----------------------APPOINTMENT DATABASE----------------------------------"""
     def getAppointmentFromDatabase(self):
         obj_appointments = self.ctrlDatabase_appointment.loadObj()
         return obj_appointments
@@ -41,7 +41,7 @@ class NurseApplication(object):
                 return appointment
         return None
 
-    """REPORT DATABASE"""
+    """------------------------REPORT DATABASE---------------------------------------"""
     def getReportFromDatabase(self):
         obj_reports = self.ctrlDatabase_report.loadObj()
         return obj_reports
@@ -53,15 +53,14 @@ class NurseApplication(object):
                 return report
         return None
 
-    """------------------------History Database---------------------"""
+    """------------------------History Database---------------------------------------"""
 
     def getHistoryReport(self):
-        return self.ctrlDatabase_history.loadObj()
+        obj_historys = self.ctrlDatabase_history.loadObj()
+        return obj_historys
 
     def getHistoryReportByAN(self, AN):
         history_reports = self.getHistoryReport()
-        print("GET -HISROTY REPORTS AN")
-        print(history_reports)
         for report in history_reports:
             if report.patient_AN == AN:
                 return report.all_report
