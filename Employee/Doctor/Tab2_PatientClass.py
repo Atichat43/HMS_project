@@ -20,6 +20,7 @@ class Tab2Patient(QWidget):
         self.b_view.setText("View History")
         patients = self.parent.crtlDatabase.getPatientFromDatabase()
         self.tab2.setSourceModel(s.HB_DOCTOR_PATIENT, patients)
+        self.tab2.insertDeleteButton()
 
     def updateTable(self):
         patients = self.parent.crtlDatabase.getPatientFromDatabase()
@@ -44,6 +45,9 @@ class Tab2Patient(QWidget):
             self.viewHistoryReport(AN)
         else:
             print("is None")
+
+    def deleteButtonPressed(self, id):
+        self.parent.deleteButtonPressed(id)
 
     def newPatient(self):
         case_id = self.parent.getCurrentCaseID()

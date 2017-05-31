@@ -21,6 +21,13 @@ class DoctorApplication(object):
         #update case id
         return obj_patients
 
+    def getPatientByAN(self, AN):
+        patients = self.getPatientFromDatabase()
+        for patient in patients:
+            if patient.AN == AN:
+                return patient
+        return None
+
     def addNewPatient(self, newPatient):
         patients = self.getPatientFromDatabase()
         newPatient.updateStatus(s.PatientStatus.waitingPreReport)
@@ -50,6 +57,9 @@ class DoctorApplication(object):
                 if patient.Name == patient_name:
                     return True
         return False
+
+    def updatePatientDatabase(self, patients):
+        self.ctrlDatabase_patient.updateObject(patients)
 
     """-------------------------Appointment Database---------------------------------------------"""
     def getAppointmentFromDatabase(self):
@@ -103,6 +113,9 @@ class DoctorApplication(object):
             if appointment.patient.AN == AN:
                 return appointment
         return None
+
+    def updateAppointmentDatabase(self, appointments):
+        self.ctrlDatabase_appointment.updateObject(appointments)
 
     """-------------------------History Database---------------------------------------------"""
     def getHistoryReport(self):

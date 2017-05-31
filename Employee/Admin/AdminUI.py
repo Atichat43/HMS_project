@@ -44,7 +44,6 @@ class MainWindowAdmin(QMainWindow):
         self.tabWidget.addTab(self.tab2, "Nurse")
         self.tabWidget.addTab(self.tab3, "Admin")
 
-
     def initButton(self):
         #init new Employee
         self.b_newDoctor = self.tab1.b_newPerson

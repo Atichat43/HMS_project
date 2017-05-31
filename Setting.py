@@ -30,19 +30,23 @@ HB_NURSE_PATIENT = ["AN", "Name", "Age", "Phone", "Status"]
 # path RSC images
 PATH_IMG_BG_LOGIN = ".RSC/img/bg_login.png"
 
-"""-------UI FILE PATH--------"""
+"""-------PATH UI FILE--------"""
 # path Doctor
 PATH_DOCTOR_DIALOG_NEWPATIENT = 'Employee/Doctor/View/Widget_NewPatientUI.ui'
 
 # ../Employee/Doctor/View/Widget_3ReportPatientUI.ui
 PATH_DOCTOR_DIALOG_3REPORT = 'Employee/Doctor/View/Widget_3ReportPatientUI.ui'
 
+
+"""-------PATH DATABASE FILE--------"""
 # path database
 DB_USER = "./Database/userObject.pkl"
 DB_PATIENT = "./Database/patientObject.pkl"
 DB_APPOINTMENT = "./Database/appointmentObject.pkl"
 DB_REPORT = "./Database/reportObject.pkl"
 
+
+"""--------STYLE SHEET------------"""
 # Style Sheet
 SS_Button_EMCASE = "background-color: rgb(255, 0, 0); color: rgb(255, 255, 255)"
 SS_TabWidget = "QTabBar::tab { height: 35px; width: 100px; }"
@@ -53,29 +57,6 @@ class Status(Enum):
     waiting = 0
     doing = 1
     done = 2
-
-
-# Paitient
-class PatientStatus(Enum):
-    waitingPreReport = 0
-    waitingIntraReport = 1
-    waitingPostReport = 2
-    done = 3
-
-
-# User
-class Position(Enum):
-    admin = 0
-    doctor = 1
-    nurse = 2
-    roommanager = 3
-
-
-class UserPosition(Enum):
-    doctor = 0
-    nurse = 1
-    admin = 2
-
 
 # Calendar
 class Month(Enum):
@@ -91,6 +72,27 @@ class Month(Enum):
     Oct = 10
     Nov = 11
     Dec = 12
+
+
+# Paitient
+class PatientStatus(Enum):
+    waitingPreReport = 0
+    waitingIntraReport = 1
+    waitingPostReport = 2
+    done = 3
+
+
+class Position(Enum):
+    admin = 0
+    doctor = 1
+    nurse = 2
+    roommanager = 3
+
+
+class UserPosition(Enum):
+    doctor = 0
+    nurse = 1
+    admin = 2
 
 
 class NewObjectReturnVal(Enum):

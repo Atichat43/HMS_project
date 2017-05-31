@@ -1,5 +1,6 @@
 from PySide.QtGui import QMainWindow, QGridLayout, QWidget, QTabWidget
 from Employee.Doctor import Doctor, Tab1_CalendarClass, Tab2_PatientClass, Tab3_AppointmentClass
+from Base.Dialog_MsgBox import ConfirmMsgClass
 import Setting
 
 
@@ -61,6 +62,29 @@ class MainWindowDoctor(QMainWindow):
     def oldPatientValid(self, AN, patient_name):
         return self.crtlDatabase.oldPatientValid(AN, patient_name)
 
+    def deleteButtonPressed(self, AN):
+        title = "Confirm deleting"
+        text_info = "Delete this Patient"
+        question = "Do you sure to delete " + str(AN)
+        dialog = ConfirmMsgClass.ConfirmYesNo(title, text_info, question)
+        if dialog.ans:
+            patients = self.crtlDatabase.getPatientFromDatabase()
+            appointments = self.crtlDatabase.getAppointmentFromDatabase()
+            for patient in patients:
+                if patient.AN == AN:
+                    patients.remove(patient)
+                    self.crtlDatabase.updatePatientDatabase(patients)
+                    self.tab2.updateTable()
+                    break
+            for appointment in appointments:
+                if appointment.patient.AN == AN:
+                    appointments.remove(appointment)
+                    self.crtlDatabase.updateAppointmentDatabase(appointments)
+                    self.tab3.updateTable()
+                    break
+        else:
+            pass
+
     """-----APPOINTMENT----"""
     def getAppointment(self):
         return self.crtlDatabase.getAppointmentByDoctor(self.user.id)
@@ -70,10 +94,6 @@ class MainWindowDoctor(QMainWindow):
 
     def appointmentValid(self, date, time, doctor):
         return self.crtlDatabase.appointmentValid(date, time, doctor)
-
-
-
-
 
     def getPatientByCaseId(self, case_id):
         return self.crtlDatabase.getPatientByCaseId(case_id, self.user.id)

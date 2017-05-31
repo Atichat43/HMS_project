@@ -29,6 +29,9 @@ class NurseApplication(object):
                 break
         self.ctrlDatabase_patient.updateObject(patients)
 
+    def updatePatientDatabase(self, patients):
+        self.ctrlDatabase_patient.updateObject(patients)
+
     """-----------------------APPOINTMENT DATABASE----------------------------------"""
     def getAppointmentFromDatabase(self):
         obj_appointments = self.ctrlDatabase_appointment.loadObj()
@@ -40,6 +43,9 @@ class NurseApplication(object):
             if appointment.patient.AN == AN:
                 return appointment
         return None
+
+    def updateAppointmentDatabase(self, appointments):
+        self.ctrlDatabase_appointment.updateObject(appointments)
 
     """------------------------REPORT DATABASE---------------------------------------"""
     def getReportFromDatabase(self):

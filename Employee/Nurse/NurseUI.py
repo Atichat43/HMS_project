@@ -1,5 +1,6 @@
 from PySide.QtGui import QMainWindow, QGridLayout, QWidget, QTabWidget
 from Employee.Nurse import Tab1_PatientClass, Nurse
+from Base.Dialog_MsgBox import ConfirmMsgClass
 import Setting
 
 
@@ -37,6 +38,28 @@ class MainWindowNurse(QMainWindow):
 
     def getAppointmentByAN(self, AN):
         return self.nurse_app.getAppointmentByAN(AN)
+
+    def deleteButtonPressed(self, AN):
+        title = "Confirm deleting"
+        text_info = "Delete this Patient"
+        question = "Do you sure to delete " + str(AN)
+        dialog = ConfirmMsgClass.ConfirmYesNo(title, text_info, question)
+        if dialog.ans:
+            patients = self.nurse_app.getPatientFromDatabase()
+            appointments = self.nurse_app.getAppointmentFromDatabase()
+            for patient in patients:
+                if patient.AN == AN:
+                    patients.remove(patient)
+                    self.nurse_app.updatePatientDatabase(patients)
+                    self.tab1.updateTable()
+                    break
+            for appointment in appointments:
+                if appointment.patient.AN == AN:
+                    appointments.remove(appointment)
+                    self.nurse_app.updateAppointmentDatabase(appointments)
+                    break
+        else:
+            pass
 
     def updatePatient(self, patient):
         return self.nurse_app.editPatient(patient)

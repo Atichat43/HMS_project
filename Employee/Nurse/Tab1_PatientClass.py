@@ -16,6 +16,7 @@ class Tab1Patient(QWidget):
         self.tab1 = Widget_ManagePersonClass.WidgetManagePerson("Patient", self)
         patients = self.parent.nurse_app.getPatientFromDatabase()
         self.tab1.setSourceModel(s.HB_DOCTOR_PATIENT, patients)
+        self.tab1.insertDeleteButton()
 
     def initLayout(self):
         layout = QGridLayout()
@@ -39,6 +40,9 @@ class Tab1Patient(QWidget):
         else:
             print("is None")
             raise KeyError
+
+    def deleteButtonPressed(self, id):
+        self.parent.deleteButtonPressed(id)
 
     def edit3Report(self, AN):
         patient = self.parent.getPatientByAN(AN)
